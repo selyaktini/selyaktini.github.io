@@ -67,18 +67,12 @@ a:hover {
 }
 
 .header-inner {
-  padding: 16px 0 12px;
-}
-
-.site-mark {
-  margin: 0 0 7px;
-  color: var(--muted);
-  font-size: 13px;
+  padding: 10px 0 9px;
 }
 
 .site-title {
   margin: 0;
-  font-size: clamp(25px, 3vw, 35px);
+  font-size: clamp(23px, 2.5vw, 31px);
   font-weight: 610;
   letter-spacing: 0;
   line-height: 1.12;
@@ -92,7 +86,7 @@ a:hover {
 }
 
 .site-intro {
-  margin: 10px 0 0;
+  margin: 7px 0 0;
   max-width: 760px;
   color: var(--muted);
   font-size: 14px;
@@ -102,7 +96,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .primary-nav a {
@@ -128,7 +122,7 @@ a:hover {
 }
 
 .content {
-  padding: 24px 0 44px;
+  padding: 20px 0 40px;
 }
 
 .content-narrow {
@@ -136,7 +130,7 @@ a:hover {
 }
 
 .section {
-  margin-top: 30px;
+  margin-top: 26px;
 }
 
 .section:first-child {
@@ -186,6 +180,22 @@ p {
 
 .muted {
   color: var(--muted);
+}
+
+.source-note,
+.analysis-note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.source-note {
+  margin: -4px 0 11px;
+}
+
+.analysis-note {
+  margin-top: 12px;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
 }
 
 .classification-grid,
@@ -241,6 +251,10 @@ p {
   border: 1px solid var(--line-strong);
 }
 
+.stacked-bar.compact {
+  height: 10px;
+}
+
 .stack-segment {
   min-width: 0;
   height: 100%;
@@ -289,6 +303,21 @@ p {
   font-size: 13px;
   font-weight: 560;
   font-variant-numeric: tabular-nums;
+}
+
+.count-list strong {
+  display: inline-flex;
+  gap: 8px;
+  justify-content: end;
+  align-items: baseline;
+}
+
+.count-percent {
+  min-width: 42px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
 }
 
 .label-with-swatch {
@@ -370,6 +399,59 @@ p {
   border-bottom-color: var(--muted-strong);
 }
 
+.year-comparison {
+  display: grid;
+  gap: 9px;
+  margin: 11px 0 14px;
+}
+
+.year-strip {
+  display: grid;
+  gap: 6px;
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+}
+
+.year-strip.is-selected {
+  border-top-color: var(--link);
+}
+
+.selected-year-strip {
+  margin: 12px 0 10px;
+}
+
+.year-strip-head,
+.mini-counts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.year-strip-head strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  font-weight: 580;
+}
+
+.year-strip-head span,
+.mini-counts {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.mini-counts {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+}
+
+.mini-counts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .map-shell {
   overflow: hidden;
   background: var(--surface);
@@ -384,13 +466,26 @@ p {
   background: #eef3f6;
 }
 
+.map-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+}
+
+.map-status {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
 .map-preview .map {
   height: min(48vh, 500px);
   min-height: 340px;
 }
 
 .map-large .map {
-  height: calc(100vh - 245px);
+  height: calc(100vh - 218px);
   min-height: 560px;
 }
 
@@ -469,6 +564,10 @@ p {
   align-items: start;
 }
 
+.summary-layout.single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -524,6 +623,11 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
 }
 
 th,
@@ -656,6 +760,7 @@ tbody tr:last-child td {
 .site-footer {
   border-top: 1px solid var(--line);
   color: var(--muted);
+  background: var(--surface);
 }
 
 .footer-inner {
@@ -696,6 +801,10 @@ tbody tr:last-child td {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 13px;
   line-height: 1.45;
+}
+
+.leaflet-control-layers label {
+  margin: 3px 0;
 }
 
 @media (max-width: 920px) {
@@ -747,6 +856,23 @@ tbody tr:last-child td {
   .preview-metrics,
   .class-legend {
     grid-template-columns: 1fr;
+  }
+
+  .year-strip-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .text-action {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .text-action span {
+    text-align: left;
+    white-space: normal;
   }
 
   .class-chip {

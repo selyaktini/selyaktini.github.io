@@ -13,7 +13,6 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <p class="site-mark">Cartographie</p>
       <h1 class="site-title">Périmètre</h1>
       <p class="site-subtitle">Rocade, zones de modélisation et capteurs permanents</p>
       <nav class="primary-nav" aria-label="Navigation principale">
@@ -28,8 +27,8 @@
 
   <main class="content map-page">
     <div class="context-block">
-      <p>Le périmètre suit l'intérieur de la rocade bordelaise.</p>
-      <p>La carte superpose les 247 zones de modélisation et les points validés du réseau permanent.</p>
+      <p>Le périmètre de modélisation regroupe les zones situées à l'intérieur de la rocade et les zones de bordure associées.</p>
+      <p>La carte superpose les zones de modélisation et les capteurs permanents colorés selon leur classe matin / soir.</p>
     </div>
     <div class="map-shell map-large">
       <div id="study-map" class="map" role="img" aria-label="Carte du périmètre rocade et des capteurs permanents"></div>
@@ -38,14 +37,17 @@
         <span class="legend" aria-label="Légende cartographique">
           <span class="legend-item"><span class="swatch" style="background:#263f56"></span>périmètre rocade</span>
           <span class="legend-item"><span class="swatch" style="background:#dfe8ee"></span>zones de modélisation</span>
-          <span class="legend-item"><span class="swatch round" style="background:#253545"></span>capteurs permanents</span>
+          <span class="legend-item"><span class="swatch round class-morning"></span>dominante matin</span>
+          <span class="legend-item"><span class="swatch round class-evening"></span>dominante soir</span>
+          <span class="legend-item"><span class="swatch round class-balanced"></span>équilibré</span>
+          <span class="legend-item"><span class="swatch round class-insufficient"></span>données insuffisantes</span>
         </span>
       </div>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Géométries publiques simplifiées pour consultation.</div>
+    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole · Synthèse de travail · Juillet 2026</div>
   </footer>
 </body>
 </html>

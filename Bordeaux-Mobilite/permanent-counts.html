@@ -13,7 +13,6 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <p class="site-mark">Note analytique</p>
       <h1 class="site-title">Capteurs permanents</h1>
       <p class="site-subtitle">Profils horaires et classification matin / soir</p>
       <nav class="primary-nav" aria-label="Navigation principale">
@@ -31,9 +30,10 @@
       <div class="section-header compact">
         <p class="lead">Les capteurs permanents fournissent des comptages horaires continus, classés selon le rapport entre les volumes du matin et du soir.</p>
       </div>
-      <div class="summary-layout">
+      <div class="summary-layout single">
         <div class="summary-panel">
           <h2>Distribution des classes</h2>
+          <p class="source-note">84 capteurs classifiés sur les jours ouvrés, hors vacances scolaires Zone A et jours fériés.</p>
           <div class="distribution" data-distribution="permanent" aria-label="Classes des capteurs permanents">
             <div class="stacked-bar" role="img" aria-label="Classes des capteurs permanents">
               <span class="stack-segment class-morning" style="width:19.05%"></span>
@@ -42,29 +42,13 @@
               <span class="stack-segment class-insufficient" style="width:5.95%"></span>
             </div>
             <ul class="count-list">
-              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong>16</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong>40</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong>23</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong>5</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong><span>16</span><span class="count-percent">19 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong><span>40</span><span class="count-percent">47,6 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong><span>23</span><span class="count-percent">27,4 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong><span>5</span><span class="count-percent">6 %</span></strong></li>
             </ul>
           </div>
-        </div>
-        <div class="summary-panel">
-          <h2>Légende</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Classe</th>
-                <th>Capteurs</th>
-              </tr>
-            </thead>
-            <tbody id="permanent-type-table">
-              <tr><td><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span></td><td><strong class="mono">16</strong></td></tr>
-              <tr><td><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span></td><td><strong class="mono">40</strong></td></tr>
-              <tr><td><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span></td><td><strong class="mono">23</strong></td></tr>
-              <tr><td><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span></td><td><strong class="mono">5</strong></td></tr>
-            </tbody>
-          </table>
+          <p class="analysis-note">Une polarité matin/soir décrit le rapport entre les volumes observés sur les deux créneaux horaires ; elle ne représente pas une direction géographique.</p>
         </div>
       </div>
     </section>
@@ -81,7 +65,15 @@
       </div>
       <div class="map-shell">
         <div id="permanent-map" class="map" role="img" aria-label="Carte des capteurs permanents colorés par classe"></div>
-        <div class="map-caption">Classification calculée sur les jours ouvrés, hors vacances scolaires Zone A et jours fériés.</div>
+        <div class="map-caption split-caption">
+          <span>Classification calculée sur les jours ouvrés, hors vacances scolaires Zone A et jours fériés. 82 capteurs sont représentés sur la carte ; 2 capteurs classifiés ne disposent pas encore d'une géométrie validée.</span>
+          <span class="legend" aria-label="Légende des classes">
+            <span class="legend-item"><span class="swatch round class-morning"></span>dominante matin</span>
+            <span class="legend-item"><span class="swatch round class-evening"></span>dominante soir</span>
+            <span class="legend-item"><span class="swatch round class-balanced"></span>équilibré</span>
+            <span class="legend-item"><span class="swatch round class-insufficient"></span>données insuffisantes</span>
+          </span>
+        </div>
       </div>
     </section>
 
@@ -92,28 +84,28 @@
       <div class="preview-grid">
         <article class="preview-panel">
           <h3>Profils horaires</h3>
-          <p>Aperçu léger du périmètre couvert par l'explorateur temporel.</p>
+          <p>Période publiée, capteurs suivis et volume d'observations horaires.</p>
           <div data-temporal-preview>
             <div class="preview-metrics">
-              <div><strong>84</strong><span>capteurs</span></div>
-              <div><strong>mai 2024</strong><span>début</span></div>
-              <div><strong>mai 2026</strong><span>fin</span></div>
+              <div><strong>84</strong><span>capteurs suivis</span></div>
+              <div><strong>1 028 314</strong><span>observations horaires</span></div>
+              <div><strong>mai 2024 - mai 2026</strong><span>période publiée</span></div>
             </div>
           </div>
-          <a class="text-action" href="explorers/permanent-temporal-audit.html">Ouvrir en plein écran <span>explorateur</span></a>
+          <a class="text-action" href="explorers/permanent-temporal-audit.html">Ouvrir les profils horaires <span>vue détaillée</span></a>
         </article>
         <article class="preview-panel">
           <h3>Classification matin / soir</h3>
-          <p>Aperçu des classes utilisées dans le nuage de points détaillé.</p>
+          <p>Répartition réelle des 84 capteurs utilisée dans le nuage de points détaillé.</p>
           <div class="distribution" data-distribution="permanent" aria-label="Aperçu de la classification permanente"></div>
-          <a class="text-action" href="explorers/permanent-polarity.html">Ouvrir en plein écran <span>explorateur</span></a>
+          <a class="text-action" href="explorers/permanent-polarity.html">Ouvrir la classification matin / soir <span>vue détaillée</span></a>
         </article>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Capteurs permanents classés : 84.</div>
+    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole · Synthèse de travail · Juillet 2026</div>
   </footer>
 </body>
 </html>

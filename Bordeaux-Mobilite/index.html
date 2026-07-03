@@ -13,10 +13,9 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <p class="site-mark">Note de synthèse</p>
       <h1 class="site-title">Comptages vélo &mdash; Bordeaux Métropole</h1>
       <p class="site-subtitle">Classification des profils matin et soir</p>
-      <p class="site-intro">Cette synthèse présente les profils horaires issus des capteurs permanents et des campagnes de comptage ponctuel.</p>
+      <p class="site-intro">Cette synthèse présente les profils temporels issus des capteurs permanents et des campagnes de comptage ponctuel.</p>
       <nav class="primary-nav" aria-label="Navigation principale">
         <a href="index.html">Synthèse</a>
         <a href="study-area.html">Périmètre</a>
@@ -30,11 +29,12 @@
   <main class="content">
     <section class="section" aria-labelledby="classification-title">
       <div class="section-header">
-        <h2 id="classification-title">Répartition des classes</h2>
+        <h2 id="classification-title">Comparaison des sources</h2>
       </div>
       <div class="classification-grid">
         <article class="analysis-panel">
           <h2>Capteurs permanents</h2>
+          <p class="source-note">84 capteurs classifiés à partir de plusieurs jours ouvrés, hors vacances scolaires et jours fériés.</p>
           <div class="distribution" data-distribution="permanent" aria-label="Classes des capteurs permanents">
             <div class="stacked-bar" role="img" aria-label="Classes des capteurs permanents">
               <span class="stack-segment class-morning" style="width:19.05%"></span>
@@ -43,21 +43,28 @@
               <span class="stack-segment class-insufficient" style="width:5.95%"></span>
             </div>
             <ul class="count-list">
-              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong>16</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong>40</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong>23</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong>5</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong><span>16</span><span class="count-percent">19 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong><span>40</span><span class="count-percent">47,6 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong><span>23</span><span class="count-percent">27,4 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong><span>5</span><span class="count-percent">6 %</span></strong></li>
             </ul>
           </div>
+          <p class="analysis-note">La classe décrit une dominance temporelle matin/soir, et non une direction géographique de déplacement.</p>
           <div class="action-row">
-            <a class="text-action" href="permanent-counts.html">Voir les statistiques <span>capteurs permanents</span></a>
-            <a class="text-action" href="explorers/permanent-temporal-audit.html">Explorer les profils horaires <span>plein écran</span></a>
-            <a class="text-action" href="explorers/permanent-polarity.html">Ouvrir la classification matin / soir <span>plein écran</span></a>
+            <a class="text-action" href="permanent-counts.html">Voir les statistiques des capteurs permanents</a>
+            <a class="text-action" href="explorers/permanent-temporal-audit.html">Explorer les profils horaires <span>vue détaillée</span></a>
+            <a class="text-action" href="explorers/permanent-polarity.html">Ouvrir la classification matin / soir <span>vue détaillée</span></a>
           </div>
         </article>
 
         <article class="analysis-panel">
           <h2>Comptages ponctuels</h2>
+          <p class="source-note">Unités directionnelles classées séparément pour chaque campagne annuelle.</p>
+          <div class="year-comparison" data-year-comparison="punctual" aria-label="Comparaison des campagnes 2021, 2022 et 2023">
+            <div class="year-strip"><div class="year-strip-head"><strong>2021</strong><span>293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:6.48%"></span><span class="stack-segment class-evening" style="width:24.23%"></span><span class="stack-segment class-balanced" style="width:68.6%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div></div>
+            <div class="year-strip"><div class="year-strip-head"><strong>2022</strong><span>293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:13.65%"></span><span class="stack-segment class-evening" style="width:21.5%"></span><span class="stack-segment class-balanced" style="width:64.16%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div></div>
+            <div class="year-strip is-selected"><div class="year-strip-head"><strong>2023</strong><span>298 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div></div>
+          </div>
           <div class="year-tabs" data-year-tabs aria-label="Année de campagne">
             <button type="button" data-year="2021" aria-pressed="false">2021</button>
             <button type="button" data-year="2022" aria-pressed="false">2022</button>
@@ -72,15 +79,15 @@
               <span class="stack-segment class-insufficient" style="width:0%"></span>
             </div>
             <ul class="count-list">
-              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong>30</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong>62</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong>206</strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong>0</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong><span>30</span><span class="count-percent">10,1 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong><span>62</span><span class="count-percent">20,8 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong><span>206</span><span class="count-percent">69,1 %</span></strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong><span>0</span><span class="count-percent">0 %</span></strong></li>
             </ul>
           </div>
           <div class="action-row">
-            <a class="text-action" href="punctual-counts.html">Voir les statistiques <span>comptages ponctuels</span></a>
-            <a class="text-action" href="explorers/punctual-polarity.html">Ouvrir la classification ponctuelle <span>plein écran</span></a>
+            <a class="text-action" href="punctual-counts.html">Voir les statistiques des comptages ponctuels</a>
+            <a class="text-action" href="explorers/punctual-polarity.html">Ouvrir la classification ponctuelle <span>vue détaillée</span></a>
           </div>
           <p class="panel-note">Les dates exactes des campagnes ne sont pas documentées dans les classeurs sources.</p>
         </article>
@@ -95,11 +102,14 @@
       <div class="map-shell map-preview">
         <div id="study-map" class="map" role="img" aria-label="Carte du périmètre rocade, des zones de modélisation et des capteurs permanents"></div>
         <div class="map-caption split-caption">
-          <span>Rocade, zones de modélisation et réseau de capteurs permanents.</span>
+          <span>Rocade, zones de modélisation et capteurs permanents colorés par classe.</span>
           <span class="legend" aria-label="Légende cartographique">
             <span class="legend-item"><span class="swatch" style="background:#263f56"></span>périmètre rocade</span>
             <span class="legend-item"><span class="swatch" style="background:#dfe8ee"></span>zones de modélisation</span>
-            <span class="legend-item"><span class="swatch round" style="background:#253545"></span>capteurs permanents</span>
+            <span class="legend-item"><span class="swatch round class-morning"></span>dominante matin</span>
+            <span class="legend-item"><span class="swatch round class-evening"></span>dominante soir</span>
+            <span class="legend-item"><span class="swatch round class-balanced"></span>équilibré</span>
+            <span class="legend-item"><span class="swatch round class-insufficient"></span>données insuffisantes</span>
           </span>
         </div>
       </div>
@@ -114,7 +124,7 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Brief statique pour revue scientifique.</div>
+    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole · Synthèse de travail · Juillet 2026</div>
   </footer>
 </body>
 </html>

@@ -63,18 +63,32 @@
     }));
   }
 
+  function percentage(count, total) {
+    if (!total) {
+      return "0 %";
+    }
+    return `${(count / total * 100).toLocaleString("fr-FR", {
+      maximumFractionDigits: 1
+    })} %`;
+  }
+
+  function distributionSegments(counts, total) {
+    return counts.map((item) => {
+      const width = item.count && total ? (item.count / total) * 100 : 0;
+      const label = `${item.label} : ${formatValue(item.count)} (${percentage(item.count, total)})`;
+      return `<span class="stack-segment ${item.className}" style="width:${width}%" title="${escapeHtml(label)}"></span>`;
+    }).join("");
+  }
+
   function renderDistributionElement(element, rows, valueKey) {
     const counts = normalizeCounts(rows, valueKey);
-    const total = counts.reduce((sum, item) => sum + item.count, 0) || 1;
+    const total = counts.reduce((sum, item) => sum + item.count, 0);
     const title = element.getAttribute("aria-label") || "Répartition des classes";
-    const segments = counts.map((item) => {
-      const width = item.count ? (item.count / total) * 100 : 0;
-      return `<span class="stack-segment ${item.className}" style="width:${width}%" title="${escapeHtml(item.label)} : ${formatValue(item.count)}"></span>`;
-    }).join("");
+    const segments = distributionSegments(counts, total);
     const list = counts.map((item) => `
       <li>
         <span class="label-with-swatch"><span class="swatch ${item.className}"></span>${escapeHtml(item.label)}</span>
-        <strong>${formatValue(item.count)}</strong>
+        <strong><span>${formatValue(item.count)}</span><span class="count-percent">${percentage(item.count, total)}</span></strong>
       </li>
     `).join("");
     element.innerHTML = `
@@ -108,13 +122,14 @@
     document.querySelectorAll("[data-temporal-preview]").forEach((element) => {
       const classified = getByPath(metrics, "permanent_counts.n_classified_sensors") || 84;
       const rows = getByPath(metrics, "permanent_counts.time_span_utc.n_hourly_observation_rows") || 0;
+      const sensors = getByPath(metrics, "permanent_counts.time_span_utc.n_sensors_in_hourly_table") || classified;
       element.innerHTML = `
         <div class="preview-metrics">
-          <div><strong>${formatValue(classified)}</strong><span>capteurs</span></div>
-          <div><strong>mai 2024</strong><span>début</span></div>
-          <div><strong>mai 2026</strong><span>fin</span></div>
+          <div><strong>${formatValue(sensors)}</strong><span>capteurs suivis</span></div>
+          <div><strong>${formatValue(rows)}</strong><span>observations horaires</span></div>
+          <div><strong>mai 2024 - mai 2026</strong><span>période publiée</span></div>
         </div>
-        <p>${formatValue(rows)} observations horaires dans l'explorateur dédié.</p>
+        <p>La vue détaillée permet de sélectionner un capteur et de comparer les séries horaires.</p>
       `;
     });
   }
@@ -145,13 +160,41 @@
 
   function renderPunctualPreview(row) {
     document.querySelectorAll("[data-punctual-preview]").forEach((element) => {
+      const counts = normalizeCounts(row.type_counts, "n_units");
+      const total = counts.reduce((sum, item) => sum + item.count, 0);
       element.innerHTML = `
-        <div class="preview-metrics">
-          <div><strong>${formatValue(row.n_directional_units)}</strong><span>unités directionnelles</span></div>
-          <div><strong>${formatValue(row.n_classifiable_units)}</strong><span>unités classables</span></div>
-          <div><strong>${formatValue(row.n_unmatchable_between_hourly_sheets)}</strong><span>données insuffisantes</span></div>
+        <div class="year-strip selected-year-strip">
+          <div class="year-strip-head">
+            <strong>${escapeHtml(row.campaign_year)}</strong>
+            <span>${formatValue(row.n_directional_units)} unités directionnelles</span>
+          </div>
+          <div class="stacked-bar compact" role="img" aria-label="Distribution ${escapeHtml(row.campaign_year)}">${distributionSegments(counts, total)}</div>
         </div>
       `;
+    });
+  }
+
+  function renderPunctualYearComparison(metrics, selectedYear) {
+    const rows = getByPath(metrics, "punctual_counts.by_year") || [];
+    document.querySelectorAll("[data-year-comparison='punctual']").forEach((element) => {
+      element.innerHTML = rows.map((row) => {
+        const counts = normalizeCounts(row.type_counts, "n_units");
+        const total = counts.reduce((sum, item) => sum + item.count, 0);
+        const className = Number(row.campaign_year) === Number(selectedYear) ? "year-strip is-selected" : "year-strip";
+        const values = counts.map((item) => `
+          <span><span class="swatch ${item.className}"></span>${escapeHtml(item.shortLabel)} ${formatValue(item.count)}</span>
+        `).join("");
+        return `
+          <div class="${className}">
+            <div class="year-strip-head">
+              <strong>${escapeHtml(row.campaign_year)}</strong>
+              <span>${formatValue(row.n_directional_units)} unités</span>
+            </div>
+            <div class="stacked-bar compact" role="img" aria-label="Distribution ${escapeHtml(row.campaign_year)}">${distributionSegments(counts, total)}</div>
+            <div class="mini-counts">${values}</div>
+          </div>
+        `;
+      }).join("");
     });
   }
 
@@ -173,6 +216,7 @@
       renderDistributionElement(element, row.type_counts, "n_units");
     });
     renderPunctualPreview(row);
+    renderPunctualYearComparison(metrics, row.campaign_year);
   }
 
   function initPunctualTabs(metrics) {
@@ -239,6 +283,40 @@
     return map;
   }
 
+  function showMapFallback(element) {
+    element.classList.add("map-fallback");
+    element.innerHTML = '<p class="map-status">Carte indisponible : les données cartographiques n\'ont pas pu être chargées.</p>';
+  }
+
+  function zoneStyle(feature) {
+    const hasSeries = feature.properties && feature.properties.has_hourly_series;
+    return {
+      color: hasSeries ? "#8db9b5" : "#9aaab6",
+      weight: hasSeries ? 0.75 : 0.45,
+      fillColor: hasSeries ? "#d9eeee" : "#e7eef4",
+      fillOpacity: hasSeries ? 0.42 : 0.28
+    };
+  }
+
+  function rocadeStyle() {
+    return {
+      color: "#263f56",
+      weight: 2,
+      fillOpacity: 0
+    };
+  }
+
+  function sensorMarker(feature, latlng, radius) {
+    const properties = feature.properties || {};
+    return L.circleMarker(latlng, {
+      radius,
+      color: "#ffffff",
+      weight: 1.15,
+      fillColor: colorForType(properties.polarity_type),
+      fillOpacity: 0.95
+    });
+  }
+
   function zonePopup(properties) {
     return `
       <strong>Zone ${escapeHtml(properties.zone_id)}</strong><br>
@@ -261,115 +339,128 @@
 
   async function initStudyMap() {
     const element = document.getElementById("study-map");
-    if (!element || typeof L === "undefined") {
+    if (!element) {
       return;
     }
-    const [zones, rocade, sensors] = await Promise.all([
-      loadJson("zones_modeling.geojson"),
-      loadJson("rocade_interior.geojson"),
-      loadJson("permanent_sensors.geojson")
-    ]);
+    if (typeof L === "undefined") {
+      showMapFallback(element);
+      return;
+    }
+    try {
+      const [zones, rocade, sensors] = await Promise.all([
+        loadJson("zones_modeling.geojson"),
+        loadJson("rocade_interior.geojson"),
+        loadJson("permanent_sensors.geojson")
+      ]);
 
-    const map = buildBaseMap(element);
-    const zonesLayer = L.geoJSON(zones, {
-      style(feature) {
-        const hasSeries = feature.properties && feature.properties.has_hourly_series;
-        return {
-          color: hasSeries ? "#4fa69c" : "#7f92a1",
-          weight: hasSeries ? 1.1 : 0.7,
-          fillColor: hasSeries ? "#d2e9e6" : "#dfe8ee",
-          fillOpacity: hasSeries ? 0.62 : 0.5
-        };
-      },
-      onEachFeature(feature, layer) {
-        layer.bindPopup(zonePopup(feature.properties || {}));
+      const map = buildBaseMap(element);
+      const zonesLayer = L.geoJSON(zones, {
+        style: zoneStyle,
+        onEachFeature(feature, layer) {
+          layer.bindPopup(zonePopup(feature.properties || {}));
+        }
+      }).addTo(map);
+
+      const rocadeLayer = L.geoJSON(rocade, {
+        style: rocadeStyle
+      }).addTo(map);
+
+      const sensorLayer = L.geoJSON(sensors, {
+        pointToLayer(feature, latlng) {
+          return sensorMarker(feature, latlng, 5);
+        },
+        onEachFeature(feature, layer) {
+          layer.bindPopup(sensorPopup(feature.properties || {}));
+        }
+      }).addTo(map);
+
+      L.control.layers(null, {
+        "Périmètre rocade": rocadeLayer,
+        "Zones de modélisation": zonesLayer,
+        "Capteurs permanents": sensorLayer
+      }, { collapsed: true }).addTo(map);
+
+      const bounds = rocadeLayer.getBounds().isValid() ? rocadeLayer.getBounds() : zonesLayer.getBounds();
+      if (bounds.isValid()) {
+        map.fitBounds(bounds.pad(0.035));
       }
-    }).addTo(map);
-
-    const rocadeLayer = L.geoJSON(rocade, {
-      style: {
-        color: "#263f56",
-        weight: 2.2,
-        fillOpacity: 0
-      }
-    }).addTo(map);
-
-    const sensorLayer = L.geoJSON(sensors, {
-      pointToLayer(feature, latlng) {
-        return L.circleMarker(latlng, {
-          radius: 4.8,
-          color: "#ffffff",
-          weight: 1.1,
-          fillColor: "#253545",
-          fillOpacity: 0.92
-        });
-      },
-      onEachFeature(feature, layer) {
-        layer.bindPopup(sensorPopup(feature.properties || {}));
-      }
-    }).addTo(map);
-
-    L.control.layers(null, {
-      "Périmètre rocade": rocadeLayer,
-      "Zones de modélisation": zonesLayer,
-      "Capteurs permanents": sensorLayer
-    }, { collapsed: true }).addTo(map);
-
-    const bounds = rocadeLayer.getBounds();
-    if (bounds.isValid()) {
-      map.fitBounds(bounds.pad(0.08));
+    } catch (error) {
+      console.error(error);
+      showMapFallback(element);
     }
   }
 
   async function initPermanentMap() {
     const element = document.getElementById("permanent-map");
-    if (!element || typeof L === "undefined") {
+    if (!element) {
       return;
     }
-    const sensors = await loadJson("permanent_sensors.geojson");
-    const map = buildBaseMap(element);
-    const markerGroup = L.layerGroup().addTo(map);
-    const filters = Array.from(document.querySelectorAll("[data-polarity-filter]"));
-
-    function selectedTypes() {
-      return new Set(
-        filters
-          .filter((input) => input.checked)
-          .map((input) => input.getAttribute("data-polarity-filter"))
-      );
+    if (typeof L === "undefined") {
+      showMapFallback(element);
+      return;
     }
+    try {
+      const [zones, rocade, sensors] = await Promise.all([
+        loadJson("zones_modeling.geojson"),
+        loadJson("rocade_interior.geojson"),
+        loadJson("permanent_sensors.geojson")
+      ]);
+      const map = buildBaseMap(element);
+      const zonesLayer = L.geoJSON(zones, {
+        style: zoneStyle,
+        onEachFeature(feature, layer) {
+          layer.bindPopup(zonePopup(feature.properties || {}));
+        }
+      }).addTo(map);
+      const rocadeLayer = L.geoJSON(rocade, {
+        style: rocadeStyle
+      }).addTo(map);
+      const markerGroup = L.layerGroup().addTo(map);
+      const filters = Array.from(document.querySelectorAll("[data-polarity-filter]"));
 
-    function renderMarkers() {
-      const active = selectedTypes();
-      markerGroup.clearLayers();
-      sensors.features.forEach((feature) => {
-        const properties = feature.properties || {};
-        if (!active.has(String(properties.polarity_type))) {
-          return;
-        }
-        const coordinates = feature.geometry && feature.geometry.coordinates;
-        if (!coordinates || coordinates.length < 2) {
-          return;
-        }
-        const marker = L.circleMarker([coordinates[1], coordinates[0]], {
-          radius: 5.6,
-          color: "#ffffff",
-          weight: 1.1,
-          fillColor: colorForType(properties.polarity_type),
-          fillOpacity: 0.94
+      function selectedTypes() {
+        return new Set(
+          filters
+            .filter((input) => input.checked)
+            .map((input) => input.getAttribute("data-polarity-filter"))
+        );
+      }
+
+      function renderMarkers() {
+        const active = selectedTypes();
+        markerGroup.clearLayers();
+        sensors.features.forEach((feature) => {
+          const properties = feature.properties || {};
+          if (!active.has(String(properties.polarity_type))) {
+            return;
+          }
+          const coordinates = feature.geometry && feature.geometry.coordinates;
+          if (!coordinates || coordinates.length < 2) {
+            return;
+          }
+          const marker = sensorMarker(feature, [coordinates[1], coordinates[0]], 5.8);
+          marker.bindPopup(sensorPopup(properties));
+          marker.addTo(markerGroup);
         });
-        marker.bindPopup(sensorPopup(properties));
-        marker.addTo(markerGroup);
-      });
-    }
+      }
 
-    filters.forEach((input) => input.addEventListener("change", renderMarkers));
-    renderMarkers();
+      filters.forEach((input) => input.addEventListener("change", renderMarkers));
+      renderMarkers();
 
-    const allLayer = L.geoJSON(sensors);
-    const bounds = allLayer.getBounds();
-    if (bounds.isValid()) {
-      map.fitBounds(bounds.pad(0.12));
+      L.control.layers(null, {
+        "Périmètre rocade": rocadeLayer,
+        "Zones de modélisation": zonesLayer,
+        "Capteurs permanents": markerGroup
+      }, { collapsed: true }).addTo(map);
+
+      const sensorBounds = L.geoJSON(sensors).getBounds();
+      const bounds = rocadeLayer.getBounds().isValid() ? rocadeLayer.getBounds() : sensorBounds;
+      if (bounds.isValid()) {
+        map.fitBounds(bounds.pad(0.055));
+      }
+    } catch (error) {
+      console.error(error);
+      showMapFallback(element);
     }
   }
 
@@ -388,6 +479,11 @@
       ]);
     } catch (error) {
       console.error(error);
+      document.querySelectorAll(".map").forEach((element) => {
+        if (!element.querySelector(".leaflet-pane") && !element.classList.contains("map-fallback")) {
+          showMapFallback(element);
+        }
+      });
       document.querySelectorAll("[data-load-error]").forEach((element) => {
         element.textContent = "Les données publiques n'ont pas pu être chargées.";
       });

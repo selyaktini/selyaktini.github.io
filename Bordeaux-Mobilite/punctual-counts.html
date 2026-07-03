@@ -11,7 +11,6 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <p class="site-mark">Note analytique</p>
       <h1 class="site-title">Comptages ponctuels</h1>
       <p class="site-subtitle">Campagnes 2021, 2022 et 2023</p>
       <nav class="primary-nav" aria-label="Navigation principale">
@@ -27,7 +26,7 @@
   <main class="content">
     <section class="section">
       <div class="section-header compact">
-        <p class="lead">Les comptages ponctuels regroupent des profils directionnels de campagne, traités séparément pour 2021, 2022 et 2023.</p>
+        <p class="lead">Les comptages ponctuels regroupent des unités directionnelles de campagne, classées séparément pour 2021, 2022 et 2023.</p>
       </div>
       <div class="year-tabs" data-year-tabs aria-label="Année de campagne">
         <button type="button" data-year="2021" aria-pressed="false">2021</button>
@@ -40,6 +39,7 @@
     <section class="section summary-layout">
       <div class="summary-panel">
         <h2>Distribution des classes</h2>
+        <p class="source-note">Détail de la campagne sélectionnée.</p>
         <div class="distribution" data-distribution="punctual" aria-label="Classes des comptages ponctuels">
           <div class="stacked-bar" role="img" aria-label="Classes des comptages ponctuels 2023">
             <span class="stack-segment class-morning" style="width:10.07%"></span>
@@ -48,48 +48,61 @@
             <span class="stack-segment class-insufficient" style="width:0%"></span>
           </div>
           <ul class="count-list">
-            <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong>30</strong></li>
-            <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong>62</strong></li>
-            <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong>206</strong></li>
-            <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong>0</strong></li>
+            <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong><span>30</span><span class="count-percent">10,1 %</span></strong></li>
+            <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong><span>62</span><span class="count-percent">20,8 %</span></strong></li>
+            <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong><span>206</span><span class="count-percent">69,1 %</span></strong></li>
+            <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong><span>0</span><span class="count-percent">0 %</span></strong></li>
           </ul>
         </div>
       </div>
       <div class="summary-panel">
-        <h2>Aperçu par année</h2>
+        <h2>Aperçu graphique</h2>
         <div data-punctual-preview>
-          <div class="preview-metrics">
-            <div><strong>298</strong><span>unités directionnelles</span></div>
-            <div><strong>298</strong><span>unités classables</span></div>
-            <div><strong>0</strong><span>données insuffisantes</span></div>
+          <div class="year-strip selected-year-strip">
+            <div class="year-strip-head"><strong>2023</strong><span>298 unités directionnelles</span></div>
+            <div class="stacked-bar compact" role="img" aria-label="Distribution 2023"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div>
           </div>
         </div>
+        <p>La barre résume les quatre classes de la campagne sélectionnée, sans supposer de date précise de campagne.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Comparaison annuelle</h2>
+      </div>
+      <div class="year-comparison" data-year-comparison="punctual" aria-label="Comparaison des campagnes">
+        <div class="year-strip"><div class="year-strip-head"><strong>2021</strong><span>293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:6.48%"></span><span class="stack-segment class-evening" style="width:24.23%"></span><span class="stack-segment class-balanced" style="width:68.6%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div></div>
+        <div class="year-strip"><div class="year-strip-head"><strong>2022</strong><span>293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:13.65%"></span><span class="stack-segment class-evening" style="width:21.5%"></span><span class="stack-segment class-balanced" style="width:64.16%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div></div>
+        <div class="year-strip is-selected"><div class="year-strip-head"><strong>2023</strong><span>298 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div></div>
+      </div>
+      <div class="table-wrap">
         <table>
-          <thead>
-            <tr>
-              <th>Année</th>
-              <th>Unités</th>
-              <th>Matin</th>
-              <th>Soir</th>
-              <th>Équilibré</th>
-              <th>Insuffisant</th>
-            </tr>
-          </thead>
-          <tbody id="punctual-year-table">
-            <tr><td><strong class="mono">2021</strong></td><td>293</td><td>19</td><td>71</td><td>201</td><td>2</td></tr>
-            <tr><td><strong class="mono">2022</strong></td><td>293</td><td>40</td><td>63</td><td>188</td><td>2</td></tr>
-            <tr><td><strong class="mono">2023</strong></td><td>298</td><td>30</td><td>62</td><td>206</td><td>0</td></tr>
-          </tbody>
-        </table>
+            <thead>
+              <tr>
+                <th>Année</th>
+                <th>Unités</th>
+                <th>Matin</th>
+                <th>Soir</th>
+                <th>Équilibré</th>
+                <th>Insuffisant</th>
+              </tr>
+            </thead>
+            <tbody id="punctual-year-table">
+              <tr><td><strong class="mono">2021</strong></td><td>293</td><td>19</td><td>71</td><td>201</td><td>2</td></tr>
+              <tr><td><strong class="mono">2022</strong></td><td>293</td><td>40</td><td>63</td><td>188</td><td>2</td></tr>
+              <tr><td><strong class="mono">2023</strong></td><td>298</td><td>30</td><td>62</td><td>206</td><td>0</td></tr>
+            </tbody>
+          </table>
       </div>
     </section>
 
     <section class="section">
       <article class="preview-panel">
         <h3>Explorateur ponctuel</h3>
-        <p>Nuage de points des volumes du matin et du soir, filtrable par année dans la page dédiée.</p>
+        <p>Nuage de points des volumes du matin et du soir, filtrable par campagne annuelle.</p>
         <div class="action-row">
-          <a class="text-action" href="explorers/punctual-polarity.html">Ouvrir en plein écran <span>explorateur</span></a>
+          <a class="text-action" href="explorers/punctual-polarity.html">Ouvrir la classification ponctuelle <span>vue détaillée</span></a>
         </div>
       </article>
       <p class="footnote">Les dates exactes des campagnes ne sont pas documentées dans les classeurs sources.</p>
@@ -97,7 +110,7 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Campagnes traitées séparément par année.</div>
+    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole · Synthèse de travail · Juillet 2026</div>
   </footer>
 </body>
 </html>
