@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Périmètre — Comptages vélo Bordeaux Métropole</title>
+  <meta name="description" content="Périmètre rocade, zones de modélisation et capteurs permanents.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="site-mark">Cartographie</p>
+      <h1 class="site-title">Périmètre</h1>
+      <p class="site-subtitle">Rocade, zones de modélisation et capteurs permanents</p>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="index.html">Synthèse</a>
+        <a href="study-area.html">Périmètre</a>
+        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="punctual-counts.html">Comptages ponctuels</a>
+        <a href="methodology.html">Méthode</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content map-page">
+    <div class="context-block">
+      <p>Le périmètre suit l'intérieur de la rocade bordelaise.</p>
+      <p>La carte superpose les 247 zones de modélisation et les points validés du réseau permanent.</p>
+    </div>
+    <div class="map-shell map-large">
+      <div id="study-map" class="map" role="img" aria-label="Carte du périmètre rocade et des capteurs permanents"></div>
+      <div class="map-caption split-caption">
+        <span>Figure : périmètre rocade, zones de modélisation et capteurs permanents.</span>
+        <span class="legend" aria-label="Légende cartographique">
+          <span class="legend-item"><span class="swatch" style="background:#d8e2ec"></span>périmètre rocade</span>
+          <span class="legend-item"><span class="swatch" style="background:#263747"></span>zones de modélisation</span>
+          <span class="legend-item"><span class="swatch round" style="background:#c7d4df"></span>capteurs permanents</span>
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">Géométries publiques simplifiées pour consultation.</div>
+  </footer>
+</body>
+</html>

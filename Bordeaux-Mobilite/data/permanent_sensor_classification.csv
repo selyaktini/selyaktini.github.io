@@ -1,0 +1,85 @@
+sensor_ident,sensor_name,sensor_type,polarity_type,polarity_label,n_valid_days
+Z10CT101,Dandicolle vers Boulevards,4G,2,balanced,217
+Z10CT102,Dandicolle vers Mériadeck,4G,0,morning-dominant,217
+Z12CT101,199 Blv Roosevelt vers Blv Albert 1er,4G,1,evening-dominant,240
+Z12CT15,Boulevard Albert 1er vers Boulevard Roosevelt,BOUCLE,0,morning-dominant,346
+Z14CT101,Chaban entrant Nord,4G,0,morning-dominant,288
+Z14CT102,Chaban sortant Nord,4G,1,evening-dominant,287
+Z14CT103,Chaban entrant Sud,4G,2,balanced,145
+Z14CT104,Chaban sortant Sud,4G,1,evening-dominant,145
+Z16CT101,Totem vélo Sens Entrant,4G,1,evening-dominant,306
+Z16CT102,Totem vélo Sens Sortant,4G,0,morning-dominant,306
+Z16CT105,Bordeaux vers Haut Leveque,4G,2,balanced,117
+Z16CT106,Haut Leveque vers Bordeaux,4G,1,evening-dominant,117
+Z16CT107,Rocade vers Pessac Centre,4G,1,evening-dominant,235
+Z16CT108,Pessac Centre vers Rocade,4G,0,morning-dominant,235
+Z1701CT23,21 Cours du Général De Gaulle vers ech. 16,BOUCLE,2,balanced,345
+Z1701CT24,21 Cours du Général De Gaulle vers Professeur Villemin,BOUCLE,1,evening-dominant,345
+Z1705CT1,Avenue Thouars - Marne vers centre Talence,BOUCLE,2,balanced,345
+Z1705CT2,Avenue Thouars - Marne vers rocade,BOUCLE,1,evening-dominant,345
+Z19CT101,Leognan vers Bordeaux,4G,0,morning-dominant,294
+Z19CT102,Bordeaux vers Leognan,4G,1,evening-dominant,295
+Z201CT101,37 Cours du Marechal Juin vers Boulevard,BOUCLE,1,evening-dominant,51
+Z201CT102,37 Cours du Marechal Juin vers Pey Berland,BOUCLE,1,evening-dominant,51
+Z201CT4,37 Cours du Marechal Juin vers Pey Berland,BOUCLE,2,balanced,296
+Z201CT5,37 Cours du Marechal Juin vers Boulevard,BOUCLE,2,balanced,296
+Z203CT6,Pont de Pierre vers Bir Hakeim,BOUCLE,2,balanced,345
+Z203CT7,Pont de Pierre vers Stalingrad,BOUCLE,2,balanced,345
+Z21CT102,Bordeaux vers Bruges,4G,1,evening-dominant,177
+Z21CT103,Bruges vers Bordeaux,4G,2,balanced,178
+Z2203CT3,34 Avenue de Paris vers rue Daniel,BOUCLE,2,balanced,345
+Z2203CT4,34 Avenue de Paris vers Prévost Sansac de Traversay,BOUCLE,1,evening-dominant,345
+Z23CT101,Hippodrome vers Bruges,4G,1,evening-dominant,267
+Z23CT102,Bruges vers Hippodrome,4G,1,evening-dominant,266
+Z23CT103,de Gaulle vers Gaussens,4G,1,evening-dominant,139
+Z23CT104,Gaussens vers de Gaulle,4G,1,evening-dominant,139
+Z23CT105,Le Taillan vers Bruges,4G,1,evening-dominant,174
+Z23CT106,Bruges vers Le Taillan,4G,0,morning-dominant,174
+Z23CT107,Eysines vers Blanquefort,4G,1,evening-dominant,177
+Z23CT108,Blanquefort vers Eysines,4G,0,morning-dominant,177
+Z23CT109,Nord vers Sud,4G,0,morning-dominant,96
+Z23CT110,Sud vers Nord,4G,-1,insufficient data,2
+Z24CT23,Avenue de Magudas sens Entrant,BOUCLE,2,balanced,344
+Z24CT24,Avenue de Magudas sens sortant,BOUCLE,2,balanced,344
+Z26CT101,Rocade vers Begles,4G,1,evening-dominant,185
+Z26CT102,Begles vers Rocade,4G,2,balanced,185
+Z28CT101,Centre Saint Aubin vers Lycée,4G,0,morning-dominant,123
+Z28CT102,Lycée vers Centre Saint Aubin,4G,1,evening-dominant,123
+Z2903CT5,19 Avenue Jean Zay vers rue Bernard Palissy,BOUCLE,1,evening-dominant,344
+Z2903CT6,19 Avenue Jean Zay vers Avenue René Cassagne,BOUCLE,1,evening-dominant,344
+Z30CT101,Bordeaux vers Aéroport,4G,0,morning-dominant,178
+Z30CT102,Aéroport vers Bordeaux,4G,1,evening-dominant,179
+Z31CT10,49 Rue des Griffons vers Allende,BOUCLE,0,morning-dominant,345
+Z31CT11,49 Rue des Griffons vers Chemin du Pin,BOUCLE,1,evening-dominant,344
+Z32CT101,Chemin de Crabot vers Bordeaux,4G,-1,insufficient data,9
+Z32CT102,Chemin de Crabot vers Bouliac,4G,-1,insufficient data,9
+Z401CT11,27 Cours Clémenceau vers rue Buffon,BOUCLE,1,evening-dominant,345
+Z401CT12,27 Cours Clémenceau vers rue Rolland,BOUCLE,1,evening-dominant,345
+Z401CT8,68 Cours de Verdun vers D'Aviau,BOUCLE,1,evening-dominant,345
+Z401CT9,68 Cours de Verdun vers Cours Xavier Arnozan,BOUCLE,1,evening-dominant,345
+Z4CT101,Boulevard vers Bordeaux Centre,4G,0,morning-dominant,54
+Z4CT102,Bordeaux Centre vers Boulevard,4G,1,evening-dominant,54
+Z502CT23,15 quais de Paludate vers Saget,BOUCLE,2,balanced,345
+Z502CT24,15 quais de Paludate vers Pont StJean,BOUCLE,2,balanced,345
+Z503CT23,9 Quai de la Souys vers rue Emile Henriot,BOUCLE,1,evening-dominant,345
+Z503CT24,9 Quai de la Souys vers rue d'Artagnan,BOUCLE,0,morning-dominant,345
+Z5CT101,Bègles vers Bordeaux,4G,-1,insufficient data,1
+Z5CT102,Bordeaux vers Bègles,4G,-1,insufficient data,1
+Z601CT7,2 Avenue de la République vers rue de la Liberté,BOUCLE,2,balanced,346
+Z601CT8,2 Avenue de la République vers rue Judaïque,BOUCLE,2,balanced,346
+Z7CT103,Aéroport vers Crématorium,4G,1,evening-dominant,303
+Z7CT104,Crématorium vers Aéroport,4G,0,morning-dominant,303
+Z7CT105,Martignas vers Bordeaux,4G,2,balanced,306
+Z7CT106,Bordeaux vers Martignas,4G,1,evening-dominant,306
+Z7CT107,Martignas vers Bordeaux,4G,1,evening-dominant,297
+Z7CT108,Bordeaux vers Martignas,4G,1,evening-dominant,297
+Z8CT101,Cenon vers Bordeaux,4G,1,evening-dominant,259
+Z8CT102,Bordeaux vers Cenon,4G,0,morning-dominant,259
+Z8CT103,Queyries vers Pont de Pierre,4G,1,evening-dominant,58
+Z8CT104,Queyries vers Pont Chaban,4G,2,balanced,58
+Z901CT4,46 Rue Général Larminat vers Barrière d'Ornano,BOUCLE,2,balanced,346
+Z901CT5,Boulevard G. Pompidou vers Barrière d'Ornano,BOUCLE,2,balanced,346
+Z901CT6,Boulevard Antoine Gautier vers rue Berruer,BOUCLE,1,evening-dominant,346
+Z901CT7,Boulevard Antoine Gautier vers Cité des Pêcheurs,BOUCLE,1,evening-dominant,346
+Z904CT4,155 Avenue François Mitterrand vers rue Camille Vic,BOUCLE,1,evening-dominant,346
+Z904CT5,155 Avenue François Mitterrand vers Mendès France,BOUCLE,2,balanced,346

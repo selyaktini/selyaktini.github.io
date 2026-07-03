@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classification matin / soir des capteurs permanents</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --surface: #ffffff;
+      --ink: #17202b;
+      --muted: #617080;
+      --line: #d8e2ea;
+      --link: #285f78;
+      --morning: #c79a45;
+      --evening: #9b82d0;
+      --balanced: #4fa69c;
+      --insufficient: #6f7b89;
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 16px 9px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+    h1 {
+      margin: 0 0 3px;
+      font-size: 18px;
+      font-weight: 610;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    a {
+      color: var(--link);
+      font-size: 13px;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+    }
+    a:focus-visible {
+      outline: 2px solid var(--morning);
+      outline-offset: 3px;
+    }
+    #chart {
+      width: 100vw;
+      height: calc(100vh - 66px);
+      min-height: 500px;
+    }
+    @media (max-width: 720px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+      }
+      #chart {
+        height: calc(100vh - 96px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Classification matin / soir des capteurs permanents</h1>
+      <p>Jours ouvrés, hors vacances scolaires Zone A et jours fériés.</p>
+    </div>
+    <a href="../permanent-counts.html">Retour capteurs permanents</a>
+  </header>
+  <div id="chart"></div>
+  <script>
+    const payload = {"traces":[{"type":"scatter","mode":"lines","name":"y = x","x":[0,884.1],"y":[0,884.1],"line":{"color":"#171717","width":1.2,"dash":"dash"},"hoverinfo":"skip"},{"type":"scatter","mode":"markers","name":"-1 - donnees insuffisantes","x":[41.0,0.0,0.0,157.0,280.0],"y":[51.5,0.0,0.0,354.0,231.0],"marker":{"size":10,"opacity":0.85,"color":["#7f1d1d","#7f1d1d","#7f1d1d","#7f1d1d","#7f1d1d"],"line":{"color":"white","width":0.6}},"customdata":[["Z23CT110","Sud vers Nord",41.0,51.5,0.7961165048543689,2,"-1 - donnees insuffisantes"],["Z32CT101","Chemin de Crabot vers Bordeaux",0.0,0.0,NaN,9,"-1 - donnees insuffisantes"],["Z32CT102","Chemin de Crabot vers Bouliac",0.0,0.0,NaN,9,"-1 - donnees insuffisantes"],["Z5CT101","Bègles vers Bordeaux",157.0,354.0,0.4435028248587571,1,"-1 - donnees insuffisantes"],["Z5CT102","Bordeaux vers Bègles",280.0,231.0,1.2121212121212122,1,"-1 - donnees insuffisantes"]],"hovertemplate":"<b>%{customdata[0]}</b><br>%{customdata[1]}<br>M=%{customdata[2]:.2f}<br>S=%{customdata[3]:.2f}<br>ratio M/S=%{customdata[4]:.3f}<br>jours valides=%{customdata[5]}<br>type=%{customdata[6]}<extra></extra>"},{"type":"scatter","mode":"markers","name":"0 - dominante matin","x":[213.0,386.0,370.5,126.0,22.0,53.0,29.0,21.0,44.0,73.0,36.0,24.0,842.0,286.0,80.0,85.0],"y":[159.0,276.5,214.5,19.0,8.0,36.0,24.0,13.0,36.5,3.0,13.0,10.0,587.5,212.0,25.0,62.0],"marker":{"size":10,"opacity":0.85,"color":["#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb","#2563eb"],"line":{"color":"white","width":0.6}},"customdata":[["Z10CT102","Dandicolle vers Mériadeck",213.0,159.0,1.3396226415094339,217,"0 - dominante matin"],["Z12CT15","Boulevard Albert 1er vers Boulevard Roosevelt",386.0,276.5,1.3960216998191681,346,"0 - dominante matin"],["Z14CT101","Chaban entrant Nord",370.5,214.5,1.7272727272727273,288,"0 - dominante matin"],["Z16CT102","Totem vélo Sens Sortant",126.0,19.0,6.631578947368421,306,"0 - dominante matin"],["Z16CT108","Pessac Centre vers Rocade",22.0,8.0,2.75,235,"0 - dominante matin"],["Z19CT101","Leognan vers Bordeaux",53.0,36.0,1.4722222222222223,294,"0 - dominante matin"],["Z23CT106","Bruges vers Le Taillan",29.0,24.0,1.2083333333333333,174,"0 - dominante matin"],["Z23CT108","Blanquefort vers Eysines",21.0,13.0,1.6153846153846154,177,"0 - dominante matin"],["Z23CT109","Nord vers Sud",44.0,36.5,1.2054794520547945,96,"0 - dominante matin"],["Z28CT101","Centre Saint Aubin vers Lycée",73.0,3.0,24.333333333333332,123,"0 - dominante matin"],["Z30CT101","Bordeaux vers Aéroport",36.0,13.0,2.769230769230769,178,"0 - dominante matin"],["Z31CT10","49 Rue des Griffons vers Allende",24.0,10.0,2.4,345,"0 - dominante matin"],["Z4CT101","Boulevard vers Bordeaux Centre",842.0,587.5,1.4331914893617022,54,"0 - dominante matin"],["Z503CT24","9 Quai de la Souys vers rue d'Artagnan",286.0,212.0,1.349056603773585,345,"0 - dominante matin"],["Z7CT104","Crématorium vers Aéroport",80.0,25.0,3.2,303,"0 - dominante matin"],["Z8CT102","Bordeaux vers Cenon",85.0,62.0,1.3709677419354838,259,"0 - dominante matin"]],"hovertemplate":"<b>%{customdata[0]}</b><br>%{customdata[1]}<br>M=%{customdata[2]:.2f}<br>S=%{customdata[3]:.2f}<br>ratio M/S=%{customdata[4]:.3f}<br>jours valides=%{customdata[5]}<br>type=%{customdata[6]}<extra></extra>"},{"type":"scatter","mode":"markers","name":"1 - dominante soir","x":[204.5,71.0,270.0,17.0,20.0,38.0,27.0,81.0,3.0,336.0,431.0,37.0,7.0,14.0,20.0,12.0,16.0,26.0,13.0,188.0,4.0,8.0,12.0,16.0,6.0,280.0,338.0,223.0,408.0,104.0,139.0,17.0,6.0,3.0,24.0,74.0,164.5,188.5,238.5,78.0],"y":[298.5,259.0,529.0,141.5,28.0,142.0,56.0,188.0,12.0,497.0,600.0,80.0,15.0,19.0,27.0,15.0,21.0,42.0,23.0,329.0,18.0,10.0,20.0,77.0,30.0,346.0,576.0,458.0,663.0,270.0,366.0,90.0,12.0,12.0,35.0,159.0,352.5,247.5,335.5,103.0],"marker":{"size":10,"opacity":0.85,"color":["#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626","#dc2626"],"line":{"color":"white","width":0.6}},"customdata":[["Z12CT101","199 Blv Roosevelt vers Blv Albert 1er",204.5,298.5,0.6850921273031826,240,"1 - dominante soir"],["Z14CT102","Chaban sortant Nord",71.0,259.0,0.27413127413127414,287,"1 - dominante soir"],["Z14CT104","Chaban sortant Sud",270.0,529.0,0.5103969754253308,145,"1 - dominante soir"],["Z16CT101","Totem vélo Sens Entrant",17.0,141.5,0.12014134275618374,306,"1 - dominante soir"],["Z16CT106","Haut Leveque vers Bordeaux",20.0,28.0,0.7142857142857143,117,"1 - dominante soir"],["Z16CT107","Rocade vers Pessac Centre",38.0,142.0,0.2676056338028169,235,"1 - dominante soir"],["Z1701CT24","21 Cours du Général De Gaulle vers Professeur Villemin",27.0,56.0,0.48214285714285715,345,"1 - dominante soir"],["Z1705CT2","Avenue Thouars - Marne vers rocade",81.0,188.0,0.4308510638297872,345,"1 - dominante soir"],["Z19CT102","Bordeaux vers Leognan",3.0,12.0,0.25,295,"1 - dominante soir"],["Z201CT101","37 Cours du Marechal Juin vers Boulevard",336.0,497.0,0.676056338028169,51,"1 - dominante soir"],["Z201CT102","37 Cours du Marechal Juin vers Pey Berland",431.0,600.0,0.7183333333333334,51,"1 - dominante soir"],["Z21CT102","Bordeaux vers Bruges",37.0,80.0,0.4625,177,"1 - dominante soir"],["Z2203CT4","34 Avenue de Paris vers Prévost Sansac de Traversay",7.0,15.0,0.4666666666666667,345,"1 - dominante soir"],["Z23CT101","Hippodrome vers Bruges",14.0,19.0,0.7368421052631579,267,"1 - dominante soir"],["Z23CT102","Bruges vers Hippodrome",20.0,27.0,0.7407407407407407,266,"1 - dominante soir"],["Z23CT103","de Gaulle vers Gaussens",12.0,15.0,0.8,139,"1 - dominante soir"],["Z23CT104","Gaussens vers de Gaulle",16.0,21.0,0.7619047619047619,139,"1 - dominante soir"],["Z23CT105","Le Taillan vers Bruges",26.0,42.0,0.6190476190476191,174,"1 - dominante soir"],["Z23CT107","Eysines vers Blanquefort",13.0,23.0,0.5652173913043478,177,"1 - dominante soir"],["Z26CT101","Rocade vers Begles",188.0,329.0,0.5714285714285714,185,"1 - dominante soir"],["Z28CT102","Lycée vers Centre Saint Aubin",4.0,18.0,0.2222222222222222,123,"1 - dominante soir"],["Z2903CT5","19 Avenue Jean Zay vers rue Bernard Palissy",8.0,10.0,0.8,344,"1 - dominante soir"],["Z2903CT6","19 Avenue Jean Zay vers Avenue René Cassagne",12.0,20.0,0.6,344,"1 - dominante soir"],["Z30CT102","Aéroport vers Bordeaux",16.0,77.0,0.2077922077922078,179,"1 - dominante soir"],["Z31CT11","49 Rue des Griffons vers Chemin du Pin",6.0,30.0,0.2,344,"1 - dominante soir"],["Z401CT11","27 Cours Clémenceau vers rue Buffon",280.0,346.0,0.8092485549132948,345,"1 - dominante soir"],["Z401CT12","27 Cours Clémenceau vers rue Rolland",338.0,576.0,0.5868055555555556,345,"1 - dominante soir"],["Z401CT8","68 Cours de Verdun vers D'Aviau",223.0,458.0,0.4868995633187773,345,"1 - dominante soir"],["Z401CT9","68 Cours de Verdun vers Cours Xavier Arnozan",408.0,663.0,0.6153846153846154,345,"1 - dominante soir"],["Z4CT102","Bordeaux Centre vers Boulevard",104.0,270.0,0.3851851851851852,54,"1 - dominante soir"],["Z503CT23","9 Quai de la Souys vers rue Emile Henriot",139.0,366.0,0.3797814207650273,345,"1 - dominante soir"],["Z7CT103","Aéroport vers Crématorium",17.0,90.0,0.18888888888888888,303,"1 - dominante soir"],["Z7CT106","Bordeaux vers Martignas",6.0,12.0,0.5,306,"1 - dominante soir"],["Z7CT107","Martignas vers Bordeaux",3.0,12.0,0.25,297,"1 - dominante soir"],["Z7CT108","Bordeaux vers Martignas",24.0,35.0,0.6857142857142857,297,"1 - dominante soir"],["Z8CT101","Cenon vers Bordeaux",74.0,159.0,0.46540880503144655,259,"1 - dominante soir"],["Z8CT103","Queyries vers Pont de Pierre",164.5,352.5,0.4666666666666667,58,"1 - dominante soir"],["Z901CT6","Boulevard Antoine Gautier vers rue Berruer",188.5,247.5,0.7616161616161616,346,"1 - dominante soir"],["Z901CT7","Boulevard Antoine Gautier vers Cité des Pêcheurs",238.5,335.5,0.7108792846497765,346,"1 - dominante soir"],["Z904CT4","155 Avenue François Mitterrand vers rue Camille Vic",78.0,103.0,0.7572815533980582,346,"1 - dominante soir"]],"hovertemplate":"<b>%{customdata[0]}</b><br>%{customdata[1]}<br>M=%{customdata[2]:.2f}<br>S=%{customdata[3]:.2f}<br>ratio M/S=%{customdata[4]:.3f}<br>jours valides=%{customdata[5]}<br>type=%{customdata[6]}<extra></extra>"},{"type":"scatter","mode":"markers","name":"2 - equilibre","x":[273.0,274.0,21.0,79.0,111.0,0.0,0.0,0.0,1.0,60.5,19.0,0.0,0.0,272.0,0.0,0.0,0.0,0.0,32.0,231.5,0.0,386.0,134.5],"y":[305.0,249.0,22.0,70.0,118.0,0.0,0.0,0.0,1.0,69.0,19.0,0.0,0.0,230.0,0.0,0.0,0.0,0.0,30.0,229.5,0.0,378.0,157.0],"marker":{"size":10,"opacity":0.85,"color":["#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373","#737373"],"line":{"color":"white","width":0.6}},"customdata":[["Z10CT101","Dandicolle vers Boulevards",273.0,305.0,0.8950819672131147,217,"2 - equilibre"],["Z14CT103","Chaban entrant Sud",274.0,249.0,1.1004016064257027,145,"2 - equilibre"],["Z16CT105","Bordeaux vers Haut Leveque",21.0,22.0,0.9545454545454546,117,"2 - equilibre"],["Z1701CT23","21 Cours du Général De Gaulle vers ech. 16",79.0,70.0,1.1285714285714286,345,"2 - equilibre"],["Z1705CT1","Avenue Thouars - Marne vers centre Talence",111.0,118.0,0.940677966101695,345,"2 - equilibre"],["Z201CT4","37 Cours du Marechal Juin vers Pey Berland",0.0,0.0,NaN,296,"2 - equilibre"],["Z201CT5","37 Cours du Marechal Juin vers Boulevard",0.0,0.0,NaN,296,"2 - equilibre"],["Z203CT6","Pont de Pierre vers Bir Hakeim",0.0,0.0,NaN,345,"2 - equilibre"],["Z203CT7","Pont de Pierre vers Stalingrad",1.0,1.0,1.0,345,"2 - equilibre"],["Z21CT103","Bruges vers Bordeaux",60.5,69.0,0.8768115942028986,178,"2 - equilibre"],["Z2203CT3","34 Avenue de Paris vers rue Daniel",19.0,19.0,1.0,345,"2 - equilibre"],["Z24CT23","Avenue de Magudas sens Entrant",0.0,0.0,NaN,344,"2 - equilibre"],["Z24CT24","Avenue de Magudas sens sortant",0.0,0.0,NaN,344,"2 - equilibre"],["Z26CT102","Begles vers Rocade",272.0,230.0,1.182608695652174,185,"2 - equilibre"],["Z502CT23","15 quais de Paludate vers Saget",0.0,0.0,NaN,345,"2 - equilibre"],["Z502CT24","15 quais de Paludate vers Pont StJean",0.0,0.0,NaN,345,"2 - equilibre"],["Z601CT7","2 Avenue de la République vers rue de la Liberté",0.0,0.0,NaN,346,"2 - equilibre"],["Z601CT8","2 Avenue de la République vers rue Judaïque",0.0,0.0,NaN,346,"2 - equilibre"],["Z7CT105","Martignas vers Bordeaux",32.0,30.0,1.0666666666666667,306,"2 - equilibre"],["Z8CT104","Queyries vers Pont Chaban",231.5,229.5,1.008714596949891,58,"2 - equilibre"],["Z901CT4","46 Rue Général Larminat vers Barrière d'Ornano",0.0,0.0,NaN,346,"2 - equilibre"],["Z901CT5","Boulevard G. Pompidou vers Barrière d'Ornano",386.0,378.0,1.0211640211640212,346,"2 - equilibre"],["Z904CT5","155 Avenue François Mitterrand vers Mendès France",134.5,157.0,0.856687898089172,346,"2 - equilibre"]],"hovertemplate":"<b>%{customdata[0]}</b><br>%{customdata[1]}<br>M=%{customdata[2]:.2f}<br>S=%{customdata[3]:.2f}<br>ratio M/S=%{customdata[4]:.3f}<br>jours valides=%{customdata[5]}<br>type=%{customdata[6]}<extra></extra>"}],"layout":{"title":"Classification capteurs matin / soir hors vacances scolaires Zone A et jours feries","xaxis":{"title":{"text":"M = mediane des sommes matin","font":{"size":18}},"tickfont":{"size":14},"range":[0,884.1]},"yaxis":{"title":{"text":"S = mediane des sommes soir","font":{"size":18}},"tickfont":{"size":14},"range":[0,884.1]},"legend":{"font":{"size":14}},"template":"plotly_white","hovermode":"closest","margin":{"l":70,"r":30,"t":60,"b":70}}};
+    const classLabels = {
+      "-1 - donnees insuffisantes": "données insuffisantes",
+      "0 - dominante matin": "dominante matin",
+      "1 - dominante soir": "dominante soir",
+      "2 - equilibre": "équilibré"
+    };
+    const classColors = {
+      "données insuffisantes": "#6f7b89",
+      "dominante matin": "#c79a45",
+      "dominante soir": "#9b82d0",
+      "équilibré": "#4fa69c"
+    };
+    payload.traces.forEach((trace) => {
+      if (classLabels[trace.name]) {
+        trace.name = classLabels[trace.name];
+      }
+      if (trace.name === "y = x") {
+        trace.line.color = "#7f92a1";
+      }
+      if (trace.marker && classColors[trace.name]) {
+        trace.marker.color = Array.isArray(trace.marker.color)
+          ? trace.marker.color.map(() => classColors[trace.name])
+          : classColors[trace.name];
+        trace.marker.line = { color: "#ffffff", width: 0.7 };
+      }
+      if (Array.isArray(trace.customdata)) {
+        trace.customdata.forEach((row) => {
+          if (Array.isArray(row) && classLabels[row[6]]) {
+            row[6] = classLabels[row[6]];
+          }
+        });
+      }
+      if (trace.hovertemplate) {
+        trace.hovertemplate = trace.hovertemplate
+          .replace("ratio M/S=", "ratio M/S = ")
+          .replace("jours valides=", "jours valides = ")
+          .replace("type=", "classe = ");
+      }
+    });
+    payload.layout.title = "";
+    payload.layout.template = "plotly_white";
+    payload.layout.paper_bgcolor = "#f4f7fa";
+    payload.layout.plot_bgcolor = "#ffffff";
+    payload.layout.font = { color: "#17202b" };
+    payload.layout.xaxis.title.text = "M : médiane des sommes du matin";
+    payload.layout.yaxis.title.text = "S : médiane des sommes du soir";
+    payload.layout.xaxis.gridcolor = "#d8e2ea";
+    payload.layout.yaxis.gridcolor = "#d8e2ea";
+    payload.layout.xaxis.zerolinecolor = "#b8c8d5";
+    payload.layout.yaxis.zerolinecolor = "#b8c8d5";
+    payload.layout.legend = {font: {size: 12}, orientation: "h", x: 0, y: 1.08};
+    payload.layout.margin = {l: 64, r: 24, t: 28, b: 62};
+    Plotly.newPlot("chart", payload.traces, payload.layout, {responsive: true, displaylogo: false, displayModeBar: false});
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Méthode — Comptages vélo Bordeaux Métropole</title>
+  <meta name="description" content="Règles de classification matin soir des comptages vélo.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="site-mark">Annexe méthode</p>
+      <h1 class="site-title">Méthode</h1>
+      <p class="site-subtitle">Règles de classification matin / soir</p>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="index.html">Synthèse</a>
+        <a href="study-area.html">Périmètre</a>
+        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="punctual-counts.html">Comptages ponctuels</a>
+        <a href="methodology.html">Méthode</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content content-narrow">
+    <section class="section">
+      <div class="method-band" aria-label="Créneaux horaires">
+        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span>
+        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell morning"></span>
+        <span class="hour-cell morning"></span><span class="hour-cell morning"></span><span class="hour-cell"></span><span class="hour-cell"></span>
+        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span>
+        <span class="hour-cell evening"></span><span class="hour-cell evening"></span><span class="hour-cell evening"></span><span class="hour-cell"></span>
+        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span>
+      </div>
+      <div class="band-labels" aria-hidden="true">
+        <span>00 h</span>
+        <span>07 h &ndash; 10 h</span>
+        <span>16 h &ndash; 19 h</span>
+      </div>
+    </section>
+
+    <section class="section method-list" aria-label="Règles de classification">
+      <div class="method-item">
+        <strong>Créneau matin : 07 h &ndash; 10 h</strong>
+        <span>Somme des observations horaires du matin.</span>
+      </div>
+      <div class="method-item">
+        <strong>Créneau soir : 16 h &ndash; 19 h</strong>
+        <span>Somme des observations horaires du soir.</span>
+      </div>
+      <div class="method-item">
+        <strong>Seuil de classification : ratio 1,2</strong>
+        <span>La dominance est retenue lorsque le rapport entre les deux créneaux dépasse 1,2.</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Définition des quatre classes</h2>
+      </div>
+      <div class="class-legend">
+        <div class="class-chip type-morning">
+          <strong>Dominante matin</strong>
+          Le volume du matin domine le volume du soir.
+        </div>
+        <div class="class-chip type-evening">
+          <strong>Dominante soir</strong>
+          Le volume du soir domine le volume du matin.
+        </div>
+        <div class="class-chip type-balanced">
+          <strong>Équilibré</strong>
+          Aucun créneau ne dépasse le seuil.
+        </div>
+        <div class="class-chip type-insufficient">
+          <strong>Données insuffisantes</strong>
+          Le volume exploitable ne permet pas la classe.
+        </div>
+      </div>
+    </section>
+
+    <section class="section method-list" aria-label="Traitements par source">
+      <div class="method-item">
+        <strong>Filtrage appliqué aux capteurs permanents</strong>
+        <span>Jours ouvrés uniquement, hors vacances scolaires Zone A et jours fériés.</span>
+      </div>
+      <div class="method-item">
+        <strong>Traitement séparé des campagnes ponctuelles par année</strong>
+        <span>Les campagnes 2021, 2022 et 2023 sont classées séparément.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">Seuil et créneaux identiques pour les deux familles de comptages.</div>
+  </footer>
+</body>
+</html>

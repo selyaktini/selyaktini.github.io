@@ -1,0 +1,87 @@
+{
+  "generated_at_utc": "2026-07-03T08:45:39+00:00",
+  "purpose": "Lightweight public assets for the Bordeaux Bicycle Counts Explorer.",
+  "exported_files": [
+    {
+      "public_file": "data/site_metrics.json",
+      "sources": [
+        "data/processed/temporal/sensor_polarity_classification.csv",
+        "reports/quality_checks/punctual_counts/punctual_polarity_summary.csv",
+        "data/interim/temporal/01_comptages_velos/capteurs_comptages_hourly.parquet",
+        "data/processed/phase1_reconstruction/metadata.json",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg",
+        "data/interim/spatial/01_zones_capteurs/capteurs_velo.gpkg"
+      ],
+      "description": "Small JSON metrics and display metadata used by the static pages."
+    },
+    {
+      "public_file": "data/permanent_polarity_summary.csv",
+      "sources": [
+        "data/processed/temporal/sensor_polarity_classification.csv"
+      ],
+      "description": "Counts of finalized permanent-sensor polarity classes."
+    },
+    {
+      "public_file": "data/permanent_sensor_classification.csv",
+      "sources": [
+        "data/processed/temporal/sensor_polarity_classification.csv"
+      ],
+      "description": "One row per classified permanent sensor; no hourly observations."
+    },
+    {
+      "public_file": "data/punctual_polarity_summary.csv",
+      "sources": [
+        "reports/quality_checks/punctual_counts/punctual_polarity_summary.csv"
+      ],
+      "description": "Campaign-year summary of punctual directional-unit polarity classes."
+    },
+    {
+      "public_file": "data/rocade_interior.geojson",
+      "sources": [
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer rocade_interior"
+      ],
+      "description": "Simplified rocade study perimeter polygon."
+    },
+    {
+      "public_file": "data/zones_modeling.geojson",
+      "sources": [
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer zones_modeling"
+      ],
+      "description": "Simplified modelling-zone polygons with limited public attributes."
+    },
+    {
+      "public_file": "data/permanent_sensors.geojson",
+      "sources": [
+        "data/interim/spatial/01_zones_capteurs/capteurs_velo.gpkg layer capteurs_velo",
+        "data/processed/temporal/sensor_polarity_classification.csv"
+      ],
+      "description": "Classified permanent sensor points with polarity type and valid-day count."
+    },
+    {
+      "public_file": "explorers/permanent-temporal-audit.html",
+      "source": "reports/figures/sensors/flux_horaires_par_capteur_explorable.html",
+      "description": "Existing interactive HTML report copied unchanged."
+    },
+    {
+      "public_file": "explorers/permanent-polarity.html",
+      "source": "reports/figures/sensors/morning_evening_classification.html",
+      "description": "Existing interactive HTML report copied unchanged."
+    },
+    {
+      "public_file": "explorers/punctual-polarity.html",
+      "source": "reports/figures/sensors/punctual_morning_evening_classification.html",
+      "description": "Existing interactive HTML report copied unchanged."
+    }
+  ],
+  "intentionally_not_published": [
+    "raw Excel workbooks",
+    "raw CSV files",
+    "Parquet source tables",
+    "complete hourly sensor observation tables",
+    "large modelling artifacts",
+    "model weights",
+    "punctual X/Y coordinates or punctual map layers",
+    "private or unnecessary metadata"
+  ],
+  "site_root": "/net/netud/i/selyaktini/work/selyaktini.github.io/Bordeaux-Mobilite"
+}

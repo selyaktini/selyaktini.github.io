@@ -1,0 +1,4 @@
+campaign_year,n_directional_units,n_type_minus_1,n_type_0,n_type_1,n_type_2,n_classifiable_units,n_morning_zero,n_evening_zero,n_unmatchable_between_hourly_sheets,source_file
+2021,293,2,19,71,201,291,175,173,2,Observatoire_Velos_2021_CPEV_V2.xlsx
+2022,293,2,40,63,188,291,175,173,2,Observatoire_Velos_2022_CPEV.xlsx
+2023,298,0,30,62,206,298,183,180,0,Observatoire_Velos_2023.xlsx

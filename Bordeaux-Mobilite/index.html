@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comptages vélo — Bordeaux Métropole</title>
+  <meta name="description" content="Classification des profils matin et soir des comptages vélo à Bordeaux Métropole.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="site-mark">Note de synthèse</p>
+      <h1 class="site-title">Comptages vélo &mdash; Bordeaux Métropole</h1>
+      <p class="site-subtitle">Classification des profils matin et soir</p>
+      <p class="site-intro">Cette synthèse présente les profils horaires issus des capteurs permanents et des campagnes de comptage ponctuel.</p>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="index.html">Synthèse</a>
+        <a href="study-area.html">Périmètre</a>
+        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="punctual-counts.html">Comptages ponctuels</a>
+        <a href="methodology.html">Méthode</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="section" aria-labelledby="classification-title">
+      <div class="section-header">
+        <h2 id="classification-title">Répartition des classes</h2>
+      </div>
+      <div class="classification-grid">
+        <article class="analysis-panel">
+          <h2>Capteurs permanents</h2>
+          <div class="distribution" data-distribution="permanent" aria-label="Classes des capteurs permanents">
+            <div class="stacked-bar" role="img" aria-label="Classes des capteurs permanents">
+              <span class="stack-segment class-morning" style="width:19.05%"></span>
+              <span class="stack-segment class-evening" style="width:47.62%"></span>
+              <span class="stack-segment class-balanced" style="width:27.38%"></span>
+              <span class="stack-segment class-insufficient" style="width:5.95%"></span>
+            </div>
+            <ul class="count-list">
+              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong>16</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong>40</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong>23</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong>5</strong></li>
+            </ul>
+          </div>
+          <div class="action-row">
+            <a class="text-action" href="explorers/permanent-temporal-audit.html">Explorer les profils horaires <span>plein écran</span></a>
+            <a class="text-action" href="explorers/permanent-polarity.html">Ouvrir la classification matin / soir <span>plein écran</span></a>
+          </div>
+        </article>
+
+        <article class="analysis-panel">
+          <h2>Comptages ponctuels</h2>
+          <div class="year-tabs" data-year-tabs aria-label="Année de campagne">
+            <button type="button" data-year="2021" aria-pressed="false">2021</button>
+            <button type="button" data-year="2022" aria-pressed="false">2022</button>
+            <button type="button" data-year="2023" aria-pressed="true">2023</button>
+          </div>
+          <p class="panel-note" data-punctual-summary>2023 : 298 unités directionnelles, 298 unités classables.</p>
+          <div class="distribution" data-distribution="punctual" aria-label="Classes des comptages ponctuels">
+            <div class="stacked-bar" role="img" aria-label="Classes des comptages ponctuels 2023">
+              <span class="stack-segment class-morning" style="width:10.07%"></span>
+              <span class="stack-segment class-evening" style="width:20.81%"></span>
+              <span class="stack-segment class-balanced" style="width:69.13%"></span>
+              <span class="stack-segment class-insufficient" style="width:0%"></span>
+            </div>
+            <ul class="count-list">
+              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong>30</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong>62</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong>206</strong></li>
+              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong>0</strong></li>
+            </ul>
+          </div>
+          <div class="action-row">
+            <a class="text-action" href="explorers/punctual-polarity.html">Ouvrir la classification ponctuelle <span>plein écran</span></a>
+          </div>
+          <p class="panel-note">Les dates exactes des campagnes ne sont pas documentées dans les classeurs sources.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="map-title">
+      <div class="section-header">
+        <h2 id="map-title">Périmètre d'étude</h2>
+        <a class="text-action" href="study-area.html">Consulter le périmètre et le réseau de capteurs</a>
+      </div>
+      <div class="map-shell map-preview">
+        <div id="study-map" class="map" role="img" aria-label="Carte du périmètre rocade, des zones de modélisation et des capteurs permanents"></div>
+        <div class="map-caption split-caption">
+          <span>Rocade, zones de modélisation et réseau de capteurs permanents.</span>
+          <span class="legend" aria-label="Légende cartographique">
+            <span class="legend-item"><span class="swatch" style="background:#d8e2ec"></span>périmètre rocade</span>
+            <span class="legend-item"><span class="swatch" style="background:#263747"></span>zones de modélisation</span>
+            <span class="legend-item"><span class="swatch round" style="background:#c7d4df"></span>capteurs permanents</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <p class="fact-line" aria-label="Repères">
+      <span><strong>247</strong> zones de modélisation</span>
+      <span><strong>84</strong> capteurs permanents</span>
+      <span><strong>3</strong> campagnes ponctuelles</span>
+      <span><strong>mai 2024 &ndash; mai 2026</strong></span>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">Brief statique pour revue scientifique.</div>
+  </footer>
+</body>
+</html>

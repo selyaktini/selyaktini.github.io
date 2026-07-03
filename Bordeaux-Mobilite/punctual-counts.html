@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comptages ponctuels — Comptages vélo Bordeaux Métropole</title>
+  <meta name="description" content="Campagnes de comptage ponctuel 2021, 2022 et 2023.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="site-mark">Note analytique</p>
+      <h1 class="site-title">Comptages ponctuels</h1>
+      <p class="site-subtitle">Campagnes 2021, 2022 et 2023</p>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="index.html">Synthèse</a>
+        <a href="study-area.html">Périmètre</a>
+        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="punctual-counts.html">Comptages ponctuels</a>
+        <a href="methodology.html">Méthode</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="section">
+      <div class="section-header compact">
+        <p class="lead">Les comptages ponctuels regroupent des profils directionnels de campagne, traités séparément pour 2021, 2022 et 2023.</p>
+      </div>
+      <div class="year-tabs" data-year-tabs aria-label="Année de campagne">
+        <button type="button" data-year="2021" aria-pressed="false">2021</button>
+        <button type="button" data-year="2022" aria-pressed="false">2022</button>
+        <button type="button" data-year="2023" aria-pressed="true">2023</button>
+      </div>
+      <p class="panel-note" data-punctual-summary>2023 : 298 unités directionnelles, 298 unités classables.</p>
+    </section>
+
+    <section class="section summary-layout">
+      <div class="summary-panel">
+        <h2>Distribution des classes</h2>
+        <div class="distribution" data-distribution="punctual" aria-label="Classes des comptages ponctuels">
+          <div class="stacked-bar" role="img" aria-label="Classes des comptages ponctuels 2023">
+            <span class="stack-segment class-morning" style="width:10.07%"></span>
+            <span class="stack-segment class-evening" style="width:20.81%"></span>
+            <span class="stack-segment class-balanced" style="width:69.13%"></span>
+            <span class="stack-segment class-insufficient" style="width:0%"></span>
+          </div>
+          <ul class="count-list">
+            <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong>30</strong></li>
+            <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong>62</strong></li>
+            <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong>206</strong></li>
+            <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong>0</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="summary-panel">
+        <h2>Aperçu par année</h2>
+        <div data-punctual-preview>
+          <div class="preview-metrics">
+            <div><strong>298</strong><span>unités directionnelles</span></div>
+            <div><strong>298</strong><span>unités classables</span></div>
+            <div><strong>0</strong><span>données insuffisantes</span></div>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Année</th>
+              <th>Unités</th>
+              <th>Matin</th>
+              <th>Soir</th>
+              <th>Équilibré</th>
+              <th>Insuffisant</th>
+            </tr>
+          </thead>
+          <tbody id="punctual-year-table">
+            <tr><td><strong class="mono">2021</strong></td><td>293</td><td>19</td><td>71</td><td>201</td><td>2</td></tr>
+            <tr><td><strong class="mono">2022</strong></td><td>293</td><td>40</td><td>63</td><td>188</td><td>2</td></tr>
+            <tr><td><strong class="mono">2023</strong></td><td>298</td><td>30</td><td>62</td><td>206</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <article class="preview-panel">
+        <h3>Explorateur ponctuel</h3>
+        <p>Nuage de points des volumes du matin et du soir, filtrable par année dans la page dédiée.</p>
+        <div class="action-row">
+          <a class="text-action" href="explorers/punctual-polarity.html">Ouvrir en plein écran <span>explorateur</span></a>
+        </div>
+      </article>
+      <p class="footnote">Les dates exactes des campagnes ne sont pas documentées dans les classeurs sources.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">Campagnes traitées séparément par année.</div>
+  </footer>
+</body>
+</html>

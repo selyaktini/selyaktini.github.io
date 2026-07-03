@@ -1,0 +1,5 @@
+polarity_type,polarity_label,n_sensors,min_valid_days,median_valid_days,max_valid_days
+-1,insufficient data,5,1,2.0,9
+0,morning-dominant,16,54,247.0,346
+1,evening-dominant,40,51,291.0,346
+2,balanced,23,58,345.0,346
