@@ -36,7 +36,7 @@
       <p class="panel-note" data-punctual-summary>2023 : 298 unités directionnelles, 298 unités classables.</p>
     </section>
 
-    <section class="section summary-layout">
+    <section class="section">
       <div class="summary-panel">
         <h2>Distribution des classes</h2>
         <p class="source-note">Détail de la campagne sélectionnée.</p>
@@ -55,16 +55,6 @@
           </ul>
         </div>
       </div>
-      <div class="summary-panel">
-        <h2>Aperçu graphique</h2>
-        <div data-punctual-preview>
-          <div class="year-strip selected-year-strip">
-            <div class="year-strip-head"><strong>2023</strong><span>298 unités directionnelles</span></div>
-            <div class="stacked-bar compact" role="img" aria-label="Distribution 2023"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div>
-          </div>
-        </div>
-        <p>La barre résume les quatre classes de la campagne sélectionnée, sans supposer de date précise de campagne.</p>
-      </div>
     </section>
 
     <section class="section">
@@ -72,9 +62,9 @@
         <h2>Comparaison annuelle</h2>
       </div>
       <div class="year-comparison" data-year-comparison="punctual" aria-label="Comparaison des campagnes">
-        <div class="year-strip"><div class="year-strip-head"><strong>2021</strong><span>293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:6.48%"></span><span class="stack-segment class-evening" style="width:24.23%"></span><span class="stack-segment class-balanced" style="width:68.6%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div></div>
-        <div class="year-strip"><div class="year-strip-head"><strong>2022</strong><span>293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:13.65%"></span><span class="stack-segment class-evening" style="width:21.5%"></span><span class="stack-segment class-balanced" style="width:64.16%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div></div>
-        <div class="year-strip is-selected"><div class="year-strip-head"><strong>2023</strong><span>298 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div></div>
+        <div class="year-strip"><div class="year-strip-head"><strong>2021</strong><span class="unit-count">293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:6.48%"></span><span class="stack-segment class-evening" style="width:24.23%"></span><span class="stack-segment class-balanced" style="width:68.6%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div><div class="mini-counts"><span>matin 19</span><span>soir 71</span><span>équilibré 201</span><span>insuffisant 2</span></div></div>
+        <div class="year-strip"><div class="year-strip-head"><strong>2022</strong><span class="unit-count">293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:13.65%"></span><span class="stack-segment class-evening" style="width:21.5%"></span><span class="stack-segment class-balanced" style="width:64.16%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div><div class="mini-counts"><span>matin 40</span><span>soir 63</span><span>équilibré 188</span><span>insuffisant 2</span></div></div>
+        <div class="year-strip is-selected"><div class="year-strip-head"><strong>2023</strong><span class="unit-count">298 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div><div class="mini-counts"><span>matin 30</span><span>soir 62</span><span>équilibré 206</span><span>insuffisant 0</span></div></div>
       </div>
       <div class="table-wrap">
         <table>
@@ -98,13 +88,9 @@
     </section>
 
     <section class="section">
-      <article class="preview-panel">
-        <h3>Explorateur ponctuel</h3>
-        <p>Nuage de points des volumes du matin et du soir, filtrable par campagne annuelle.</p>
-        <div class="action-row">
-          <a class="text-action" href="explorers/punctual-polarity.html">Ouvrir la classification ponctuelle <span>vue détaillée</span></a>
-        </div>
-      </article>
+      <div class="action-row action-list explorer-links">
+        <a class="text-action" href="explorers/punctual-polarity.html">Explorer la classification ponctuelle</a>
+      </div>
       <p class="footnote">Les dates exactes des campagnes ne sont pas documentées dans les classeurs sources.</p>
     </section>
   </main>
