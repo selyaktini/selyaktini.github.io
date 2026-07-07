@@ -13,9 +13,6 @@
   --evening: #9b82d0;
   --balanced: #4fa69c;
   --insufficient: #6f7b89;
-  --rejected: #6f7b89;
-  --zero-flow: #aeb8c2;
-  --positive-flow: #315b73;
   --rocade: #263f56;
   --zones: #7f92a1;
   --zones-fill: #dfe8ee;
@@ -274,48 +271,6 @@ p {
 
 .class-insufficient {
   background: var(--insufficient);
-}
-
-.class-rejected {
-  background: var(--rejected);
-}
-
-.class-zero-flow {
-  background: var(--zero-flow);
-}
-
-.class-positive-flow {
-  background: var(--positive-flow);
-}
-
-.punctual-breakdown {
-  display: grid;
-  gap: 15px;
-}
-
-.bar-block {
-  display: grid;
-  gap: 7px;
-}
-
-.bar-title {
-  color: var(--muted-strong);
-  font-size: 12px;
-  font-weight: 590;
-}
-
-.context-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px 14px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.context-metrics strong {
-  color: var(--ink);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-weight: 580;
 }
 
 .count-list,

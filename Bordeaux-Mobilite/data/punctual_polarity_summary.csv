@@ -1,4 +1,4 @@
-campaign_year,n_raw_required_slot_rows,n_raw_required_slot_rows_rejected,n_directional_units,n_eligible_units,n_type_minus_1,n_type_0,n_type_1,n_type_2,n_classifiable_units,n_insufficient_units,n_invalid_inventory_units,n_incomplete_units,n_all_zero_units,n_ambiguous_count_units,n_morning_zero,n_evening_zero,n_unmatchable_between_hourly_sheets,source_file
-2021,1752,1032,293,120,173,19,72,29,120,173,173,0,0,0,2,0,173,Observatoire_Velos_2021_CPEV_V2.xlsx
-2022,1752,480,293,212,175,40,63,15,118,175,81,0,94,0,2,0,175,Observatoire_Velos_2022_CPEV.xlsx
-2023,1788,12,298,296,178,30,62,28,120,178,2,0,176,0,5,2,178,Observatoire_Velos_2023.xlsx
+campaign_year,n_directional_units,n_type_minus_1,n_type_0,n_type_1,n_type_2,n_classifiable_units,n_morning_zero,n_evening_zero,n_unmatchable_between_hourly_sheets,source_file
+2021,293,2,19,71,201,291,175,173,2,Observatoire_Velos_2021_CPEV_V2.xlsx
+2022,293,2,40,63,188,291,175,173,2,Observatoire_Velos_2022_CPEV.xlsx
+2023,298,0,30,62,206,298,183,180,0,Observatoire_Velos_2023.xlsx

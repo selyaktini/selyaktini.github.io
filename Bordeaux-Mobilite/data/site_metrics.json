@@ -75,36 +75,28 @@
     ],
     "n_campaigns": 3,
     "n_directional_units": 884,
-    "n_eligible_units": 628,
-    "n_classifiable_units": 358,
-    "n_all_zero_units": 270,
+    "n_classifiable_units": 880,
     "type_totals": {
-      "-1": 526,
+      "-1": 4,
       "0": 89,
-      "1": 197,
-      "2": 72
+      "1": 196,
+      "2": 595
     },
     "by_year": [
       {
         "campaign_year": 2021,
         "n_directional_units": 293,
-        "n_eligible_units": 120,
-        "n_classifiable_units": 120,
-        "n_raw_required_slot_rows": 1752,
-        "n_raw_required_slot_rows_rejected": 1032,
-        "n_invalid_inventory_units": 173,
-        "n_incomplete_units": 0,
-        "n_all_zero_units": 0,
-        "n_morning_zero": 2,
-        "n_evening_zero": 0,
-        "n_unmatchable_between_hourly_sheets": 173,
+        "n_classifiable_units": 291,
+        "n_morning_zero": 175,
+        "n_evening_zero": 173,
+        "n_unmatchable_between_hourly_sheets": 2,
         "source_file": "Observatoire_Velos_2021_CPEV_V2.xlsx",
         "type_counts": [
           {
             "polarity_type": -1,
             "label": "insufficient data",
             "color": "#7a1f1f",
-            "n_units": 173
+            "n_units": 2
           },
           {
             "polarity_type": 0,
@@ -116,36 +108,30 @@
             "polarity_type": 1,
             "label": "evening-dominant",
             "color": "#1f7a57",
-            "n_units": 72
+            "n_units": 71
           },
           {
             "polarity_type": 2,
             "label": "balanced",
             "color": "#6b7280",
-            "n_units": 29
+            "n_units": 201
           }
         ]
       },
       {
         "campaign_year": 2022,
         "n_directional_units": 293,
-        "n_eligible_units": 212,
-        "n_classifiable_units": 118,
-        "n_raw_required_slot_rows": 1752,
-        "n_raw_required_slot_rows_rejected": 480,
-        "n_invalid_inventory_units": 81,
-        "n_incomplete_units": 0,
-        "n_all_zero_units": 94,
-        "n_morning_zero": 2,
-        "n_evening_zero": 0,
-        "n_unmatchable_between_hourly_sheets": 175,
+        "n_classifiable_units": 291,
+        "n_morning_zero": 175,
+        "n_evening_zero": 173,
+        "n_unmatchable_between_hourly_sheets": 2,
         "source_file": "Observatoire_Velos_2022_CPEV.xlsx",
         "type_counts": [
           {
             "polarity_type": -1,
             "label": "insufficient data",
             "color": "#7a1f1f",
-            "n_units": 175
+            "n_units": 2
           },
           {
             "polarity_type": 0,
@@ -163,30 +149,24 @@
             "polarity_type": 2,
             "label": "balanced",
             "color": "#6b7280",
-            "n_units": 15
+            "n_units": 188
           }
         ]
       },
       {
         "campaign_year": 2023,
         "n_directional_units": 298,
-        "n_eligible_units": 296,
-        "n_classifiable_units": 120,
-        "n_raw_required_slot_rows": 1788,
-        "n_raw_required_slot_rows_rejected": 12,
-        "n_invalid_inventory_units": 2,
-        "n_incomplete_units": 0,
-        "n_all_zero_units": 176,
-        "n_morning_zero": 5,
-        "n_evening_zero": 2,
-        "n_unmatchable_between_hourly_sheets": 178,
+        "n_classifiable_units": 298,
+        "n_morning_zero": 183,
+        "n_evening_zero": 180,
+        "n_unmatchable_between_hourly_sheets": 0,
         "source_file": "Observatoire_Velos_2023.xlsx",
         "type_counts": [
           {
             "polarity_type": -1,
             "label": "insufficient data",
             "color": "#7a1f1f",
-            "n_units": 178
+            "n_units": 0
           },
           {
             "polarity_type": 0,
@@ -204,16 +184,14 @@
             "polarity_type": 2,
             "label": "balanced",
             "color": "#6b7280",
-            "n_units": 28
+            "n_units": 206
           }
         ]
       }
     ],
     "summary_file": "data/punctual_polarity_summary.csv",
     "retained_raw_unit": "campaign_year x Num_CPEV x Poste x Direction",
-    "eligibility_rule": "A punctual hourly row is retained only with non-empty Num_CPEV, Poste, Direction, Adresse and an explicitly selected numeric count column; X/Y are not used as proof of validity.",
-    "all_zero_rule": "M = S = 0 is reported as non-classifiable all_zero, not balanced.",
-    "date_warning": "Campaign dates are not documented in the source workbooks. These profiles are used descriptively and must not be described as a normal day or as date-specific temporal validation."
+    "date_warning": "Campaign dates are not documented in the source workbooks. These profiles are used descriptively and cannot yet support date-specific temporal validation."
   },
   "overview_metrics": [
     {
