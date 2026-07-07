@@ -9,6 +9,12 @@
     "1": { label: "dominante soir", shortLabel: "soir", color: "#9b82d0", className: "class-evening" },
     "2": { label: "équilibré", shortLabel: "équilibré", color: "#4fa69c", className: "class-balanced" }
   };
+  const PUNCTUAL_PROFILE_ORDER = [0, 1, 2];
+  const PUNCTUAL_STATUS_META = {
+    rejected: { label: "invalides / rejetées", shortLabel: "rejetées", className: "class-rejected" },
+    zero: { label: "flux nul", shortLabel: "flux nul", className: "class-zero-flow" },
+    positive: { label: "profils à flux positif", shortLabel: "profils positifs", className: "class-positive-flow" }
+  };
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -80,6 +86,78 @@
     }).join("");
   }
 
+  function profileCountMap(row) {
+    const byType = {};
+    (row.type_counts || []).forEach((item) => {
+      byType[String(item.polarity_type)] = Number(item.n_units || 0);
+    });
+    return byType;
+  }
+
+  function punctualRejectedCount(row) {
+    return Number(row.n_invalid_inventory_units || 0) + Number(row.n_incomplete_units || 0);
+  }
+
+  function punctualStatusCounts(row) {
+    return [
+      { key: "rejected", count: punctualRejectedCount(row), ...PUNCTUAL_STATUS_META.rejected },
+      { key: "zero", count: Number(row.n_all_zero_units || 0), ...PUNCTUAL_STATUS_META.zero },
+      { key: "positive", count: Number(row.n_classifiable_units || 0), ...PUNCTUAL_STATUS_META.positive }
+    ];
+  }
+
+  function punctualProfileCounts(row) {
+    const byType = profileCountMap(row);
+    return PUNCTUAL_PROFILE_ORDER.map((type) => ({
+      type,
+      count: byType[String(type)] || 0,
+      ...classMeta(type)
+    }));
+  }
+
+  function formatCountWithPercent(count, total) {
+    return `${formatValue(count)} (${percentage(count, total)})`;
+  }
+
+  function renderPunctualDistributionElement(element, row) {
+    const candidateTotal = Number(row.n_directional_units || 0);
+    const profileTotal = Number(row.n_classifiable_units || 0);
+    const statusCounts = punctualStatusCounts(row);
+    const profileCounts = punctualProfileCounts(row);
+    const statusList = statusCounts.map((item) => `
+      <li>
+        <span class="label-with-swatch"><span class="swatch ${item.className}"></span>${escapeHtml(item.label)}</span>
+        <strong><span>${formatCountWithPercent(item.count, candidateTotal)}</span></strong>
+      </li>
+    `).join("");
+    const profileList = profileCounts.map((item) => `
+      <li>
+        <span class="label-with-swatch"><span class="swatch ${item.className}"></span>${escapeHtml(item.label)}</span>
+        <strong><span>${formatCountWithPercent(item.count, profileTotal)}</span></strong>
+      </li>
+    `).join("");
+
+    element.innerHTML = `
+      <div class="punctual-breakdown">
+        <div class="context-metrics" aria-label="Contexte de la campagne">
+          <span><strong>${formatValue(candidateTotal)}</strong> candidates</span>
+          <span><strong>${formatValue(row.n_eligible_units || 0)}</strong> éligibles</span>
+          <span><strong>${formatValue(profileTotal)}</strong> profils positifs</span>
+        </div>
+        <div class="bar-block">
+          <div class="bar-title">Statut des unités candidates</div>
+          <div class="stacked-bar" role="img" aria-label="Statut des unités candidates">${distributionSegments(statusCounts, candidateTotal)}</div>
+          <ul class="count-list">${statusList}</ul>
+        </div>
+        <div class="bar-block">
+          <div class="bar-title">Profils parmi les unités classifiables à flux positif (n = ${formatValue(profileTotal)})</div>
+          <div class="stacked-bar" role="img" aria-label="Profils à flux positif">${distributionSegments(profileCounts, profileTotal)}</div>
+          <ul class="count-list">${profileList}</ul>
+        </div>
+      </div>
+    `;
+  }
+
   function renderDistributionElement(element, rows, valueKey) {
     const counts = normalizeCounts(rows, valueKey);
     const total = counts.reduce((sum, item) => sum + item.count, 0);
@@ -141,18 +219,19 @@
     }
     const rows = getByPath(metrics, "punctual_counts.by_year") || [];
     table.innerHTML = rows.map((row) => {
-      const byType = {};
-      row.type_counts.forEach((item) => {
-        byType[item.polarity_type] = item.n_units;
-      });
+      const byType = profileCountMap(row);
+      const profileTotal = Number(row.n_classifiable_units || 0);
       return `
         <tr>
           <td><strong class="mono">${escapeHtml(row.campaign_year)}</strong></td>
           <td>${formatValue(row.n_directional_units)}</td>
+          <td>${formatValue(punctualRejectedCount(row))}</td>
+          <td>${formatValue(row.n_eligible_units || 0)}</td>
+          <td>${formatValue(row.n_all_zero_units || 0)}</td>
+          <td>${formatValue(profileTotal)}</td>
           <td>${formatValue(byType[0] || 0)}</td>
           <td>${formatValue(byType[1] || 0)}</td>
           <td>${formatValue(byType[2] || 0)}</td>
-          <td>${formatValue(byType[-1] || 0)}</td>
         </tr>
       `;
     }).join("");
@@ -160,13 +239,13 @@
 
   function renderPunctualPreview(row) {
     document.querySelectorAll("[data-punctual-preview]").forEach((element) => {
-      const counts = normalizeCounts(row.type_counts, "n_units");
-      const total = counts.reduce((sum, item) => sum + item.count, 0);
+      const counts = punctualProfileCounts(row);
+      const total = Number(row.n_classifiable_units || 0);
       element.innerHTML = `
         <div class="year-strip selected-year-strip">
           <div class="year-strip-head">
             <strong>${escapeHtml(row.campaign_year)}</strong>
-            <span>${formatValue(row.n_directional_units)} unités directionnelles</span>
+            <span>profils sur n = ${formatValue(total)}</span>
           </div>
           <div class="stacked-bar compact" role="img" aria-label="Distribution ${escapeHtml(row.campaign_year)}">${distributionSegments(counts, total)}</div>
         </div>
@@ -178,20 +257,29 @@
     const rows = getByPath(metrics, "punctual_counts.by_year") || [];
     document.querySelectorAll("[data-year-comparison='punctual']").forEach((element) => {
       element.innerHTML = rows.map((row) => {
-        const counts = normalizeCounts(row.type_counts, "n_units");
-        const total = counts.reduce((sum, item) => sum + item.count, 0);
+        const candidateTotal = Number(row.n_directional_units || 0);
+        const profileTotal = Number(row.n_classifiable_units || 0);
+        const statusCounts = punctualStatusCounts(row);
+        const profileCounts = punctualProfileCounts(row);
         const className = Number(row.campaign_year) === Number(selectedYear) ? "year-strip is-selected" : "year-strip";
-        const values = counts.map((item) => `
+        const statusValues = statusCounts.map((item) => `
           <span><span class="swatch ${item.className}"></span>${escapeHtml(item.shortLabel)} ${formatValue(item.count)}</span>
+        `).join("");
+        const profileValues = profileCounts.map((item) => `
+          <span><span class="swatch ${item.className}"></span>${escapeHtml(item.shortLabel)} ${formatCountWithPercent(item.count, profileTotal)}</span>
         `).join("");
         return `
           <div class="${className}">
             <div class="year-strip-head">
               <strong>${escapeHtml(row.campaign_year)}</strong>
-              <span>${formatValue(row.n_directional_units)} unités</span>
+              <span>${formatValue(candidateTotal)} candidates · ${formatValue(row.n_eligible_units || 0)} éligibles</span>
             </div>
-            <div class="stacked-bar compact" role="img" aria-label="Distribution ${escapeHtml(row.campaign_year)}">${distributionSegments(counts, total)}</div>
-            <div class="mini-counts">${values}</div>
+            <div class="bar-title">Statut des unités</div>
+            <div class="stacked-bar compact" role="img" aria-label="Statut ${escapeHtml(row.campaign_year)}">${distributionSegments(statusCounts, candidateTotal)}</div>
+            <div class="mini-counts">${statusValues}</div>
+            <div class="bar-title">Profils positifs (n = ${formatValue(profileTotal)})</div>
+            <div class="stacked-bar compact" role="img" aria-label="Profils ${escapeHtml(row.campaign_year)}">${distributionSegments(profileCounts, profileTotal)}</div>
+            <div class="mini-counts">${profileValues}</div>
           </div>
         `;
       }).join("");
@@ -210,10 +298,10 @@
       element.textContent = row.campaign_year;
     });
     document.querySelectorAll("[data-punctual-summary]").forEach((element) => {
-      element.textContent = `${row.campaign_year} : ${formatValue(row.n_directional_units)} unités directionnelles, ${formatValue(row.n_classifiable_units)} unités classables.`;
+      element.textContent = `${row.campaign_year} : ${formatValue(row.n_directional_units)} candidates, ${formatValue(row.n_eligible_units || 0)} éligibles, profils sur n = ${formatValue(row.n_classifiable_units || 0)}.`;
     });
     document.querySelectorAll("[data-distribution='punctual']").forEach((element) => {
-      renderDistributionElement(element, row.type_counts, "n_units");
+      renderPunctualDistributionElement(element, row);
     });
     renderPunctualPreview(row);
     renderPunctualYearComparison(metrics, row.campaign_year);
