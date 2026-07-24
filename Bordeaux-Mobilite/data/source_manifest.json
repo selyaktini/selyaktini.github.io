@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-03T08:45:39+00:00",
+  "generated_at_utc": "2026-07-24T09:56:07+00:00",
   "purpose": "Lightweight public assets for the Bordeaux Bicycle Counts Explorer.",
   "exported_files": [
     {
@@ -36,28 +36,6 @@
       "description": "Campaign-year summary of punctual directional-unit polarity classes."
     },
     {
-      "public_file": "data/rocade_interior.geojson",
-      "sources": [
-        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer rocade_interior"
-      ],
-      "description": "Simplified rocade study perimeter polygon."
-    },
-    {
-      "public_file": "data/zones_modeling.geojson",
-      "sources": [
-        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer zones_modeling"
-      ],
-      "description": "Simplified modelling-zone polygons with limited public attributes."
-    },
-    {
-      "public_file": "data/permanent_sensors.geojson",
-      "sources": [
-        "data/interim/spatial/01_zones_capteurs/capteurs_velo.gpkg layer capteurs_velo",
-        "data/processed/temporal/sensor_polarity_classification.csv"
-      ],
-      "description": "Classified permanent sensor points with polarity type and valid-day count."
-    },
-    {
       "public_file": "explorers/permanent-temporal-audit.html",
       "source": "reports/figures/sensors/flux_horaires_par_capteur_explorable.html",
       "description": "Existing interactive HTML report copied unchanged."
@@ -71,6 +49,65 @@
       "public_file": "explorers/punctual-polarity.html",
       "source": "reports/figures/sensors/punctual_morning_evening_classification.html",
       "description": "Existing interactive HTML report copied unchanged."
+    },
+    {
+      "public_file": "data/rocade_interior.geojson",
+      "sources": [
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer rocade_interior"
+      ],
+      "description": "Périmètre rocade simplifié, reprojeté pour Leaflet."
+    },
+    {
+      "public_file": "data/zones_modeling.geojson",
+      "sources": [
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer zones_candidates",
+        "data/interim/temporal/01_comptages_velos/zones_temporal_coverage_audit.parquet",
+        "data/processed/observed_modeling_base/usable_zones.csv",
+        "data/processed/phase1_reconstruction_observed_clean/metadata.json",
+        "data/processed/phase1_reconstruction_observed_clean/lozo_targets.parquet",
+        "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet"
+      ],
+      "description": "Zones du graphe avec statuts brut, observed-clean et LOZO."
+    },
+    {
+      "public_file": "data/zones_excluded.geojson",
+      "sources": [
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer zones_candidates",
+        "data/interim/temporal/01_comptages_velos/zones_temporal_coverage_audit.parquet",
+        "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet"
+      ],
+      "description": "Zones extérieures explicitement exclues du graphe."
+    },
+    {
+      "public_file": "data/permanent_sensors.geojson",
+      "sources": [
+        "data/interim/spatial/01_zones_capteurs/association_capteurs_zones.gpkg",
+        "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
+        "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet",
+        "data/raw/bordeaux_metropole/comptages_velos/comptages_recents/pc_velo_p.csv",
+        "data/permanent_sensor_classification.csv (public display attributes)"
+      ],
+      "description": "Capteurs temporels actifs et nettoyés, avec géométries courantes."
+    },
+    {
+      "public_file": "data/shared_boundary_candidates.geojson",
+      "sources": [
+        "data/interim/spatial/01_zones_capteurs/association_capteurs_zones.gpkg",
+        "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
+        "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layer zones_candidates"
+      ],
+      "description": "Candidats à moins de 10 m d'une frontière partagée; audit seul."
+    },
+    {
+      "public_file": "data/inward_transfer_candidates.geojson",
+      "sources": [
+        "data/interim/spatial/01_zones_capteurs/association_capteurs_zones.gpkg",
+        "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
+        "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg layers zones_candidates et rocade_interior"
+      ],
+      "description": "Options de transfert vers le graphe; aucune affectation retenue."
     }
   ],
   "intentionally_not_published": [

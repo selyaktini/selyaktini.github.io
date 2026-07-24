@@ -334,6 +334,10 @@ p {
   border-radius: 50%;
 }
 
+.swatch.dashed {
+  border: 1px dashed #697785;
+}
+
 .action-row {
   display: grid;
   gap: 0;
@@ -521,6 +525,58 @@ p {
   color: var(--muted);
   font-size: 13px;
   text-align: center;
+}
+
+.zone-id-label {
+  border: 0;
+  background: transparent;
+}
+
+.zone-id-label span {
+  display: inline-block;
+  transform: translate(-50%, -50%);
+  padding: 1px 3px;
+  border: 1px solid rgba(97, 112, 128, 0.55);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #263f56;
+  box-shadow: 0 1px 2px rgba(23, 32, 43, 0.15);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.candidate-map-marker {
+  border: 0;
+  background: transparent;
+}
+
+.candidate-map-marker span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  margin: 2px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(23, 32, 43, 0.5);
+}
+
+.candidate-map-marker .candidate-shared,
+.swatch.candidate-shared {
+  border-radius: 2px;
+  background: #d97706;
+  transform: rotate(45deg);
+}
+
+.candidate-map-marker .candidate-inward,
+.swatch.candidate-inward {
+  border-radius: 50%;
+  background: #a53e8c;
+}
+
+.leaflet-control-layers {
+  font-size: 12px;
 }
 
 .map-preview .map {

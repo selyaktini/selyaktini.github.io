@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-03T08:45:39+00:00",
+  "generated_at_utc": "2026-07-24T09:56:07+00:00",
   "title": "Bordeaux Bicycle Counts Explorer",
   "subtitle": "Exploratory view of permanent and punctual bicycle-count data",
   "study_area": {
@@ -7,16 +7,38 @@
     "n_zones_with_permanent_hourly_series": 36,
     "n_zones_modeling": 247,
     "n_zones_with_hourly_series": 36,
-    "n_permanent_sensor_points": 82,
-    "n_permanent_classified_without_valid_geometry": 2,
-    "permanent_classified_without_valid_geometry": [
-      "Z201CT4",
-      "Z201CT5"
-    ],
+    "n_permanent_sensor_points": 84,
+    "n_permanent_classified_without_valid_geometry": 0,
+    "permanent_classified_without_valid_geometry": [],
     "files": {
       "zones_modeling": "data/zones_modeling.geojson",
+      "zones_excluded": "data/zones_excluded.geojson",
       "rocade_interior": "data/rocade_interior.geojson",
-      "permanent_sensors": "data/permanent_sensors.geojson"
+      "permanent_sensors": "data/permanent_sensors.geojson",
+      "shared_boundary_candidates": "data/shared_boundary_candidates.geojson",
+      "inward_transfer_candidates": "data/inward_transfer_candidates.geojson"
+    },
+    "n_excluded_exterior_zones": 82,
+    "n_raw_hourly_zones_all": 38,
+    "n_observed_clean_zones": 19,
+    "n_lozo_targets": 19,
+    "n_unobserved_graph_zones": 228,
+    "coverage_candidates": {
+      "shared_boundary_rows": 11,
+      "shared_boundary_sensors": 11,
+      "shared_boundary_new_zone_ids": [
+        "161005000",
+        "162014000",
+        "170004000",
+        "172001000",
+        "173008000",
+        "177007000"
+      ],
+      "inward_transfer_rows": 6,
+      "inward_transfer_sensors": 6,
+      "inward_transfer_new_zone_ids": [
+        "180005000"
+      ]
     }
   },
   "permanent_counts": {

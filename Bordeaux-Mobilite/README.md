@@ -13,6 +13,8 @@ https://selyaktini.github.io/Bordeaux-Mobilite/
 This site is a lightweight public data-exploration interface. It summarizes:
 
 - the Bordeaux rocade study perimeter and modelling zones;
+- current raw-hourly, observed-clean and LOZO coverage by zone;
+- spatial `shared_boundary` and `inward_transfer` candidates for manual review;
 - permanent bicycle-count sensors and finalized polarity classes;
 - punctual campaign profiles for 2021, 2022 and 2023;
 - methodology and known limitations.
@@ -40,46 +42,47 @@ Bordeaux-Mobilite/
 `-- data/
 ```
 
-## Regenerate public data
+## Regenerate spatial coverage data
 
 From the research repository:
 
 ```bash
 cd ~/work/Bordeaux-Mobilite
-.venv/bin/python scripts/export_website_data.py
+PYTHONPATH=src .venv/bin/python scripts/spatial/build_spatial_coverage_candidates.py
 ```
 
-The script writes public files into:
+The script reads the current spatial, temporal-cleaning and observed-clean
+assets. It writes the map GeoJSON files into:
 
 ```text
 ~/work/selyaktini.github.io/Bordeaux-Mobilite/data/
 ```
 
-and copies the three existing HTML explorers into:
+Candidate CSV files and the audit report are written into:
 
 ```text
-~/work/selyaktini.github.io/Bordeaux-Mobilite/explorers/
+~/work/Bordeaux-Mobilite/reports/quality_checks/spatial_coverage/
 ```
 
-## Exported sources
+The command does not modify the canonical sensor-zone mappings and does not
+rebuild zonal series or modelling datasets.
 
-The export script documents file-level provenance in:
+## Exported spatial sources
+
+File-level provenance is documented in:
 
 ```text
 data/source_manifest.json
 ```
 
-Main sources currently used:
+Main sources for the coverage map:
 
-- `data/processed/temporal/sensor_polarity_classification.csv`
-- `reports/quality_checks/punctual_counts/punctual_polarity_summary.csv`
-- `data/interim/temporal/01_comptages_velos/capteurs_comptages_hourly.parquet`
-- `data/processed/phase1_reconstruction/metadata.json`
 - `data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg`
-- `data/interim/spatial/01_zones_capteurs/capteurs_velo.gpkg`
-- `reports/figures/sensors/flux_horaires_par_capteur_explorable.html`
-- `reports/figures/sensors/morning_evening_classification.html`
-- `reports/figures/sensors/punctual_morning_evening_classification.html`
+- `data/interim/spatial/01_zones_capteurs/association_capteurs_zones.gpkg`
+- `data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet`
+- `data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet`
+- `data/processed/observed_modeling_base/usable_zones.csv`
+- `data/processed/phase1_reconstruction_observed_clean/lozo_targets.parquet`
 
 ## Intentionally not published
 

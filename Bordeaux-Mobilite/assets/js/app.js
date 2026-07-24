@@ -288,14 +288,51 @@
     element.innerHTML = '<p class="map-status">Carte indisponible : les données cartographiques n\'ont pas pu être chargées.</p>';
   }
 
+  const ZONE_STYLES = {
+    observed_clean: {
+      color: "#26736d",
+      weight: 1.1,
+      fillColor: "#4fa69c",
+      fillOpacity: 0.58
+    },
+    raw_hourly_not_retained: {
+      color: "#a66f17",
+      weight: 0.9,
+      fillColor: "#e2b85f",
+      fillOpacity: 0.5
+    },
+    unobserved: {
+      color: "#8395a4",
+      weight: 0.55,
+      fillColor: "#dfe8ee",
+      fillOpacity: 0.34
+    },
+    excluded_exterior: {
+      color: "#697785",
+      weight: 0.85,
+      dashArray: "5 4",
+      fillColor: "#aab4bd",
+      fillOpacity: 0.16
+    }
+  };
+
+  const ZONE_STATUS_LABELS = {
+    interior: "intérieure",
+    boundary: "frontière",
+    exterior: "extérieure exclue"
+  };
+
+  function yesNo(value) {
+    return value ? "oui" : "non";
+  }
+
   function zoneStyle(feature) {
-    const hasSeries = feature.properties && feature.properties.has_hourly_series;
-    return {
-      color: hasSeries ? "#8db9b5" : "#9aaab6",
-      weight: hasSeries ? 0.75 : 0.45,
-      fillColor: hasSeries ? "#d9eeee" : "#e7eef4",
-      fillOpacity: hasSeries ? 0.42 : 0.28
-    };
+    const properties = feature.properties || {};
+    let status = properties.map_status;
+    if (!status) {
+      status = properties.has_hourly_series ? "raw_hourly_not_retained" : "unobserved";
+    }
+    return ZONE_STYLES[status] || ZONE_STYLES.unobserved;
   }
 
   function rocadeStyle() {
@@ -318,11 +355,17 @@
   }
 
   function zonePopup(properties) {
+    const commune = properties.commune || properties.zone_commune || "non documentée";
+    const zoneStatus = ZONE_STATUS_LABELS[properties.zone_status] || properties.zone_status || "non documenté";
     return `
       <strong>Zone ${escapeHtml(properties.zone_id)}</strong><br>
-      Commune : ${escapeHtml(properties.zone_commune || "non documentée")}<br>
-      Série horaire permanente : ${properties.has_hourly_series ? "oui" : "non"}<br>
-      Capteurs dans la zone : ${formatValue(properties.sensor_count || 0)}
+      Commune : ${escapeHtml(commune)}<br>
+      Statut spatial : ${escapeHtml(zoneStatus)}<br>
+      Série horaire brute : ${yesNo(properties.has_raw_hourly_series)}<br>
+      Observed-clean : ${yesNo(properties.is_observed_clean)}<br>
+      Cible LOZO : ${yesNo(properties.is_lozo_target)}<br>
+      Capteurs spatiaux : ${formatValue(properties.sensor_count || 0)}<br>
+      Capteurs temporels actifs : ${formatValue(properties.n_active_temporal_sensors || 0)}
     `;
   }
 
@@ -332,9 +375,122 @@
       <strong>${escapeHtml(properties.sensor_ident)}</strong><br>
       ${escapeHtml(properties.sensor_name || "")}<br>
       Type : ${escapeHtml(properties.sensor_type || "")}<br>
+      Zone actuelle : ${escapeHtml(properties.current_zone_id || "non documentée")}<br>
+      Statut temporel : ${escapeHtml(properties.temporal_status || "non documenté")}<br>
       Classe : ${escapeHtml(meta.label)}<br>
       Jours valides : ${formatValue(properties.n_valid_days)}
     `;
+  }
+
+  function candidateMarker(feature, latlng) {
+    const properties = feature.properties || {};
+    const shared = properties.candidate_type === "shared_boundary";
+    const typeClass = shared ? "candidate-shared" : "candidate-inward";
+    return L.marker(latlng, {
+      keyboard: true,
+      title: `${properties.candidate_type || "candidat"} — ${properties.sensor_ident || ""}`,
+      icon: L.divIcon({
+        className: "candidate-map-marker",
+        html: `<span class="${typeClass}"></span>`,
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+        popupAnchor: [0, -8]
+      })
+    });
+  }
+
+  function formatDistance(value) {
+    const distance = Number(value);
+    if (!Number.isFinite(distance)) {
+      return "non documentée";
+    }
+    return `${distance.toLocaleString("fr-FR", {
+      maximumFractionDigits: distance < 100 ? 1 : 0
+    })} m`;
+  }
+
+  function candidatePopup(properties) {
+    const isShared = properties.candidate_type === "shared_boundary";
+    const typeLabel = isShared ? "shared_boundary" : "inward_transfer";
+    const distanceLabel = isShared ? "Distance à la frontière partagée" : "Distance à la zone candidate";
+    const distance = isShared
+      ? properties.distance_to_shared_boundary_m
+      : properties.distance_to_candidate_zone_m;
+    const rocadeDistance = !isShared && properties.distance_to_rocade_boundary_m != null
+      ? `<br>Distance à la rocade : ${formatDistance(properties.distance_to_rocade_boundary_m)}`
+      : "";
+    const temporalStatus = properties.current_temporal_quality
+      ? `${properties.temporal_status || "non documenté"} — ${properties.current_temporal_quality}`
+      : properties.temporal_status || "non documenté";
+    return `
+      <strong>${escapeHtml(properties.sensor_ident)}</strong><br>
+      physical_sensor_id : ${escapeHtml(properties.physical_sensor_id)}<br>
+      Zone actuelle : ${escapeHtml(properties.current_zone_id)}<br>
+      Zone candidate : ${escapeHtml(properties.candidate_zone_id)}<br>
+      ${escapeHtml(distanceLabel)} : ${formatDistance(distance)}${rocadeDistance}<br>
+      Statut temporel : ${escapeHtml(temporalStatus)}<br>
+      Type de candidature : ${escapeHtml(typeLabel)}
+    `;
+  }
+
+  function createCandidateLayer(candidates) {
+    return L.geoJSON(candidates, {
+      pointToLayer(feature, latlng) {
+        return candidateMarker(feature, latlng);
+      },
+      onEachFeature(feature, layer) {
+        layer.bindPopup(candidatePopup(feature.properties || {}));
+      }
+    });
+  }
+
+  function createUnobservedLabelLayer(map, zones) {
+    const labelLayer = L.layerGroup();
+    let enabled = false;
+    const features = (zones.features || []).filter((feature) => {
+      const properties = feature.properties || {};
+      return !properties.is_observed_clean;
+    });
+
+    function renderLabels() {
+      labelLayer.clearLayers();
+      if (!enabled || map.getZoom() < 14) {
+        return;
+      }
+      features.forEach((feature) => {
+        const properties = feature.properties || {};
+        const latitude = Number(properties.label_lat);
+        const longitude = Number(properties.label_lon);
+        if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+          return;
+        }
+        const marker = L.marker([latitude, longitude], {
+          interactive: true,
+          keyboard: true,
+          icon: L.divIcon({
+            className: "zone-id-label",
+            html: `<span>${escapeHtml(properties.zone_id)}</span>`
+          })
+        });
+        marker.bindPopup(zonePopup(properties));
+        marker.addTo(labelLayer);
+      });
+    }
+
+    map.on("zoomend", renderLabels);
+    map.on("overlayadd", (event) => {
+      if (event.layer === labelLayer) {
+        enabled = true;
+        renderLabels();
+      }
+    });
+    map.on("overlayremove", (event) => {
+      if (event.layer === labelLayer) {
+        enabled = false;
+        labelLayer.clearLayers();
+      }
+    });
+    return labelLayer;
   }
 
   async function initStudyMap() {
@@ -347,13 +503,23 @@
       return;
     }
     try {
-      const [zones, rocade, sensors] = await Promise.all([
+      const [zones, excludedZones, rocade, sensors, sharedCandidates, inwardCandidates] = await Promise.all([
         loadJson("zones_modeling.geojson"),
+        loadJson("zones_excluded.geojson"),
         loadJson("rocade_interior.geojson"),
-        loadJson("permanent_sensors.geojson")
+        loadJson("permanent_sensors.geojson"),
+        loadJson("shared_boundary_candidates.geojson"),
+        loadJson("inward_transfer_candidates.geojson")
       ]);
 
       const map = buildBaseMap(element);
+      const excludedLayer = L.geoJSON(excludedZones, {
+        style: zoneStyle,
+        onEachFeature(feature, layer) {
+          layer.bindPopup(zonePopup(feature.properties || {}));
+        }
+      }).addTo(map);
+
       const zonesLayer = L.geoJSON(zones, {
         style: zoneStyle,
         onEachFeature(feature, layer) {
@@ -374,11 +540,29 @@
         }
       }).addTo(map);
 
+      const sharedLayer = createCandidateLayer(sharedCandidates);
+      const inwardLayer = createCandidateLayer(inwardCandidates);
+      const unobservedLabels = createUnobservedLabelLayer(map, zones);
+
       L.control.layers(null, {
         "Périmètre rocade": rocadeLayer,
-        "Zones de modélisation": zonesLayer,
-        "Capteurs permanents": sensorLayer
+        "Zones du graphe": zonesLayer,
+        "Zones extérieures exclues": excludedLayer,
+        "Capteurs temporels actifs": sensorLayer,
+        "Candidats shared_boundary": sharedLayer,
+        "Candidats inward_transfer": inwardLayer,
+        "IDs zones non observées (zoom ≥ 14)": unobservedLabels
       }, { collapsed: true }).addTo(map);
+
+      map.on("overlayadd", (event) => {
+        if (event.layer !== sharedLayer && event.layer !== inwardLayer) {
+          return;
+        }
+        const candidateBounds = event.layer.getBounds();
+        if (candidateBounds.isValid()) {
+          map.fitBounds(candidateBounds.pad(0.2), { maxZoom: 14 });
+        }
+      });
 
       const bounds = rocadeLayer.getBounds().isValid() ? rocadeLayer.getBounds() : zonesLayer.getBounds();
       if (bounds.isValid()) {
