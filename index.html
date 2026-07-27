@@ -11688,6 +11688,29 @@
             );
         
     
+        function bindZoneIdTooltips(geoJsonLayer) {
+            geoJsonLayer.eachLayer(function(layer) {
+                const properties = layer.feature && layer.feature.properties;
+                if (!properties || !Object.prototype.hasOwnProperty.call(properties, "zone_id")) {
+                    return;
+                }
+
+                layer.unbindTooltip();
+                layer.bindTooltip(`Zone ${properties.zone_id}`, {
+                    "sticky": true,
+                    "className": "foliumtooltip",
+                });
+            });
+        }
+
+        [
+            geo_json_88f52f304e44355021667e6e83de0c6b,
+            geo_json_18b195cd2f35434de314179a3c2c5712,
+            geo_json_6bb058b21056a70b363e609b10adbf98,
+            geo_json_34fbcc14df2d0aa4e88bd1e69465a1ed,
+            geo_json_05ca2cc132bf2978797832b1211550ad,
+        ].forEach(bindZoneIdTooltips);
+
             var layer_control_9b1497fed2bd95e593356d71b2c77d34_layers = {
                 base_layers : {
                     "Permanents" : feature_group_ad2887cd171c9b563092450e9109ac4a,
