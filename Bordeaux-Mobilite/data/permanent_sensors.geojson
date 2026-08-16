@@ -1,1 +1,2021 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"physical_sensor_id":"5842","sensor_ident":"Z10CT101","sensor_name":"Dandicolle vers Boulevards","sensor_type":"4G","current_zone_id":"162015000","temporal_status":"active_clean","n_raw_hours":10448,"n_clean_hours":10448,"polarity_type":2,"polarity_label":"balanced","n_valid_days":217},"geometry":{"type":"Point","coordinates":[-0.5944820999999999,44.829170300000015]}},{"type":"Feature","properties":{"physical_sensor_id":"5841","sensor_ident":"Z10CT102","sensor_name":"Dandicolle vers Mériadeck","sensor_type":"4G","current_zone_id":"162015000","temporal_status":"active_clean","n_raw_hours":10448,"n_clean_hours":10448,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":217},"geometry":{"type":"Point","coordinates":[-0.5944732000000011,44.8291599]}},{"type":"Feature","properties":{"physical_sensor_id":"5831","sensor_ident":"Z12CT101","sensor_name":"199 Blv Roosevelt vers Blv Albert 1er","sensor_type":"4G","current_zone_id":"162006000","temporal_status":"active_clean","n_raw_hours":12547,"n_clean_hours":12547,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":240},"geometry":{"type":"Point","coordinates":[-0.5731902,44.815035]}},{"type":"Feature","properties":{"physical_sensor_id":"5821","sensor_ident":"Z12CT15","sensor_name":"Boulevard Albert 1er vers Boulevard Roosevelt","sensor_type":"BOUCLE","current_zone_id":"162005000","temporal_status":"active_clean","n_raw_hours":17396,"n_clean_hours":17219,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.5722942999999998,44.8147465]}},{"type":"Feature","properties":{"physical_sensor_id":"5887","sensor_ident":"Z14CT101","sensor_name":"Chaban entrant Nord","sensor_type":"4G","current_zone_id":"166002000","temporal_status":"active_clean","n_raw_hours":13963,"n_clean_hours":13963,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":288},"geometry":{"type":"Point","coordinates":[-0.5497209999999997,44.85655930000001]}},{"type":"Feature","properties":{"physical_sensor_id":"5888","sensor_ident":"Z14CT102","sensor_name":"Chaban sortant Nord","sensor_type":"4G","current_zone_id":"166002000","temporal_status":"active_clean","n_raw_hours":13961,"n_clean_hours":13961,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":287},"geometry":{"type":"Point","coordinates":[-0.5497439000000002,44.856547200000016]}},{"type":"Feature","properties":{"physical_sensor_id":"5889","sensor_ident":"Z14CT103","sensor_name":"Chaban entrant Sud","sensor_type":"4G","current_zone_id":"166002000","temporal_status":"active_clean","n_raw_hours":8046,"n_clean_hours":8046,"polarity_type":2,"polarity_label":"balanced","n_valid_days":145},"geometry":{"type":"Point","coordinates":[-0.5498574000000008,44.85623300000001]}},{"type":"Feature","properties":{"physical_sensor_id":"5890","sensor_ident":"Z14CT104","sensor_name":"Chaban sortant Sud","sensor_type":"4G","current_zone_id":"166002000","temporal_status":"active_clean","n_raw_hours":8046,"n_clean_hours":8046,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":145},"geometry":{"type":"Point","coordinates":[-0.5498795999999992,44.85622069999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5791","sensor_ident":"Z16CT101","sensor_name":"Totem vélo Sens Entrant","sensor_type":"4G","current_zone_id":"178002000","temporal_status":"active_clean","n_raw_hours":15293,"n_clean_hours":14281,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":306},"geometry":{"type":"Point","coordinates":[-0.6435654999999993,44.78532369999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5792","sensor_ident":"Z16CT102","sensor_name":"Totem vélo Sens Sortant","sensor_type":"4G","current_zone_id":"178002000","temporal_status":"active_clean","n_raw_hours":15293,"n_clean_hours":14281,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":306},"geometry":{"type":"Point","coordinates":[-0.6435619999999999,44.78534210000002]}},{"type":"Feature","properties":{"physical_sensor_id":"5883","sensor_ident":"Z16CT105","sensor_name":"Bordeaux vers Haut Leveque","sensor_type":"4G","current_zone_id":"178001000","temporal_status":"active_clean","n_raw_hours":6297,"n_clean_hours":6297,"polarity_type":2,"polarity_label":"balanced","n_valid_days":117},"geometry":{"type":"Point","coordinates":[-0.6521065999999996,44.7962059]}},{"type":"Feature","properties":{"physical_sensor_id":"5884","sensor_ident":"Z16CT106","sensor_name":"Haut Leveque vers Bordeaux","sensor_type":"4G","current_zone_id":"178001000","temporal_status":"active_clean","n_raw_hours":6297,"n_clean_hours":6297,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":117},"geometry":{"type":"Point","coordinates":[-0.6520936999999993,44.7961882]}},{"type":"Feature","properties":{"physical_sensor_id":"5872","sensor_ident":"Z16CT107","sensor_name":"Rocade vers Pessac Centre","sensor_type":"4G","current_zone_id":"169008000","temporal_status":"active_clean","n_raw_hours":11289,"n_clean_hours":11289,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":235},"geometry":{"type":"Point","coordinates":[-0.6467690999999997,44.792818099999984]}},{"type":"Feature","properties":{"physical_sensor_id":"5871","sensor_ident":"Z16CT108","sensor_name":"Pessac Centre vers Rocade","sensor_type":"4G","current_zone_id":"169008000","temporal_status":"active_clean","n_raw_hours":11289,"n_clean_hours":11289,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":235},"geometry":{"type":"Point","coordinates":[-0.6467755999999999,44.79283130000001]}},{"type":"Feature","properties":{"physical_sensor_id":"2783","sensor_ident":"Z1701CT23","sensor_name":"21 Cours du Général De Gaulle vers ech. 16","sensor_type":"BOUCLE","current_zone_id":"177002000","temporal_status":"active_clean","n_raw_hours":17392,"n_clean_hours":12231,"polarity_type":2,"polarity_label":"balanced","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.6049920000000008,44.78652690000002]}},{"type":"Feature","properties":{"physical_sensor_id":"2784","sensor_ident":"Z1701CT24","sensor_name":"21 Cours du Général De Gaulle vers Professeur Villemin","sensor_type":"BOUCLE","current_zone_id":"177002000","temporal_status":"active_clean","n_raw_hours":17392,"n_clean_hours":12232,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.6051048000000002,44.78654090000002]}},{"type":"Feature","properties":{"physical_sensor_id":"4281","sensor_ident":"Z1705CT1","sensor_name":"Avenue Thouars - Marne vers centre Talence","sensor_type":"BOUCLE","current_zone_id":"168013000","temporal_status":"active_clean","n_raw_hours":17392,"n_clean_hours":16410,"polarity_type":2,"polarity_label":"balanced","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5921101999999999,44.7939762]}},{"type":"Feature","properties":{"physical_sensor_id":"4282","sensor_ident":"Z1705CT2","sensor_name":"Avenue Thouars - Marne vers rocade","sensor_type":"BOUCLE","current_zone_id":"168013000","temporal_status":"active_clean","n_raw_hours":17391,"n_clean_hours":16586,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5921400999999998,44.793969100000005]}},{"type":"Feature","properties":{"physical_sensor_id":"5881","sensor_ident":"Z19CT101","sensor_name":"Leognan vers Bordeaux","sensor_type":"4G","current_zone_id":"176007000","temporal_status":"active_clean","n_raw_hours":15024,"n_clean_hours":15024,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":294},"geometry":{"type":"Point","coordinates":[-0.5660812,44.77658680000001]}},{"type":"Feature","properties":{"physical_sensor_id":"5882","sensor_ident":"Z19CT102","sensor_name":"Bordeaux vers Leognan","sensor_type":"4G","current_zone_id":"176007000","temporal_status":"active_clean","n_raw_hours":15025,"n_clean_hours":15025,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":295},"geometry":{"type":"Point","coordinates":[-0.5661006000000001,44.776585800000014]}},{"type":"Feature","properties":{"physical_sensor_id":"2452","sensor_ident":"Z201CT101","sensor_name":"37 Cours du Marechal Juin vers Boulevard","sensor_type":"BOUCLE","current_zone_id":"162017000","temporal_status":"active_clean","n_raw_hours":2443,"n_clean_hours":2443,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":51},"geometry":{"type":"Point","coordinates":[-0.5834879999999996,44.836008799999995]}},{"type":"Feature","properties":{"physical_sensor_id":"2453","sensor_ident":"Z201CT102","sensor_name":"37 Cours du Marechal Juin vers Pey Berland","sensor_type":"BOUCLE","current_zone_id":"162018000","temporal_status":"active_clean","n_raw_hours":2443,"n_clean_hours":2443,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":51},"geometry":{"type":"Point","coordinates":[-0.5838538999999986,44.835688899999994]}},{"type":"Feature","properties":{"physical_sensor_id":"Z201CT4","sensor_ident":"Z201CT4","sensor_name":"37 Cours du Marechal Juin vers Pey Berland","sensor_type":"BOUCLE","current_zone_id":"162018000","temporal_status":"active_clean","n_raw_hours":14989,"n_clean_hours":8498,"polarity_type":2,"polarity_label":"balanced","n_valid_days":296},"geometry":{"type":"Point","coordinates":[-0.5838540343764468,44.83568903133744]}},{"type":"Feature","properties":{"physical_sensor_id":"Z201CT5","sensor_ident":"Z201CT5","sensor_name":"37 Cours du Marechal Juin vers Boulevard","sensor_type":"BOUCLE","current_zone_id":"162017000","temporal_status":"active_clean","n_raw_hours":14988,"n_clean_hours":7141,"polarity_type":2,"polarity_label":"balanced","n_valid_days":296},"geometry":{"type":"Point","coordinates":[-0.5834880486643922,44.83600890462202]}},{"type":"Feature","properties":{"physical_sensor_id":"2447","sensor_ident":"Z203CT6","sensor_name":"Pont de Pierre vers Bir Hakeim","sensor_type":"BOUCLE","current_zone_id":"161014000","temporal_status":"active_clean","n_raw_hours":17379,"n_clean_hours":9553,"polarity_type":2,"polarity_label":"balanced","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5648168999999992,44.8372518]}},{"type":"Feature","properties":{"physical_sensor_id":"2451","sensor_ident":"Z203CT7","sensor_name":"Pont de Pierre vers Stalingrad","sensor_type":"BOUCLE","current_zone_id":"161014000","temporal_status":"active_clean","n_raw_hours":17379,"n_clean_hours":9920,"polarity_type":2,"polarity_label":"balanced","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5647358999999994,44.83718089999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5941","sensor_ident":"Z21CT102","sensor_name":"Bordeaux vers Bruges","sensor_type":"4G","current_zone_id":"173009000","temporal_status":"active_clean","n_raw_hours":9106,"n_clean_hours":9106,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":177},"geometry":{"type":"Point","coordinates":[-0.5969478000000006,44.86828559999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5942","sensor_ident":"Z21CT103","sensor_name":"Bruges vers Bordeaux","sensor_type":"4G","current_zone_id":"173007000","temporal_status":"active_clean","n_raw_hours":9107,"n_clean_hours":9107,"polarity_type":2,"polarity_label":"balanced","n_valid_days":178},"geometry":{"type":"Point","coordinates":[-0.5972881999999997,44.8688148]}},{"type":"Feature","properties":{"physical_sensor_id":"2785","sensor_ident":"Z2203CT3","sensor_name":"34 Avenue de Paris vers rue Daniel","sensor_type":"BOUCLE","current_zone_id":"174012000","temporal_status":"active_clean","n_raw_hours":17393,"n_clean_hours":15968,"polarity_type":2,"polarity_label":"balanced","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5124018999999991,44.870108900000005]}},{"type":"Feature","properties":{"physical_sensor_id":"2786","sensor_ident":"Z2203CT4","sensor_name":"34 Avenue de Paris vers Prévost Sansac de Traversay","sensor_type":"BOUCLE","current_zone_id":"174017000","temporal_status":"active_clean","n_raw_hours":17393,"n_clean_hours":10843,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5122518999999995,44.8700629]}},{"type":"Feature","properties":{"physical_sensor_id":"5891","sensor_ident":"Z23CT101","sensor_name":"Hippodrome vers Bruges","sensor_type":"4G","current_zone_id":"173011000","temporal_status":"active_clean","n_raw_hours":14119,"n_clean_hours":14119,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":267},"geometry":{"type":"Point","coordinates":[-0.6141387999999999,44.8781567]}},{"type":"Feature","properties":{"physical_sensor_id":"5892","sensor_ident":"Z23CT102","sensor_name":"Bruges vers Hippodrome","sensor_type":"4G","current_zone_id":"173011000","temporal_status":"active_clean","n_raw_hours":14118,"n_clean_hours":14118,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":266},"geometry":{"type":"Point","coordinates":[-0.6141567,44.87816639999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5913","sensor_ident":"Z23CT103","sensor_name":"de Gaulle vers Gaussens","sensor_type":"4G","current_zone_id":"173011000","temporal_status":"active_clean","n_raw_hours":7198,"n_clean_hours":7198,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":139},"geometry":{"type":"Point","coordinates":[-0.6139473999999998,44.87791690000002]}},{"type":"Feature","properties":{"physical_sensor_id":"5914","sensor_ident":"Z23CT104","sensor_name":"Gaussens vers de Gaulle","sensor_type":"4G","current_zone_id":"173011000","temporal_status":"active_clean","n_raw_hours":7198,"n_clean_hours":7198,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":139},"geometry":{"type":"Point","coordinates":[-0.6139413999999992,44.87792689999998]}},{"type":"Feature","properties":{"physical_sensor_id":"5915","sensor_ident":"Z23CT105","sensor_name":"Le Taillan vers Bruges","sensor_type":"4G","current_zone_id":"180007000","temporal_status":"active_clean","n_raw_hours":8928,"n_clean_hours":8928,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":174},"geometry":{"type":"Point","coordinates":[-0.6373884999999997,44.890412399999995]}},{"type":"Feature","properties":{"physical_sensor_id":"5916","sensor_ident":"Z23CT106","sensor_name":"Bruges vers Le Taillan","sensor_type":"4G","current_zone_id":"180007000","temporal_status":"active_clean","n_raw_hours":8928,"n_clean_hours":8928,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":174},"geometry":{"type":"Point","coordinates":[-0.6373875999999992,44.8904289]}},{"type":"Feature","properties":{"physical_sensor_id":"5917","sensor_ident":"Z23CT107","sensor_name":"Eysines vers Blanquefort","sensor_type":"4G","current_zone_id":"180007000","temporal_status":"active_clean","n_raw_hours":8987,"n_clean_hours":8987,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":177},"geometry":{"type":"Point","coordinates":[-0.6377197000000002,44.8905941]}},{"type":"Feature","properties":{"physical_sensor_id":"5918","sensor_ident":"Z23CT108","sensor_name":"Blanquefort vers Eysines","sensor_type":"4G","current_zone_id":"180007000","temporal_status":"active_clean","n_raw_hours":8986,"n_clean_hours":8986,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":177},"geometry":{"type":"Point","coordinates":[-0.6377375000000001,44.8905912]}},{"type":"Feature","properties":{"physical_sensor_id":"5922","sensor_ident":"Z23CT109","sensor_name":"Nord vers Sud","sensor_type":"4G","current_zone_id":"173013000","temporal_status":"active_clean","n_raw_hours":5319,"n_clean_hours":5319,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":96},"geometry":{"type":"Point","coordinates":[-0.5893258999999992,44.89090559999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5921","sensor_ident":"Z23CT110","sensor_name":"Sud vers Nord","sensor_type":"4G","current_zone_id":"173013000","temporal_status":"active_clean","n_raw_hours":169,"n_clean_hours":169,"polarity_type":-1,"polarity_label":"insufficient data","n_valid_days":2},"geometry":{"type":"Point","coordinates":[-0.589306299999999,44.8909106]}},{"type":"Feature","properties":{"physical_sensor_id":"4311","sensor_ident":"Z24CT23","sensor_name":"Avenue de Magudas sens Entrant","sensor_type":"BOUCLE","current_zone_id":"180005000","temporal_status":"active_clean","n_raw_hours":17366,"n_clean_hours":9034,"polarity_type":2,"polarity_label":"balanced","n_valid_days":344},"geometry":{"type":"Point","coordinates":[-0.6635051000000001,44.858019299999995]}},{"type":"Feature","properties":{"physical_sensor_id":"4312","sensor_ident":"Z24CT24","sensor_name":"Avenue de Magudas sens sortant","sensor_type":"BOUCLE","current_zone_id":"180005000","temporal_status":"active_clean","n_raw_hours":17366,"n_clean_hours":9034,"polarity_type":2,"polarity_label":"balanced","n_valid_days":344},"geometry":{"type":"Point","coordinates":[-0.663503299999999,44.858031699999984]}},{"type":"Feature","properties":{"physical_sensor_id":"5885","sensor_ident":"Z26CT101","sensor_name":"Rocade vers Begles","sensor_type":"4G","current_zone_id":"167009000","temporal_status":"active_clean","n_raw_hours":10200,"n_clean_hours":10200,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":185},"geometry":{"type":"Point","coordinates":[-0.5638797999999998,44.790000199999994]}},{"type":"Feature","properties":{"physical_sensor_id":"5886","sensor_ident":"Z26CT102","sensor_name":"Begles vers Rocade","sensor_type":"4G","current_zone_id":"167009000","temporal_status":"active_clean","n_raw_hours":10200,"n_clean_hours":10200,"polarity_type":2,"polarity_label":"balanced","n_valid_days":185},"geometry":{"type":"Point","coordinates":[-0.5638920000000004,44.790007199999984]}},{"type":"Feature","properties":{"physical_sensor_id":"5832","sensor_ident":"Z28CT101","sensor_name":"Centre Saint Aubin vers Lycée","sensor_type":"4G","current_zone_id":"181014000","temporal_status":"active_clean","n_raw_hours":6147,"n_clean_hours":3953,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":123},"geometry":{"type":"Point","coordinates":[-0.7151157999999994,44.90623080000001]}},{"type":"Feature","properties":{"physical_sensor_id":"5833","sensor_ident":"Z28CT102","sensor_name":"Lycée vers Centre Saint Aubin","sensor_type":"4G","current_zone_id":"181014000","temporal_status":"active_clean","n_raw_hours":6147,"n_clean_hours":3953,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":123},"geometry":{"type":"Point","coordinates":[-0.7150909999999989,44.9062243]}},{"type":"Feature","properties":{"physical_sensor_id":"2787","sensor_ident":"Z2903CT5","sensor_name":"19 Avenue Jean Zay vers rue Bernard Palissy","sensor_type":"BOUCLE","current_zone_id":"175004000","temporal_status":"active_clean","n_raw_hours":17391,"n_clean_hours":16058,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":344},"geometry":{"type":"Point","coordinates":[-0.5139068999999998,44.85411989999999]}},{"type":"Feature","properties":{"physical_sensor_id":"2788","sensor_ident":"Z2903CT6","sensor_name":"19 Avenue Jean Zay vers Avenue René Cassagne","sensor_type":"BOUCLE","current_zone_id":"175004000","temporal_status":"active_clean","n_raw_hours":17391,"n_clean_hours":16058,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":344},"geometry":{"type":"Point","coordinates":[-0.5138688999999994,44.85418479999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5911","sensor_ident":"Z30CT101","sensor_name":"Bordeaux vers Aéroport","sensor_type":"4G","current_zone_id":"179002000","temporal_status":"active_clean","n_raw_hours":9165,"n_clean_hours":9165,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":178},"geometry":{"type":"Point","coordinates":[-0.6795359999999996,44.835422300000005]}},{"type":"Feature","properties":{"physical_sensor_id":"5912","sensor_ident":"Z30CT102","sensor_name":"Aéroport vers Bordeaux","sensor_type":"4G","current_zone_id":"179002000","temporal_status":"active_clean","n_raw_hours":9166,"n_clean_hours":9166,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":179},"geometry":{"type":"Point","coordinates":[-0.6795365,44.8354075]}},{"type":"Feature","properties":{"physical_sensor_id":"2446","sensor_ident":"Z31CT10","sensor_name":"49 Rue des Griffons vers Allende","sensor_type":"BOUCLE","current_zone_id":"174005000","temporal_status":"active_clean","n_raw_hours":17392,"n_clean_hours":16059,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.516342899999999,44.88981279999999]}},{"type":"Feature","properties":{"physical_sensor_id":"2450","sensor_ident":"Z31CT11","sensor_name":"49 Rue des Griffons vers Chemin du Pin","sensor_type":"BOUCLE","current_zone_id":"174005000","temporal_status":"active_clean","n_raw_hours":17391,"n_clean_hours":15971,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":344},"geometry":{"type":"Point","coordinates":[-0.5162487999999993,44.88981279999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5834","sensor_ident":"Z32CT101","sensor_name":"Chemin de Crabot vers Bordeaux","sensor_type":"4G","current_zone_id":"175013000","temporal_status":"active_clean","n_raw_hours":396,"n_clean_hours":396,"polarity_type":-1,"polarity_label":"insufficient data","n_valid_days":9},"geometry":{"type":"Point","coordinates":[-0.5078087,44.824895800000014]}},{"type":"Feature","properties":{"physical_sensor_id":"5835","sensor_ident":"Z32CT102","sensor_name":"Chemin de Crabot vers Bouliac","sensor_type":"4G","current_zone_id":"175013000","temporal_status":"active_clean","n_raw_hours":396,"n_clean_hours":396,"polarity_type":-1,"polarity_label":"insufficient data","n_valid_days":9},"geometry":{"type":"Point","coordinates":[-0.507827299999999,44.82487219999998]}},{"type":"Feature","properties":{"physical_sensor_id":"2777","sensor_ident":"Z401CT11","sensor_name":"27 Cours Clémenceau vers rue Buffon","sensor_type":"BOUCLE","current_zone_id":"161008000","temporal_status":"active_clean","n_raw_hours":17378,"n_clean_hours":16732,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5792279999999997,44.8430068]}},{"type":"Feature","properties":{"physical_sensor_id":"2778","sensor_ident":"Z401CT12","sensor_name":"27 Cours Clémenceau vers rue Rolland","sensor_type":"BOUCLE","current_zone_id":"161008000","temporal_status":"active_clean","n_raw_hours":17378,"n_clean_hours":16732,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5792737999999995,44.8430068]}},{"type":"Feature","properties":{"physical_sensor_id":"2448","sensor_ident":"Z401CT8","sensor_name":"68 Cours de Verdun vers D'Aviau","sensor_type":"BOUCLE","current_zone_id":"163012000","temporal_status":"active_clean","n_raw_hours":17380,"n_clean_hours":16820,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5751908999999996,44.84955790000001]}},{"type":"Feature","properties":{"physical_sensor_id":"2449","sensor_ident":"Z401CT9","sensor_name":"68 Cours de Verdun vers Cours Xavier Arnozan","sensor_type":"BOUCLE","current_zone_id":"163012000","temporal_status":"active_clean","n_raw_hours":17378,"n_clean_hours":16732,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5752338999999986,44.849567900000004]}},{"type":"Feature","properties":{"physical_sensor_id":"6171","sensor_ident":"Z4CT101","sensor_name":"Boulevard vers Bordeaux Centre","sensor_type":"4G","current_zone_id":"162015000","temporal_status":"active_clean","n_raw_hours":2591,"n_clean_hours":2591,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":54},"geometry":{"type":"Point","coordinates":[-0.5927471000000002,44.83769130000001]}},{"type":"Feature","properties":{"physical_sensor_id":"6172","sensor_ident":"Z4CT102","sensor_name":"Bordeaux Centre vers Boulevard","sensor_type":"4G","current_zone_id":"162015000","temporal_status":"active_clean","n_raw_hours":2591,"n_clean_hours":2591,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":54},"geometry":{"type":"Point","coordinates":[-0.5927535000000002,44.83770140000001]}},{"type":"Feature","properties":{"physical_sensor_id":"2779","sensor_ident":"Z502CT23","sensor_name":"15 quais de Paludate vers Saget","sensor_type":"BOUCLE","current_zone_id":"161016000","temporal_status":"active_clean","n_raw_hours":17379,"n_clean_hours":2574,"polarity_type":2,"polarity_label":"balanced","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5560228999999999,44.8299889]}},{"type":"Feature","properties":{"physical_sensor_id":"2780","sensor_ident":"Z502CT24","sensor_name":"15 quais de Paludate vers Pont StJean","sensor_type":"BOUCLE","current_zone_id":"161016000","temporal_status":"active_clean","n_raw_hours":17379,"n_clean_hours":2574,"polarity_type":2,"polarity_label":"balanced","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5560119000000001,44.8299838]}},{"type":"Feature","properties":{"physical_sensor_id":"2781","sensor_ident":"Z503CT23","sensor_name":"9 Quai de la Souys vers rue Emile Henriot","sensor_type":"BOUCLE","current_zone_id":"166001000","temporal_status":"active_clean","n_raw_hours":17380,"n_clean_hours":16734,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5447539999999993,44.83072980000001]}},{"type":"Feature","properties":{"physical_sensor_id":"2782","sensor_ident":"Z503CT24","sensor_name":"9 Quai de la Souys vers rue d'Artagnan","sensor_type":"BOUCLE","current_zone_id":"166001000","temporal_status":"active_clean","n_raw_hours":17381,"n_clean_hours":16735,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":345},"geometry":{"type":"Point","coordinates":[-0.5447458999999996,44.83074679999999]}},{"type":"Feature","properties":{"physical_sensor_id":"6151","sensor_ident":"Z5CT101","sensor_name":"Bègles vers Bordeaux","sensor_type":"4G","current_zone_id":"167005000","temporal_status":"active_clean","n_raw_hours":24,"n_clean_hours":24,"polarity_type":-1,"polarity_label":"insufficient data","n_valid_days":1},"geometry":{"type":"Point","coordinates":[-0.5367403000000001,44.816200499999994]}},{"type":"Feature","properties":{"physical_sensor_id":"6152","sensor_ident":"Z5CT102","sensor_name":"Bordeaux vers Bègles","sensor_type":"4G","current_zone_id":"167005000","temporal_status":"active_clean","n_raw_hours":24,"n_clean_hours":24,"polarity_type":-1,"polarity_label":"insufficient data","n_valid_days":1},"geometry":{"type":"Point","coordinates":[-0.5367509000000009,44.81619760000001]}},{"type":"Feature","properties":{"physical_sensor_id":"2440","sensor_ident":"Z601CT7","sensor_name":"2 Avenue de la République vers rue de la Liberté","sensor_type":"BOUCLE","current_zone_id":"172007000","temporal_status":"active_clean","n_raw_hours":17393,"n_clean_hours":2897,"polarity_type":2,"polarity_label":"balanced","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.5994189999999991,44.840234800000005]}},{"type":"Feature","properties":{"physical_sensor_id":"2442","sensor_ident":"Z601CT8","sensor_name":"2 Avenue de la République vers rue Judaïque","sensor_type":"BOUCLE","current_zone_id":"172007000","temporal_status":"active_clean","n_raw_hours":17393,"n_clean_hours":2897,"polarity_type":2,"polarity_label":"balanced","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.599418,44.840188800000014]}},{"type":"Feature","properties":{"physical_sensor_id":"5793","sensor_ident":"Z7CT103","sensor_name":"Aéroport vers Crématorium","sensor_type":"4G","current_zone_id":"179003000","temporal_status":"active_clean","n_raw_hours":15642,"n_clean_hours":15354,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":303},"geometry":{"type":"Point","coordinates":[-0.6809849999999992,44.8169746]}},{"type":"Feature","properties":{"physical_sensor_id":"5794","sensor_ident":"Z7CT104","sensor_name":"Crématorium vers Aéroport","sensor_type":"4G","current_zone_id":"179003000","temporal_status":"active_clean","n_raw_hours":15643,"n_clean_hours":15355,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":303},"geometry":{"type":"Point","coordinates":[-0.6809682999999994,44.8169754]}},{"type":"Feature","properties":{"physical_sensor_id":"5843","sensor_ident":"Z7CT105","sensor_name":"Martignas vers Bordeaux","sensor_type":"4G","current_zone_id":"179006000","temporal_status":"active_clean","n_raw_hours":15301,"n_clean_hours":15301,"polarity_type":2,"polarity_label":"balanced","n_valid_days":306},"geometry":{"type":"Point","coordinates":[-0.7689261000000003,44.84218799999999]}},{"type":"Feature","properties":{"physical_sensor_id":"5844","sensor_ident":"Z7CT106","sensor_name":"Bordeaux vers Martignas","sensor_type":"4G","current_zone_id":"179006000","temporal_status":"active_clean","n_raw_hours":15301,"n_clean_hours":15301,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":306},"geometry":{"type":"Point","coordinates":[-0.7689204999999998,44.84220950000001]}},{"type":"Feature","properties":{"physical_sensor_id":"5845","sensor_ident":"Z7CT107","sensor_name":"Martignas vers Bordeaux","sensor_type":"4G","current_zone_id":"179006000","temporal_status":"active_clean","n_raw_hours":14696,"n_clean_hours":14696,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":297},"geometry":{"type":"Point","coordinates":[-0.7688145999999991,44.842305100000004]}},{"type":"Feature","properties":{"physical_sensor_id":"5846","sensor_ident":"Z7CT108","sensor_name":"Bordeaux vers Martignas","sensor_type":"4G","current_zone_id":"179006000","temporal_status":"active_clean","n_raw_hours":14696,"n_clean_hours":14696,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":297},"geometry":{"type":"Point","coordinates":[-0.7688106,44.8423202]}},{"type":"Feature","properties":{"physical_sensor_id":"5852","sensor_ident":"Z8CT101","sensor_name":"Cenon vers Bordeaux","sensor_type":"4G","current_zone_id":"166007000","temporal_status":"active_clean","n_raw_hours":12641,"n_clean_hours":12641,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":259},"geometry":{"type":"Point","coordinates":[-0.5308793999999994,44.8579077]}},{"type":"Feature","properties":{"physical_sensor_id":"5851","sensor_ident":"Z8CT102","sensor_name":"Bordeaux vers Cenon","sensor_type":"4G","current_zone_id":"166007000","temporal_status":"active_clean","n_raw_hours":12641,"n_clean_hours":12641,"polarity_type":0,"polarity_label":"morning-dominant","n_valid_days":259},"geometry":{"type":"Point","coordinates":[-0.5308735999999996,44.8579033]}},{"type":"Feature","properties":{"physical_sensor_id":"6162","sensor_ident":"Z8CT103","sensor_name":"Queyries vers Pont de Pierre","sensor_type":"4G","current_zone_id":"166002000","temporal_status":"active_clean","n_raw_hours":2737,"n_clean_hours":2737,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":58},"geometry":{"type":"Point","coordinates":[-0.5633959000000002,44.8423077]}},{"type":"Feature","properties":{"physical_sensor_id":"6161","sensor_ident":"Z8CT104","sensor_name":"Queyries vers Pont Chaban","sensor_type":"4G","current_zone_id":"166002000","temporal_status":"active_clean","n_raw_hours":2737,"n_clean_hours":2737,"polarity_type":2,"polarity_label":"balanced","n_valid_days":58},"geometry":{"type":"Point","coordinates":[-0.5633730999999992,44.842321]}},{"type":"Feature","properties":{"physical_sensor_id":"2444","sensor_ident":"Z901CT4","sensor_name":"46 Rue Général Larminat vers Barrière d'Ornano","sensor_type":"BOUCLE","current_zone_id":"162015000","temporal_status":"active_clean","n_raw_hours":17385,"n_clean_hours":7300,"polarity_type":2,"polarity_label":"balanced","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.5984598999999998,44.833341800000014]}},{"type":"Feature","properties":{"physical_sensor_id":"2445","sensor_ident":"Z901CT5","sensor_name":"Boulevard G. Pompidou vers Barrière d'Ornano","sensor_type":"BOUCLE","current_zone_id":"172001000","temporal_status":"active_clean","n_raw_hours":17386,"n_clean_hours":12405,"polarity_type":2,"polarity_label":"balanced","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.5988139000000001,44.8332259]}},{"type":"Feature","properties":{"physical_sensor_id":"2443","sensor_ident":"Z901CT6","sensor_name":"Boulevard Antoine Gautier vers rue Berruer","sensor_type":"BOUCLE","current_zone_id":"172001000","temporal_status":"active_clean","n_raw_hours":17386,"n_clean_hours":11510,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.5986869999999999,44.83281780000001]}},{"type":"Feature","properties":{"physical_sensor_id":"2441","sensor_ident":"Z901CT7","sensor_name":"Boulevard Antoine Gautier vers Cité des Pêcheurs","sensor_type":"BOUCLE","current_zone_id":"162015000","temporal_status":"active_clean","n_raw_hours":17386,"n_clean_hours":12114,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.5986438999999998,44.83400879999999]}},{"type":"Feature","properties":{"physical_sensor_id":"2436","sensor_ident":"Z904CT4","sensor_name":"155 Avenue François Mitterrand vers rue Camille Vic","sensor_type":"BOUCLE","current_zone_id":"170005000","temporal_status":"active_clean","n_raw_hours":17386,"n_clean_hours":17300,"polarity_type":1,"polarity_label":"evening-dominant","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.6281969999999999,44.82571890000003]}},{"type":"Feature","properties":{"physical_sensor_id":"2437","sensor_ident":"Z904CT5","sensor_name":"155 Avenue François Mitterrand vers Mendès France","sensor_type":"BOUCLE","current_zone_id":"170005000","temporal_status":"active_clean","n_raw_hours":17388,"n_clean_hours":17211,"polarity_type":2,"polarity_label":"balanced","n_valid_days":346},"geometry":{"type":"Point","coordinates":[-0.6282210000000001,44.82580779999999]}}]}
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5944820790895441,
+          44.82917034403898
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 10448,
+        "n_hourly_rows": 10448,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z10CT101",
+        "sensor_name": "Dandicolle vers Boulevards",
+        "sensor_type": "4G",
+        "zone_id": "162015000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5944731996794227,
+          44.82915990479176
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 10448,
+        "n_hourly_rows": 10448,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z10CT102",
+        "sensor_name": "Dandicolle vers Mériadeck",
+        "sensor_type": "4G",
+        "zone_id": "162015000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5731903414480851,
+          44.815035063337135
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 12547,
+        "n_hourly_rows": 12547,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z12CT101",
+        "sensor_name": "199 Blv Roosevelt vers Blv Albert 1er",
+        "sensor_type": "4G",
+        "zone_id": "162006000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5722942884095786,
+          44.814746480109534
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 99.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 17219,
+        "n_hourly_rows": 17396,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z12CT15",
+        "sensor_name": "Boulevard Albert 1er vers Boulevard Roosevelt",
+        "sensor_type": "BOUCLE",
+        "zone_id": "162005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5497210714214089,
+          44.85655937226574
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 13963,
+        "n_hourly_rows": 13963,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z14CT101",
+        "sensor_name": "Chaban entrant Nord",
+        "sensor_type": "4G",
+        "zone_id": "166002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.549744004846487,
+          44.85654721710576
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 13961,
+        "n_hourly_rows": 13961,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z14CT102",
+        "sensor_name": "Chaban sortant Nord",
+        "sensor_type": "4G",
+        "zone_id": "166002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5498574937601853,
+          44.856233084705934
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 8046,
+        "n_hourly_rows": 8046,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z14CT103",
+        "sensor_name": "Chaban entrant Sud",
+        "sensor_type": "4G",
+        "zone_id": "166002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5498796575369495,
+          44.85622077335362
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 8046,
+        "n_hourly_rows": 8046,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z14CT104",
+        "sensor_name": "Chaban sortant Sud",
+        "sensor_type": "4G",
+        "zone_id": "166002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6435655226937548,
+          44.78532378471119
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 93.4,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 14281,
+        "n_hourly_rows": 15293,
+        "period_end": "2026-03-30T01:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z16CT101",
+        "sensor_name": "Totem vélo Sens Entrant",
+        "sensor_type": "4G",
+        "zone_id": "178002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6435620049844212,
+          44.78534218464775
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 93.4,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 14281,
+        "n_hourly_rows": 15293,
+        "period_end": "2026-03-30T01:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z16CT102",
+        "sensor_name": "Totem vélo Sens Sortant",
+        "sensor_type": "4G",
+        "zone_id": "178002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6521066730868847,
+          44.79620598848119
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 6297,
+        "n_hourly_rows": 6297,
+        "period_end": "2026-05-02T01:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z16CT105",
+        "sensor_name": "Bordeaux vers Haut Leveque",
+        "sensor_type": "4G",
+        "zone_id": "178001000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6520937802975629,
+          44.79618820534483
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 6297,
+        "n_hourly_rows": 6297,
+        "period_end": "2026-05-02T01:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z16CT106",
+        "sensor_name": "Haut Leveque vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "178001000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6467691090188601,
+          44.79281811693307
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 11289,
+        "n_hourly_rows": 11289,
+        "period_end": "2026-05-14T20:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z16CT107",
+        "sensor_name": "Rocade vers Pessac Centre",
+        "sensor_type": "4G",
+        "zone_id": "169008000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6467756434595364,
+          44.79283142010236
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 11289,
+        "n_hourly_rows": 11289,
+        "period_end": "2026-05-14T20:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z16CT108",
+        "sensor_name": "Pessac Centre vers Rocade",
+        "sensor_type": "4G",
+        "zone_id": "169008000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.604992006766362,
+          44.786527038342506
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 70.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 12231,
+        "n_hourly_rows": 17392,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z1701CT23",
+        "sensor_name": "21 Cours du Général De Gaulle vers ech. 16",
+        "sensor_type": "BOUCLE",
+        "zone_id": "177002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6051049556007398,
+          44.78654102333933
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 70.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 12232,
+        "n_hourly_rows": 17392,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z1701CT24",
+        "sensor_name": "21 Cours du Général De Gaulle vers Professeur Villemin",
+        "sensor_type": "BOUCLE",
+        "zone_id": "177002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5921102446609591,
+          44.79397627176786
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 94.4,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16410,
+        "n_hourly_rows": 17392,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z1705CT1",
+        "sensor_name": "Avenue Thouars - Marne vers centre Talence",
+        "sensor_type": "BOUCLE",
+        "zone_id": "168013000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5921401666280189,
+          44.7939692010048
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 95.4,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16586,
+        "n_hourly_rows": 17391,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z1705CT2",
+        "sensor_name": "Avenue Thouars - Marne vers rocade",
+        "sensor_type": "BOUCLE",
+        "zone_id": "168013000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.566081232073749,
+          44.77658688765443
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15024,
+        "n_hourly_rows": 15024,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-07T07:00:00+00:00",
+        "sensor_ident": "Z19CT101",
+        "sensor_name": "Leognan vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "176007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.566100643026254,
+          44.77658582835912
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15025,
+        "n_hourly_rows": 15025,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-07T07:00:00+00:00",
+        "sensor_ident": "Z19CT102",
+        "sensor_name": "Bordeaux vers Leognan",
+        "sensor_type": "4G",
+        "zone_id": "176007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5834880486643922,
+          44.83600890462203
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2443,
+        "n_hourly_rows": 2443,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2026-02-02T04:00:00+00:00",
+        "sensor_ident": "Z201CT101",
+        "sensor_name": "37 Cours du Marechal Juin vers Boulevard",
+        "sensor_type": "BOUCLE",
+        "zone_id": "162017000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5838540343764468,
+          44.83568903133744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2443,
+        "n_hourly_rows": 2443,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2026-02-02T04:00:00+00:00",
+        "sensor_ident": "Z201CT102",
+        "sensor_name": "37 Cours du Marechal Juin vers Pey Berland",
+        "sensor_type": "BOUCLE",
+        "zone_id": "162018000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5838540343764468,
+          44.83568903133744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 56.7,
+        "distance_m": 0.0,
+        "mapping_method": "geo_point_within_zone",
+        "mapping_source": "pc_velo_p.csv.geo_point_2d",
+        "n_clean_observations": 8498,
+        "n_hourly_rows": 14989,
+        "period_end": "2026-02-03T20:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z201CT4",
+        "sensor_name": "37 Cours du Marechal Juin vers Pey Berland",
+        "sensor_type": "BOUCLE",
+        "zone_id": "162018000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5834880486643922,
+          44.83600890462203
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 47.6,
+        "distance_m": 0.0,
+        "mapping_method": "geo_point_within_zone",
+        "mapping_source": "pc_velo_p.csv.geo_point_2d",
+        "n_clean_observations": 7141,
+        "n_hourly_rows": 14988,
+        "period_end": "2026-02-03T20:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z201CT5",
+        "sensor_name": "37 Cours du Marechal Juin vers Boulevard",
+        "sensor_type": "BOUCLE",
+        "zone_id": "162017000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5648169408353367,
+          44.83725189682397
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 55.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9553,
+        "n_hourly_rows": 17379,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z203CT6",
+        "sensor_name": "Pont de Pierre vers Bir Hakeim",
+        "sensor_type": "BOUCLE",
+        "zone_id": "161014000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5647359602948936,
+          44.837181017968746
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 57.1,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9920,
+        "n_hourly_rows": 17379,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z203CT7",
+        "sensor_name": "Pont de Pierre vers Stalingrad",
+        "sensor_type": "BOUCLE",
+        "zone_id": "161014000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.596947853321762,
+          44.86828565071296
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9106,
+        "n_hourly_rows": 9106,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2025-03-24T23:00:00+00:00",
+        "sensor_ident": "Z21CT102",
+        "sensor_name": "Bordeaux vers Bruges",
+        "sensor_type": "4G",
+        "zone_id": "173009000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5972882241696446,
+          44.86881484685104
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9107,
+        "n_hourly_rows": 9107,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2025-03-24T23:00:00+00:00",
+        "sensor_ident": "Z21CT103",
+        "sensor_name": "Bruges vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "173007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5124018434856866,
+          44.87010900995365
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 91.8,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15968,
+        "n_hourly_rows": 17393,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z2203CT3",
+        "sensor_name": "34 Avenue de Paris vers rue Daniel",
+        "sensor_type": "BOUCLE",
+        "zone_id": "174012000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5122518449556027,
+          44.87006301308704
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 62.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 10843,
+        "n_hourly_rows": 17393,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z2203CT4",
+        "sensor_name": "34 Avenue de Paris vers Prévost Sansac de Traversay",
+        "sensor_type": "BOUCLE",
+        "zone_id": "174017000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6141388347981543,
+          44.87815670251108
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 14119,
+        "n_hourly_rows": 14119,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z23CT101",
+        "sensor_name": "Hippodrome vers Bruges",
+        "sensor_type": "4G",
+        "zone_id": "173011000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.614156801135141,
+          44.87816640172203
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 14118,
+        "n_hourly_rows": 14118,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z23CT102",
+        "sensor_name": "Bruges vers Hippodrome",
+        "sensor_type": "4G",
+        "zone_id": "173011000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.613947548967059,
+          44.87791693837155
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 7198,
+        "n_hourly_rows": 7198,
+        "period_end": "2026-02-23T10:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z23CT103",
+        "sensor_name": "de Gaulle vers Gaussens",
+        "sensor_type": "4G",
+        "zone_id": "173011000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6139414625516095,
+          44.87792695048191
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 7198,
+        "n_hourly_rows": 7198,
+        "period_end": "2026-02-23T10:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z23CT104",
+        "sensor_name": "Gaussens vers de Gaulle",
+        "sensor_type": "4G",
+        "zone_id": "173011000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.637388542678796,
+          44.89041245092078
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 8928,
+        "n_hourly_rows": 8928,
+        "period_end": "2026-04-30T09:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z23CT105",
+        "sensor_name": "Le Taillan vers Bruges",
+        "sensor_type": "4G",
+        "zone_id": "180007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6373876852967205,
+          44.89042896353735
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 8928,
+        "n_hourly_rows": 8928,
+        "period_end": "2026-04-30T09:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z23CT106",
+        "sensor_name": "Bruges vers Le Taillan",
+        "sensor_type": "4G",
+        "zone_id": "180007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.637719757348588,
+          44.89059420163112
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 8987,
+        "n_hourly_rows": 8987,
+        "period_end": "2026-05-02T09:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z23CT107",
+        "sensor_name": "Eysines vers Blanquefort",
+        "sensor_type": "4G",
+        "zone_id": "180007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6377375684330167,
+          44.89059129065631
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 8986,
+        "n_hourly_rows": 8986,
+        "period_end": "2026-05-02T09:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z23CT108",
+        "sensor_name": "Blanquefort vers Eysines",
+        "sensor_type": "4G",
+        "zone_id": "180007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5893258927414542,
+          44.890905626847605
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 5319,
+        "n_hourly_rows": 5319,
+        "period_end": "2025-11-18T16:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z23CT109",
+        "sensor_name": "Nord vers Sud",
+        "sensor_type": "4G",
+        "zone_id": "173013000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5893063109416056,
+          44.89091065783212
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 169,
+        "n_hourly_rows": 169,
+        "period_end": "2025-11-18T16:00:00+00:00",
+        "period_start": "2025-05-27T22:00:00+00:00",
+        "sensor_ident": "Z23CT110",
+        "sensor_name": "Sud vers Nord",
+        "sensor_type": "4G",
+        "zone_id": "173013000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6635051427990968,
+          44.85801940085376
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 52.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9034,
+        "n_hourly_rows": 17366,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z24CT23",
+        "sensor_name": "Avenue de Magudas sens Entrant",
+        "sensor_type": "BOUCLE",
+        "zone_id": "180005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6635032719336649,
+          44.85803180270121
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 52.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9034,
+        "n_hourly_rows": 17366,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z24CT24",
+        "sensor_name": "Avenue de Magudas sens sortant",
+        "sensor_type": "BOUCLE",
+        "zone_id": "180005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5638798488170547,
+          44.79000031653481
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 10200,
+        "n_hourly_rows": 10200,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z26CT101",
+        "sensor_name": "Rocade vers Begles",
+        "sensor_type": "4G",
+        "zone_id": "167009000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5638920462057526,
+          44.79000732087291
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 10200,
+        "n_hourly_rows": 10200,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z26CT102",
+        "sensor_name": "Begles vers Rocade",
+        "sensor_type": "4G",
+        "zone_id": "167009000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.7151157729213182,
+          44.906230841341376
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 64.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 3953,
+        "n_hourly_rows": 6147,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2025-08-03T22:00:00+00:00",
+        "sensor_ident": "Z28CT101",
+        "sensor_name": "Centre Saint Aubin vers Lycée",
+        "sensor_type": "4G",
+        "zone_id": "181014000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.7150910149084896,
+          44.90622435157996
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 64.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 3953,
+        "n_hourly_rows": 6147,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2025-08-03T22:00:00+00:00",
+        "sensor_ident": "Z28CT102",
+        "sensor_name": "Lycée vers Centre Saint Aubin",
+        "sensor_type": "4G",
+        "zone_id": "181014000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5139070014730532,
+          44.85412001666239
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 92.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16058,
+        "n_hourly_rows": 17391,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z2903CT5",
+        "sensor_name": "19 Avenue Jean Zay vers rue Bernard Palissy",
+        "sensor_type": "BOUCLE",
+        "zone_id": "175004000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5138690412979818,
+          44.85418487327003
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 92.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16058,
+        "n_hourly_rows": 17391,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z2903CT6",
+        "sensor_name": "19 Avenue Jean Zay vers Avenue René Cassagne",
+        "sensor_type": "BOUCLE",
+        "zone_id": "175004000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6795360799858625,
+          44.83542241349144
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9165,
+        "n_hourly_rows": 9165,
+        "period_end": "2026-05-13T09:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z30CT101",
+        "sensor_name": "Bordeaux vers Aéroport",
+        "sensor_type": "4G",
+        "zone_id": "179002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6795365281815305,
+          44.83540762488747
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 9166,
+        "n_hourly_rows": 9166,
+        "period_end": "2026-05-13T09:00:00+00:00",
+        "period_start": "2025-03-17T23:00:00+00:00",
+        "sensor_ident": "Z30CT102",
+        "sensor_name": "Aéroport vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "179002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5163428594627061,
+          44.889812888039565
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 92.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16059,
+        "n_hourly_rows": 17392,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z31CT10",
+        "sensor_name": "49 Rue des Griffons vers Allende",
+        "sensor_type": "BOUCLE",
+        "zone_id": "174005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5162488376574327,
+          44.889812907895816
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 91.8,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15971,
+        "n_hourly_rows": 17391,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z31CT11",
+        "sensor_name": "49 Rue des Griffons vers Chemin du Pin",
+        "sensor_type": "BOUCLE",
+        "zone_id": "174005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.507808769326767,
+          44.8248957928561
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 396,
+        "n_hourly_rows": 396,
+        "period_end": "2025-07-17T00:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z32CT101",
+        "sensor_name": "Chemin de Crabot vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "175013000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5078273347482877,
+          44.82487225068825
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 396,
+        "n_hourly_rows": 396,
+        "period_end": "2025-07-17T00:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z32CT102",
+        "sensor_name": "Chemin de Crabot vers Bouliac",
+        "sensor_type": "4G",
+        "zone_id": "175013000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5792280080512813,
+          44.843006870864535
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 96.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16732,
+        "n_hourly_rows": 17378,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z401CT11",
+        "sensor_name": "27 Cours Clémenceau vers rue Buffon",
+        "sensor_type": "BOUCLE",
+        "zone_id": "161008000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5792738434261938,
+          44.84300687073771
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 96.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16732,
+        "n_hourly_rows": 17378,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z401CT12",
+        "sensor_name": "27 Cours Clémenceau vers rue Rolland",
+        "sensor_type": "BOUCLE",
+        "zone_id": "161008000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5751909562983448,
+          44.84955804176108
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 96.8,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16820,
+        "n_hourly_rows": 17380,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z401CT8",
+        "sensor_name": "68 Cours de Verdun vers D'Aviau",
+        "sensor_type": "BOUCLE",
+        "zone_id": "163012000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5752338719393714,
+          44.8495680440041
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 96.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16732,
+        "n_hourly_rows": 17378,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z401CT9",
+        "sensor_name": "68 Cours de Verdun vers Cours Xavier Arnozan",
+        "sensor_type": "BOUCLE",
+        "zone_id": "163012000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5927471926971193,
+          44.83769128671435
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2591,
+        "n_hourly_rows": 2591,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2026-01-20T23:00:00+00:00",
+        "sensor_ident": "Z4CT101",
+        "sensor_name": "Boulevard vers Bordeaux Centre",
+        "sensor_type": "4G",
+        "zone_id": "162015000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5927535235307726,
+          44.8377014462473
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2591,
+        "n_hourly_rows": 2591,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2026-01-20T23:00:00+00:00",
+        "sensor_ident": "Z4CT102",
+        "sensor_name": "Bordeaux Centre vers Boulevard",
+        "sensor_type": "4G",
+        "zone_id": "162015000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5560228624449346,
+          44.82998904277283
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 14.8,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2574,
+        "n_hourly_rows": 17379,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z502CT23",
+        "sensor_name": "15 quais de Paludate vers Saget",
+        "sensor_type": "BOUCLE",
+        "zone_id": "161016000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5560120375032446,
+          44.82998388617956
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 14.8,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2574,
+        "n_hourly_rows": 17379,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z502CT24",
+        "sensor_name": "15 quais de Paludate vers Pont StJean",
+        "sensor_type": "BOUCLE",
+        "zone_id": "161016000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5447540080569688,
+          44.830729874282895
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 96.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16734,
+        "n_hourly_rows": 17380,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z503CT23",
+        "sensor_name": "9 Quai de la Souys vers rue Emile Henriot",
+        "sensor_type": "BOUCLE",
+        "zone_id": "166001000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5447459399232324,
+          44.83074688038432
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 96.3,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 16735,
+        "n_hourly_rows": 17381,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z503CT24",
+        "sensor_name": "9 Quai de la Souys vers rue d'Artagnan",
+        "sensor_type": "BOUCLE",
+        "zone_id": "166001000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5367404009887413,
+          44.81620057496822
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 24,
+        "n_hourly_rows": 24,
+        "period_end": "2026-01-19T22:00:00+00:00",
+        "period_start": "2026-01-18T23:00:00+00:00",
+        "sensor_ident": "Z5CT101",
+        "sensor_name": "Bègles vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "167005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.536750983229894,
+          44.81619772376575
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 24,
+        "n_hourly_rows": 24,
+        "period_end": "2026-01-19T22:00:00+00:00",
+        "period_start": "2026-01-18T23:00:00+00:00",
+        "sensor_ident": "Z5CT102",
+        "sensor_name": "Bordeaux vers Bègles",
+        "sensor_type": "4G",
+        "zone_id": "167005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5994190021473299,
+          44.84023490241463
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 16.7,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2897,
+        "n_hourly_rows": 17393,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z601CT7",
+        "sensor_name": "2 Avenue de la République vers rue de la Liberté",
+        "sensor_type": "BOUCLE",
+        "zone_id": "172007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5994180272512238,
+          44.84018890135086
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 16.7,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2897,
+        "n_hourly_rows": 17393,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z601CT8",
+        "sensor_name": "2 Avenue de la République vers rue Judaïque",
+        "sensor_type": "BOUCLE",
+        "zone_id": "172007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6809850466919763,
+          44.816974630780805
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 98.2,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15354,
+        "n_hourly_rows": 15642,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z7CT103",
+        "sensor_name": "Aéroport vers Crématorium",
+        "sensor_type": "4G",
+        "zone_id": "179003000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6809682709596825,
+          44.81697553394707
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 98.2,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15355,
+        "n_hourly_rows": 15643,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-06-06T22:00:00+00:00",
+        "sensor_ident": "Z7CT104",
+        "sensor_name": "Crématorium vers Aéroport",
+        "sensor_type": "4G",
+        "zone_id": "179003000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.768926196193139,
+          44.84218802887181
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15301,
+        "n_hourly_rows": 15301,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z7CT105",
+        "sensor_name": "Martignas vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "179006000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.7689206347351629,
+          44.84220947441906
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 15301,
+        "n_hourly_rows": 15301,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z7CT106",
+        "sensor_name": "Bordeaux vers Martignas",
+        "sensor_type": "4G",
+        "zone_id": "179006000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.7688147009401641,
+          44.84230514520556
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 14696,
+        "n_hourly_rows": 14696,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z7CT107",
+        "sensor_name": "Martignas vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "179006000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.7688106230553773,
+          44.84232023527783
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 14696,
+        "n_hourly_rows": 14696,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z7CT108",
+        "sensor_name": "Bordeaux vers Martignas",
+        "sensor_type": "4G",
+        "zone_id": "179006000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5308794196475174,
+          44.85790772665487
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 12641,
+        "n_hourly_rows": 12641,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z8CT101",
+        "sensor_name": "Cenon vers Bordeaux",
+        "sensor_type": "4G",
+        "zone_id": "166007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.530873576670476,
+          44.85790331387012
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 12641,
+        "n_hourly_rows": 12641,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2024-05-15T22:00:00+00:00",
+        "sensor_ident": "Z8CT102",
+        "sensor_name": "Bordeaux vers Cenon",
+        "sensor_type": "4G",
+        "zone_id": "166007000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5633959346187973,
+          44.84230774244502
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2737,
+        "n_hourly_rows": 2737,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2026-01-13T23:00:00+00:00",
+        "sensor_ident": "Z8CT103",
+        "sensor_name": "Queyries vers Pont de Pierre",
+        "sensor_type": "4G",
+        "zone_id": "166002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5633732084014179,
+          44.84232106519832
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 100.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 2737,
+        "n_hourly_rows": 2737,
+        "period_end": "2026-05-14T21:00:00+00:00",
+        "period_start": "2026-01-13T23:00:00+00:00",
+        "sensor_ident": "Z8CT104",
+        "sensor_name": "Queyries vers Pont Chaban",
+        "sensor_type": "4G",
+        "zone_id": "166002000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5984598448573533,
+          44.83334189269505
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 42.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 7300,
+        "n_hourly_rows": 17385,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z901CT4",
+        "sensor_name": "46 Rue Général Larminat vers Barrière d'Ornano",
+        "sensor_type": "BOUCLE",
+        "zone_id": "162015000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5988140421503864,
+          44.83322601633541
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 71.4,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 12405,
+        "n_hourly_rows": 17386,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z901CT5",
+        "sensor_name": "Boulevard G. Pompidou vers Barrière d'Ornano",
+        "sensor_type": "BOUCLE",
+        "zone_id": "172001000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5986870216677473,
+          44.83281790801948
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 66.2,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 11510,
+        "n_hourly_rows": 17386,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z901CT6",
+        "sensor_name": "Boulevard Antoine Gautier vers rue Berruer",
+        "sensor_type": "BOUCLE",
+        "zone_id": "172001000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.5986440523695877,
+          44.83400889015597
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 69.7,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 12114,
+        "n_hourly_rows": 17386,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z901CT7",
+        "sensor_name": "Boulevard Antoine Gautier vers Cité des Pêcheurs",
+        "sensor_type": "BOUCLE",
+        "zone_id": "162015000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.6281970504442476,
+          44.82571902631563
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 99.5,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 17300,
+        "n_hourly_rows": 17386,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z904CT4",
+        "sensor_name": "155 Avenue François Mitterrand vers rue Camille Vic",
+        "sensor_type": "BOUCLE",
+        "zone_id": "170005000"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.628221000419509,
+          44.82580789575786
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "clean_coverage_percent": 99.0,
+        "distance_m": 0.0,
+        "mapping_method": "spatial_mapping",
+        "mapping_source": "association_capteurs_zones.gpkg",
+        "n_clean_observations": 17211,
+        "n_hourly_rows": 17388,
+        "period_end": "2026-05-14T22:00:00+00:00",
+        "period_start": "2024-05-15T23:00:00+00:00",
+        "sensor_ident": "Z904CT5",
+        "sensor_name": "155 Avenue François Mitterrand vers Mendès France",
+        "sensor_type": "BOUCLE",
+        "zone_id": "170005000"
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}

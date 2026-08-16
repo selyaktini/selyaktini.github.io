@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Comptages vélo — Bordeaux Métropole</title>
-  <meta name="description" content="Classification des profils matin et soir des comptages vélo à Bordeaux Métropole.">
+  <title>Modélisation des flux cyclistes à Bordeaux Métropole</title>
+  <meta name="description" content="Présentation du projet de modélisation des flux cyclistes à Bordeaux Métropole, de l'observation à la prédiction.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
@@ -13,116 +13,105 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <h1 class="site-title">Comptages vélo &mdash; Bordeaux Métropole</h1>
-      <p class="site-subtitle">Classification des profils matin et soir</p>
-      <p class="site-intro">Cette synthèse présente les profils temporels issus des capteurs permanents et des campagnes de comptage ponctuel.</p>
+      <h1 class="site-title">Modélisation des flux cyclistes à Bordeaux Métropole</h1>
+      <p class="site-subtitle">Observer les déplacements, compléter les zones non observées et préparer la prédiction des flux.</p>
       <nav class="primary-nav" aria-label="Navigation principale">
-        <a href="index.html">Synthèse</a>
-        <a href="study-area.html">Périmètre</a>
-        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="index.html">Accueil</a>
+        <a href="study-area.html">Périmètre d'étude</a>
+        <a href="permanent-counts.html">Comptages permanents</a>
         <a href="punctual-counts.html">Comptages ponctuels</a>
-        <a href="methodology.html">Méthode</a>
+        <a href="methodology.html">Méthodologie</a>
       </nav>
     </div>
   </header>
 
   <main class="content">
-    <section class="section" aria-labelledby="classification-title">
-      <div class="section-header">
-        <h2 id="classification-title">Profils matin / soir par source</h2>
+    <section class="section project-introduction" aria-labelledby="project-title">
+      <div class="section-header compact">
+        <h2 id="project-title">Du comptage à une vision continue du territoire</h2>
       </div>
-      <div class="classification-grid">
-        <article class="analysis-panel">
-          <h2>Capteurs permanents</h2>
-          <p class="source-note">84 capteurs classifiés à partir de plusieurs jours ouvrés, hors vacances scolaires et jours fériés.</p>
-          <div class="distribution" data-distribution="permanent" aria-label="Classes des capteurs permanents">
-            <div class="stacked-bar" role="img" aria-label="Classes des capteurs permanents">
-              <span class="stack-segment class-morning" style="width:19.05%"></span>
-              <span class="stack-segment class-evening" style="width:47.62%"></span>
-              <span class="stack-segment class-balanced" style="width:27.38%"></span>
-              <span class="stack-segment class-insufficient" style="width:5.95%"></span>
-            </div>
-            <ul class="count-list">
-              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong><span>16</span><span class="count-percent">19 %</span></strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong><span>40</span><span class="count-percent">47,6 %</span></strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong><span>23</span><span class="count-percent">27,4 %</span></strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong><span>5</span><span class="count-percent">6 %</span></strong></li>
-            </ul>
-          </div>
-          <p class="analysis-note">La classe décrit une dominance temporelle matin/soir, et non une direction géographique de déplacement.</p>
-          <div class="action-row action-list">
-            <a class="text-action" href="permanent-counts.html">Voir les statistiques des capteurs permanents</a>
-            <a class="text-action" href="explorers/permanent-temporal-audit.html">Explorer les profils horaires</a>
-            <a class="text-action" href="explorers/permanent-polarity.html">Explorer la classification matin / soir</a>
-          </div>
-        </article>
+      <p class="lead">Le projet combine les comptages cyclistes permanents, qui décrivent les flux dans la durée, et les comptages ponctuels, qui élargissent la couverture spatiale. Après préparation et rapprochement de ces observations, la reconstruction spatiale complète les zones sans mesure directe. Ce socle doit ensuite permettre de prédire les flux sur l'ensemble du périmètre.</p>
+      <ol class="project-path" aria-label="Étapes du projet">
+        <li>Données</li>
+        <li>Préparation</li>
+        <li>Reconstruction spatiale</li>
+        <li>Prédiction</li>
+      </ol>
+    </section>
 
-        <article class="analysis-panel">
-          <h2>Comptages ponctuels</h2>
-          <p class="source-note">Unités directionnelles classées séparément pour chaque campagne annuelle.</p>
-          <div class="class-legend-inline" aria-label="Légende des classes ponctuelles">
-            <span><span class="swatch class-morning"></span>matin</span>
-            <span><span class="swatch class-evening"></span>soir</span>
-            <span><span class="swatch class-balanced"></span>équilibré</span>
-            <span><span class="swatch class-insufficient"></span>insuffisant</span>
-          </div>
-          <div class="year-comparison" data-year-comparison="punctual" aria-label="Comparaison des campagnes 2021, 2022 et 2023">
-            <div class="year-strip">
-              <div class="year-strip-head"><strong>2021</strong><span class="unit-count">293 unités</span></div>
-              <div class="stacked-bar compact" role="img" aria-label="Distribution 2021"><span class="stack-segment class-morning" style="width:6.48%"></span><span class="stack-segment class-evening" style="width:24.23%"></span><span class="stack-segment class-balanced" style="width:68.6%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div>
-              <div class="mini-counts"><span>matin 19</span><span>soir 71</span><span>équilibré 201</span><span>insuffisant 2</span></div>
-            </div>
-            <div class="year-strip">
-              <div class="year-strip-head"><strong>2022</strong><span class="unit-count">293 unités</span></div>
-              <div class="stacked-bar compact" role="img" aria-label="Distribution 2022"><span class="stack-segment class-morning" style="width:13.65%"></span><span class="stack-segment class-evening" style="width:21.5%"></span><span class="stack-segment class-balanced" style="width:64.16%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div>
-              <div class="mini-counts"><span>matin 40</span><span>soir 63</span><span>équilibré 188</span><span>insuffisant 2</span></div>
-            </div>
-            <div class="year-strip">
-              <div class="year-strip-head"><strong>2023</strong><span class="unit-count">298 unités</span></div>
-              <div class="stacked-bar compact" role="img" aria-label="Distribution 2023"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div>
-              <div class="mini-counts"><span>matin 30</span><span>soir 62</span><span>équilibré 206</span><span>insuffisant 0</span></div>
-            </div>
-          </div>
-          <div class="action-row action-list">
-            <a class="text-action" href="punctual-counts.html">Voir les statistiques des comptages ponctuels</a>
-            <a class="text-action" href="explorers/punctual-polarity.html">Explorer la classification ponctuelle</a>
-          </div>
-          <p class="panel-note">Les dates exactes des campagnes ne sont pas documentées dans les classeurs sources.</p>
+    <section class="section" aria-labelledby="metrics-title">
+      <div class="section-header">
+        <h2 id="metrics-title">Chiffres clés</h2>
+      </div>
+      <div class="key-metrics" aria-live="polite">
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_zones_modeling">—</strong>
+          <span>zones du périmètre</span>
         </article>
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_zones_with_permanent_hourly_series">—</strong>
+          <span>zones avec comptages permanents</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_zones_with_punctual_counts">—</strong>
+          <span>zones avec comptages ponctuels</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_zones_covered_by_any_source">—</strong>
+          <span>zones couvertes par au moins une source</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_zones_added_by_punctual_counts" data-metric-prefix="+">—</strong>
+          <span>zones apportées par les ponctuels</span>
+        </article>
+      </div>
+      <p class="panel-note" data-load-error></p>
+    </section>
+
+    <section class="section" aria-labelledby="portal-title">
+      <div class="section-header">
+        <h2 id="portal-title">Explorer le projet</h2>
+      </div>
+      <div class="portal-grid">
+        <a class="portal-card" href="study-area.html">
+          <strong>Périmètre d'étude</strong>
+          <span>Comprendre la rocade et les 247 zones retenues.</span>
+        </a>
+        <a class="portal-card" href="permanent-counts.html">
+          <strong>Comptages permanents</strong>
+          <span>Consulter les séries continues issues des capteurs.</span>
+        </a>
+        <a class="portal-card" href="punctual-counts.html">
+          <strong>Comptages ponctuels</strong>
+          <span>Découvrir l'apport des campagnes de terrain.</span>
+        </a>
+        <a class="portal-card" href="methodology.html">
+          <strong>Méthodologie</strong>
+          <span>Suivre les principes de préparation et d'analyse.</span>
+        </a>
       </div>
     </section>
 
     <section class="section" aria-labelledby="map-title">
       <div class="section-header">
-        <h2 id="map-title">Périmètre d'étude</h2>
-        <a class="text-action inline-action" href="study-area.html">Consulter le périmètre et le réseau de capteurs</a>
+        <h2 id="map-title">Le périmètre en un coup d'œil</h2>
+        <a class="text-action inline-action" href="study-area.html">Voir le périmètre d'étude</a>
       </div>
       <div class="map-shell map-preview">
-        <div id="study-map" class="map" role="img" aria-label="Carte du périmètre rocade, des zones de modélisation et des capteurs permanents"></div>
+        <div id="home-map" class="map" role="region" aria-label="Carte simplifiée de la rocade et des zones de modélisation"></div>
         <div class="map-caption split-caption">
-          <span>Rocade, zones de modélisation et capteurs permanents colorés par classe.</span>
+          <span>Les zones retenues à l'intérieur et en bordure de la rocade bordelaise.</span>
           <span class="legend" aria-label="Légende cartographique">
-            <span class="legend-item"><span class="swatch" style="background:#263f56"></span>périmètre rocade</span>
-            <span class="legend-item"><span class="swatch" style="background:#dfe8ee"></span>zones de modélisation</span>
-            <span class="legend-item"><span class="swatch round class-morning"></span>dominante matin</span>
-            <span class="legend-item"><span class="swatch round class-evening"></span>dominante soir</span>
-            <span class="legend-item"><span class="swatch round class-balanced"></span>équilibré</span>
-            <span class="legend-item"><span class="swatch round class-insufficient"></span>données insuffisantes</span>
+            <span class="legend-item"><span class="swatch rocade-swatch"></span>rocade</span>
+            <span class="legend-item"><span class="swatch modeling-zone-swatch"></span>zones du périmètre</span>
           </span>
         </div>
       </div>
     </section>
-
-    <p class="fact-line" aria-label="Repères">
-      <span><strong>247</strong> zones de modélisation</span>
-      <span><strong>84</strong> capteurs permanents</span>
-      <span><strong>3</strong> campagnes ponctuelles</span>
-      <span><strong>mai 2024 &ndash; mai 2026</strong></span>
-    </p>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole</div>
+    <div class="footer-inner">Modélisation des flux cyclistes &mdash; Bordeaux Métropole</div>
   </footer>
 </body>
 </html>

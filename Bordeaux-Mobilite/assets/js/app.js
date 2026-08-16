@@ -35,8 +35,20 @@
     }, object);
   }
 
+  function renderProjectMetrics(metrics) {
+    document.querySelectorAll("[data-metric-path]").forEach((element) => {
+      const value = getByPath(metrics, element.getAttribute("data-metric-path") || "");
+      if (value == null) {
+        return;
+      }
+      const prefix = element.getAttribute("data-metric-prefix") || "";
+      element.textContent = `${prefix}${formatValue(value)}`;
+    });
+  }
+
   async function loadJson(path) {
-    const response = await fetch(DATA_ROOT + path);
+    const isAbsolute = /^(?:https?:)?\/\//.test(path) || path.startsWith("/");
+    const response = await fetch(isAbsolute ? path : DATA_ROOT + path);
     if (!response.ok) {
       throw new Error(`Chargement impossible : ${path}`);
     }
@@ -120,14 +132,15 @@
 
   function renderTemporalPreview(metrics) {
     document.querySelectorAll("[data-temporal-preview]").forEach((element) => {
-      const classified = getByPath(metrics, "permanent_counts.n_classified_sensors") || 84;
+      const exportedSensors = getByPath(metrics, "permanent_counts.n_directional_sensors") || 0;
       const rows = getByPath(metrics, "permanent_counts.time_span_utc.n_hourly_observation_rows") || 0;
-      const sensors = getByPath(metrics, "permanent_counts.time_span_utc.n_sensors_in_hourly_table") || classified;
+      const sensors = getByPath(metrics, "permanent_counts.time_span_utc.n_sensors_in_hourly_table") || exportedSensors;
+      const period = getByPath(metrics, "permanent_counts.zonal_series.period_display") || "non documentée";
       element.innerHTML = `
         <div class="preview-metrics">
           <div><strong>${formatValue(sensors)}</strong><span>capteurs suivis</span></div>
           <div><strong>${formatValue(rows)}</strong><span>observations horaires</span></div>
-          <div><strong>mai 2024 - mai 2026</strong><span>période publiée</span></div>
+          <div><strong>${escapeHtml(period)}</strong><span>période publiée</span></div>
         </div>
         <p>La vue détaillée permet de sélectionner un capteur et de comparer les séries horaires.</p>
       `;
@@ -335,6 +348,15 @@
     return ZONE_STYLES[status] || ZONE_STYLES.unobserved;
   }
 
+  function modelingZoneStyle() {
+    return {
+      color: "#7f92a1",
+      weight: 0.7,
+      fillColor: "#dfe8ee",
+      fillOpacity: 0.5
+    };
+  }
+
   function rocadeStyle() {
     return {
       color: "#263f56",
@@ -369,6 +391,16 @@
     `;
   }
 
+  function simpleZonePopup(properties) {
+    const commune = properties.commune || properties.zone_commune || "non documentée";
+    const zoneStatus = ZONE_STATUS_LABELS[properties.zone_status] || properties.zone_status || "non documenté";
+    return `
+      <strong>Zone ${escapeHtml(properties.zone_id)}</strong><br>
+      Commune : ${escapeHtml(commune)}<br>
+      Position dans le périmètre : ${escapeHtml(zoneStatus)}
+    `;
+  }
+
   function sensorPopup(properties) {
     const meta = classMeta(properties.polarity_type);
     return `
@@ -379,6 +411,45 @@
       Statut temporel : ${escapeHtml(properties.temporal_status || "non documenté")}<br>
       Classe : ${escapeHtml(meta.label)}<br>
       Jours valides : ${formatValue(properties.n_valid_days)}
+    `;
+  }
+
+  function permanentZoneStyle() {
+    return {
+      color: "#26736d",
+      weight: 1,
+      fillColor: "#4fa69c",
+      fillOpacity: 0.58
+    };
+  }
+
+  function permanentZonePopup(properties) {
+    const commune = properties.zone_commune || "non documentée";
+    return `
+      <strong>Zone ${escapeHtml(properties.zone_id)}</strong><br>
+      Commune : ${escapeHtml(commune)}<br>
+      Capteurs directionnels mappés : ${formatValue(properties.n_mapped_directional_sensors || 0)}<br>
+      Observations <span class="mono">y_obs</span> disponibles : ${formatValue(properties.n_clean_observations || 0)}
+    `;
+  }
+
+  function permanentSensorMarker(feature, latlng) {
+    return L.circleMarker(latlng, {
+      radius: 5,
+      color: "#ffffff",
+      weight: 1.1,
+      fillColor: "#263f56",
+      fillOpacity: 0.9
+    });
+  }
+
+  function permanentSensorPopup(properties) {
+    return `
+      <strong>${escapeHtml(properties.sensor_ident)}</strong><br>
+      ${escapeHtml(properties.sensor_name || "")}<br>
+      Type : ${escapeHtml(properties.sensor_type || "non documenté")}<br>
+      Zone : ${escapeHtml(properties.zone_id || "hors mapping")}<br>
+      Observations nettoyées : ${formatValue(properties.n_clean_observations || 0)}
     `;
   }
 
@@ -493,8 +564,8 @@
     return labelLayer;
   }
 
-  async function initStudyMap() {
-    const element = document.getElementById("study-map");
+  async function initSimpleAreaMap(elementId, showLayerControl) {
+    const element = document.getElementById(elementId);
     if (!element) {
       return;
     }
@@ -503,27 +574,16 @@
       return;
     }
     try {
-      const [zones, excludedZones, rocade, sensors, sharedCandidates, inwardCandidates] = await Promise.all([
+      const [zones, rocade] = await Promise.all([
         loadJson("zones_modeling.geojson"),
-        loadJson("zones_excluded.geojson"),
-        loadJson("rocade_interior.geojson"),
-        loadJson("permanent_sensors.geojson"),
-        loadJson("shared_boundary_candidates.geojson"),
-        loadJson("inward_transfer_candidates.geojson")
+        loadJson("rocade_interior.geojson")
       ]);
 
       const map = buildBaseMap(element);
-      const excludedLayer = L.geoJSON(excludedZones, {
-        style: zoneStyle,
-        onEachFeature(feature, layer) {
-          layer.bindPopup(zonePopup(feature.properties || {}));
-        }
-      }).addTo(map);
-
       const zonesLayer = L.geoJSON(zones, {
-        style: zoneStyle,
+        style: modelingZoneStyle,
         onEachFeature(feature, layer) {
-          layer.bindPopup(zonePopup(feature.properties || {}));
+          layer.bindPopup(simpleZonePopup(feature.properties || {}));
         }
       }).addTo(map);
 
@@ -531,38 +591,12 @@
         style: rocadeStyle
       }).addTo(map);
 
-      const sensorLayer = L.geoJSON(sensors, {
-        pointToLayer(feature, latlng) {
-          return sensorMarker(feature, latlng, 5);
-        },
-        onEachFeature(feature, layer) {
-          layer.bindPopup(sensorPopup(feature.properties || {}));
-        }
-      }).addTo(map);
-
-      const sharedLayer = createCandidateLayer(sharedCandidates);
-      const inwardLayer = createCandidateLayer(inwardCandidates);
-      const unobservedLabels = createUnobservedLabelLayer(map, zones);
-
-      L.control.layers(null, {
-        "Périmètre rocade": rocadeLayer,
-        "Zones du graphe": zonesLayer,
-        "Zones extérieures exclues": excludedLayer,
-        "Capteurs temporels actifs": sensorLayer,
-        "Candidats shared_boundary": sharedLayer,
-        "Candidats inward_transfer": inwardLayer,
-        "IDs zones non observées (zoom ≥ 14)": unobservedLabels
-      }, { collapsed: true }).addTo(map);
-
-      map.on("overlayadd", (event) => {
-        if (event.layer !== sharedLayer && event.layer !== inwardLayer) {
-          return;
-        }
-        const candidateBounds = event.layer.getBounds();
-        if (candidateBounds.isValid()) {
-          map.fitBounds(candidateBounds.pad(0.2), { maxZoom: 14 });
-        }
-      });
+      if (showLayerControl) {
+        L.control.layers(null, {
+          "Périmètre de la rocade": rocadeLayer,
+          "Zones de modélisation": zonesLayer
+        }, { collapsed: true }).addTo(map);
+      }
 
       const bounds = rocadeLayer.getBounds().isValid() ? rocadeLayer.getBounds() : zonesLayer.getBounds();
       if (bounds.isValid()) {
@@ -572,6 +606,14 @@
       console.error(error);
       showMapFallback(element);
     }
+  }
+
+  function initHomeMap() {
+    return initSimpleAreaMap("home-map", false);
+  }
+
+  function initStudyAreaMap() {
+    return initSimpleAreaMap("study-area-map", true);
   }
 
   async function initPermanentMap() {
@@ -584,61 +626,32 @@
       return;
     }
     try {
-      const [zones, rocade, sensors] = await Promise.all([
-        loadJson("zones_modeling.geojson"),
-        loadJson("rocade_interior.geojson"),
-        loadJson("permanent_sensors.geojson")
-      ]);
+      const zones = await loadJson("permanent_zones.geojson");
       const map = buildBaseMap(element);
       const zonesLayer = L.geoJSON(zones, {
-        style: zoneStyle,
+        style: permanentZoneStyle,
         onEachFeature(feature, layer) {
-          layer.bindPopup(zonePopup(feature.properties || {}));
+          layer.bindPopup(permanentZonePopup(feature.properties || {}));
         }
       }).addTo(map);
-      const rocadeLayer = L.geoJSON(rocade, {
-        style: rocadeStyle
-      }).addTo(map);
-      const markerGroup = L.layerGroup().addTo(map);
-      const filters = Array.from(document.querySelectorAll("[data-polarity-filter]"));
 
-      function selectedTypes() {
-        return new Set(
-          filters
-            .filter((input) => input.checked)
-            .map((input) => input.getAttribute("data-polarity-filter"))
-        );
-      }
-
-      function renderMarkers() {
-        const active = selectedTypes();
-        markerGroup.clearLayers();
-        sensors.features.forEach((feature) => {
-          const properties = feature.properties || {};
-          if (!active.has(String(properties.polarity_type))) {
-            return;
+      const overlays = { "Zones avec observations permanentes": zonesLayer };
+      try {
+        const sensors = await loadJson("permanent_sensors.geojson");
+        overlays["Capteurs directionnels"] = L.geoJSON(sensors, {
+          pointToLayer(feature, latlng) {
+            return permanentSensorMarker(feature, latlng);
+          },
+          onEachFeature(feature, layer) {
+            layer.bindPopup(permanentSensorPopup(feature.properties || {}));
           }
-          const coordinates = feature.geometry && feature.geometry.coordinates;
-          if (!coordinates || coordinates.length < 2) {
-            return;
-          }
-          const marker = sensorMarker(feature, [coordinates[1], coordinates[0]], 5.8);
-          marker.bindPopup(sensorPopup(properties));
-          marker.addTo(markerGroup);
         });
+      } catch (sensorError) {
+        console.warn("Couche secondaire des capteurs indisponible.", sensorError);
       }
 
-      filters.forEach((input) => input.addEventListener("change", renderMarkers));
-      renderMarkers();
-
-      L.control.layers(null, {
-        "Périmètre rocade": rocadeLayer,
-        "Zones de modélisation": zonesLayer,
-        "Capteurs permanents": markerGroup
-      }, { collapsed: true }).addTo(map);
-
-      const sensorBounds = L.geoJSON(sensors).getBounds();
-      const bounds = rocadeLayer.getBounds().isValid() ? rocadeLayer.getBounds() : sensorBounds;
+      L.control.layers(null, overlays, { collapsed: true }).addTo(map);
+      const bounds = zonesLayer.getBounds();
       if (bounds.isValid()) {
         map.fitBounds(bounds.pad(0.055));
       }
@@ -648,30 +661,199 @@
     }
   }
 
-  async function boot() {
-    setActiveNav();
+  function renderPermanentProvenance(index) {
+    const provenance = index.provenance || {};
+    const values = {
+      "[data-permanent-source]": provenance.canonical_zonal_source,
+      "[data-permanent-producer]": provenance.producer,
+      "[data-permanent-period]": index.period_display
+    };
+    Object.entries(values).forEach(([selector, value]) => {
+      document.querySelectorAll(selector).forEach((element) => {
+        element.textContent = value || "non documenté";
+      });
+    });
+
+    let generatedAt = provenance.generated_at_utc || "non documenté";
+    const parsedDate = new Date(generatedAt);
+    if (!Number.isNaN(parsedDate.getTime())) {
+      generatedAt = parsedDate.toLocaleString("fr-FR", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "Europe/Paris"
+      });
+    }
+    document.querySelectorAll("[data-permanent-generated-at]").forEach((element) => {
+      element.textContent = generatedAt;
+    });
+  }
+
+  async function initPermanentExplorer() {
+    const select = document.getElementById("permanent-zone-select");
+    const plot = document.getElementById("permanent-zone-plot");
+    const status = document.getElementById("permanent-explorer-status");
+    const summary = document.getElementById("permanent-zone-summary");
+    if (!select || !plot || !status) {
+      return;
+    }
+
+    let index;
+    try {
+      index = await loadJson("permanent-temporal/index.json");
+      renderPermanentProvenance(index);
+    } catch (error) {
+      console.error(error);
+      status.textContent = "L’index des séries zonales n’a pas pu être chargé.";
+      return;
+    }
+
+    if (typeof Plotly === "undefined") {
+      status.textContent = "La bibliothèque de tracé n’a pas pu être chargée.";
+      return;
+    }
+
+    const zones = Array.isArray(index.zones) ? index.zones : [];
+    if (!zones.length) {
+      status.textContent = "Aucune série zonale n’est disponible.";
+      return;
+    }
+
+    select.innerHTML = "";
+    zones.forEach((zone) => {
+      const option = document.createElement("option");
+      option.value = zone.id;
+      option.textContent = zone.commune
+        ? `${zone.id} — ${zone.commune}`
+        : zone.id;
+      select.appendChild(option);
+    });
+    select.disabled = false;
+
+    const plotConfig = {
+      responsive: true,
+      displaylogo: false,
+      scrollZoom: true,
+      modeBarButtonsToRemove: ["lasso2d", "select2d"]
+    };
+    let requestNumber = 0;
+
+    async function renderZone(zoneId) {
+      const zone = zones.find((item) => item.id === zoneId);
+      if (!zone) {
+        return;
+      }
+      const currentRequest = ++requestNumber;
+      select.disabled = true;
+      status.textContent = `Chargement de la zone ${zone.id}…`;
+      if (summary) {
+        summary.textContent = "";
+      }
+
+      try {
+        const payload = await loadJson(zone.path);
+        if (currentRequest !== requestNumber) {
+          return;
+        }
+        const traces = [
+          {
+            type: "scattergl",
+            mode: "lines",
+            name: "y_obs nettoyé",
+            x: payload.timestamps,
+            y: payload.y_obs,
+            customdata: payload.n_sensors_obs,
+            connectgaps: false,
+            line: { color: "#26736d", width: 1.2 },
+            hovertemplate: "date=%{x}<br>y_obs=%{y}<br>capteurs disponibles=%{customdata}<extra></extra>"
+          },
+          {
+            type: "scattergl",
+            mode: "lines",
+            name: "n_sensors_obs",
+            x: payload.timestamps,
+            y: payload.n_sensors_obs,
+            connectgaps: false,
+            line: { color: "#8395a4", width: 1, shape: "hv" },
+            opacity: 0.55,
+            yaxis: "y2",
+            hovertemplate: "date=%{x}<br>capteurs disponibles=%{y}<extra></extra>"
+          }
+        ];
+        const layout = {
+          template: "plotly_white",
+          title: { text: `Zone ${payload.zone_id}`, font: { size: 16 } },
+          hovermode: "x unified",
+          dragmode: "pan",
+          margin: { l: 65, r: 65, t: 55, b: 60 },
+          legend: { orientation: "h", y: 1.08 },
+          xaxis: {
+            title: "Date",
+            rangeselector: {
+              buttons: [
+                { count: 7, label: "7 j", step: "day", stepmode: "backward" },
+                { count: 1, label: "1 mois", step: "month", stepmode: "backward" },
+                { count: 3, label: "3 mois", step: "month", stepmode: "backward" },
+                { label: "Tout", step: "all" }
+              ]
+            },
+            rangeslider: { visible: true }
+          },
+          yaxis: { title: "y_obs", rangemode: "tozero" },
+          yaxis2: {
+            title: "Capteurs disponibles",
+            overlaying: "y",
+            side: "right",
+            rangemode: "tozero",
+            showgrid: false,
+            dtick: 1
+          },
+          uirevision: payload.zone_id
+        };
+        await Plotly.react(plot, traces, layout, plotConfig);
+        status.textContent = `Série chargée : ${formatValue(payload.n_clean_observations)} observations nettoyées.`;
+        if (summary) {
+          summary.textContent = `${formatValue(zone.n_mapped_directional_sensors)} capteur(s) mappé(s)`;
+        }
+      } catch (error) {
+        console.error(error);
+        status.textContent = `La série de la zone ${zone.id} n’a pas pu être chargée.`;
+      } finally {
+        if (currentRequest === requestNumber) {
+          select.disabled = false;
+        }
+      }
+    }
+
+    select.addEventListener("change", () => renderZone(select.value));
+    await renderZone(zones[0].id);
+  }
+
+  async function initMetrics() {
     try {
       const metrics = await loadJson("site_metrics.json");
+      renderProjectMetrics(metrics);
       renderPermanentDistribution(metrics);
       renderPermanentTable(metrics);
       renderTemporalPreview(metrics);
       renderPunctualYearTable(metrics);
       initPunctualTabs(metrics);
-      await Promise.all([
-        initStudyMap(),
-        initPermanentMap()
-      ]);
     } catch (error) {
       console.error(error);
-      document.querySelectorAll(".map").forEach((element) => {
-        if (!element.querySelector(".leaflet-pane") && !element.classList.contains("map-fallback")) {
-          showMapFallback(element);
-        }
-      });
       document.querySelectorAll("[data-load-error]").forEach((element) => {
         element.textContent = "Les données publiques n'ont pas pu être chargées.";
       });
     }
+  }
+
+  async function boot() {
+    setActiveNav();
+    await Promise.allSettled([
+      initMetrics(),
+      initHomeMap(),
+      initStudyAreaMap(),
+      initPermanentMap(),
+      initPermanentExplorer()
+    ]);
   }
 
   document.addEventListener("DOMContentLoaded", boot);

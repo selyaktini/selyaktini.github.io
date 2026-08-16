@@ -178,6 +178,146 @@ p {
   font-size: 15px;
 }
 
+.project-introduction .lead {
+  max-width: 900px;
+}
+
+.project-path {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-path li {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 58px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted-strong);
+  font-size: 14px;
+  font-weight: 560;
+  text-align: center;
+}
+
+.project-path li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  color: var(--line-strong);
+  transform: translateY(-50%);
+}
+
+.key-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.key-metrics.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 760px;
+}
+
+.key-metric {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  min-height: 104px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.key-metric strong {
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 24px;
+  font-weight: 590;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.key-metric span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.key-metric strong.metric-period {
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.definition-note {
+  max-width: 860px;
+  margin-top: 16px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted-strong);
+  font-size: 14px;
+}
+
+.load-note {
+  margin-top: 8px;
+}
+
+.load-note:empty {
+  display: none;
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.portal-card {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-height: 118px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.portal-card::after {
+  content: "→";
+  align-self: end;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.portal-card strong {
+  font-size: 15px;
+  font-weight: 590;
+}
+
+.portal-card span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.portal-card:hover,
+.portal-card:focus-visible {
+  border-color: var(--line-strong);
+  color: var(--link-hover);
+}
+
+.portal-card:hover::after,
+.portal-card:focus-visible::after {
+  color: var(--link-hover);
+}
+
 .muted {
   color: var(--muted);
 }
@@ -226,6 +366,10 @@ p {
 
 .panel-note {
   margin-top: 12px;
+}
+
+.panel-note:empty {
+  display: none;
 }
 
 .footnote {
@@ -585,8 +729,8 @@ p {
 }
 
 .map-large .map {
-  height: calc(100vh - 218px);
-  min-height: 560px;
+  height: min(68vh, 640px);
+  min-height: 480px;
 }
 
 .map-caption,
@@ -617,6 +761,26 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.rocade-swatch {
+  height: 4px;
+  border: 0;
+  background: var(--rocade);
+}
+
+.modeling-zone-swatch {
+  border-color: var(--zones);
+  background: var(--zones-fill);
+}
+
+.permanent-zone-swatch {
+  border-color: #26736d;
+  background: #4fa69c;
+}
+
+.permanent-sensor-swatch {
+  background: #263f56;
 }
 
 .fact-line {
@@ -705,6 +869,102 @@ p {
 
 .explorer-links {
   max-width: 640px;
+}
+
+.temporal-explorer {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.explorer-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px 14px;
+  flex-wrap: wrap;
+  padding: 12px 0 8px;
+  color: var(--muted-strong);
+  font-size: 13px;
+}
+
+.explorer-toolbar label {
+  font-weight: 560;
+}
+
+.explorer-toolbar select {
+  width: min(100%, 380px);
+  padding: 7px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+.explorer-toolbar select:disabled {
+  color: var(--muted);
+  cursor: wait;
+}
+
+.explorer-summary,
+.explorer-status {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.explorer-status {
+  min-height: 18px;
+  padding: 0 0 5px;
+}
+
+.temporal-plot {
+  width: 100%;
+  height: min(64vh, 620px);
+  min-height: 460px;
+}
+
+.provenance-list {
+  display: grid;
+  gap: 0;
+  max-width: 940px;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.provenance-list > div {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.35fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.provenance-list dt {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.provenance-list dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.provenance-list code {
+  font-size: 12px;
+}
+
+.legacy-audits {
+  max-width: 760px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legacy-audits .action-row {
+  margin-top: 8px;
 }
 
 .preview-metrics div {
@@ -918,6 +1178,11 @@ tbody tr:last-child td {
     grid-template-columns: 1fr;
   }
 
+  .key-metrics,
+  .portal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .map-large .map {
     height: 560px;
   }
@@ -948,6 +1213,49 @@ tbody tr:last-child td {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .project-path,
+  .key-metrics,
+  .key-metrics.compact,
+  .portal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-path {
+    gap: 24px;
+  }
+
+  .project-path li:not(:last-child)::after {
+    content: "↓";
+    top: auto;
+    right: 50%;
+    bottom: -21px;
+    transform: translateX(50%);
+  }
+
+  .key-metric,
+  .portal-card {
+    min-height: 0;
+  }
+
+  .explorer-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .explorer-toolbar select {
+    width: 100%;
+  }
+
+  .temporal-plot {
+    height: 520px;
+    min-height: 420px;
+  }
+
+  .provenance-list > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 
   .count-list li,

@@ -1,31 +1,249 @@
 {
-  "generated_at_utc": "2026-07-24T09:56:07+00:00",
-  "title": "Bordeaux Bicycle Counts Explorer",
-  "subtitle": "Exploratory view of permanent and punctual bicycle-count data",
-  "study_area": {
-    "n_rocade_modeling_zones": 247,
-    "n_zones_with_permanent_hourly_series": 36,
-    "n_zones_modeling": 247,
-    "n_zones_with_hourly_series": 36,
-    "n_permanent_sensor_points": 84,
-    "n_permanent_classified_without_valid_geometry": 0,
-    "permanent_classified_without_valid_geometry": [],
-    "files": {
-      "zones_modeling": "data/zones_modeling.geojson",
-      "zones_excluded": "data/zones_excluded.geojson",
-      "rocade_interior": "data/rocade_interior.geojson",
-      "permanent_sensors": "data/permanent_sensors.geojson",
-      "shared_boundary_candidates": "data/shared_boundary_candidates.geojson",
-      "inward_transfer_candidates": "data/inward_transfer_candidates.geojson"
+  "generated_at_utc": "2026-08-16T20:54:00+00:00",
+  "overview_metrics": [
+    {
+      "id": "rocade-zones",
+      "label": "Rocade modelling zones",
+      "note": "Layer: zones_modeling.",
+      "value": 247
     },
-    "n_excluded_exterior_zones": 82,
-    "n_raw_hourly_zones_all": 38,
-    "n_observed_clean_zones": 19,
-    "n_lozo_targets": 19,
-    "n_unobserved_graph_zones": 228,
+    {
+      "id": "permanent-classified",
+      "label": "Permanent sensors classified",
+      "note": "Finalized polarity classification.",
+      "value": 84
+    },
+    {
+      "id": "punctual-units",
+      "label": "Punctual directional units classified",
+      "note": "Across 2021, 2022 and 2023.",
+      "value": 884
+    },
+    {
+      "id": "punctual-campaigns",
+      "label": "Punctual campaigns analysed",
+      "note": "Campaign years: 2021, 2022 and 2023.",
+      "value": 3
+    },
+    {
+      "id": "permanent-span",
+      "label": "Permanent observation span",
+      "note": "UTC timestamp range in the hourly observation table.",
+      "value": "2024-05-15 22:00 UTC to 2026-05-14 22:00 UTC"
+    }
+  ],
+  "permanent_counts": {
+    "classification_file": "data/permanent_sensor_classification.csv",
+    "classification_rules": {
+      "evening_window": "16:00-19:00",
+      "exclude_french_public_holidays": true,
+      "exclude_zone_a_school_holidays": true,
+      "min_valid_days_for_classification": 10,
+      "morning_window": "07:00-10:00",
+      "ratio_threshold": 1.2,
+      "timezone": "Europe/Paris",
+      "weekdays_only": true
+    },
+    "definition": "y_obs = médiane des comptages horaires directionnels disponibles dans la zone",
+    "files": {
+      "sensors": "data/permanent_sensors.geojson",
+      "temporal_index": "data/permanent-temporal/index.json",
+      "zones": "data/permanent_zones.geojson"
+    },
+    "n_classified_sensors": 84,
+    "n_directional_sensors": 84,
+    "n_zones_with_observations": 36,
+    "provenance": {
+      "canonical_zonal_source": "data/interim/temporal/03_zones_nettoyees/zones_comptages_observed_hourly.parquet",
+      "generated_at_utc": "2026-08-16T20:54:00+00:00",
+      "producer": "scripts/web/export_permanent_data.py",
+      "sources": [
+        "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet",
+        "data/interim/temporal/03_zones_nettoyees/zones_comptages_observed_hourly.parquet",
+        "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling",
+        "data/raw/bordeaux_metropole/comptages_velos/comptages_recents/pc_velo_p.csv"
+      ]
+    },
+    "summary_file": "data/permanent_polarity_summary.csv",
+    "time_span_utc": {
+      "display": "15/05/2024 – 14/05/2026",
+      "end_utc": "2026-05-14T22:00:00+00:00",
+      "n_clean_hourly_observations": 860491,
+      "n_hourly_observation_rows": 1028314,
+      "n_sensors_in_hourly_table": 84,
+      "start_utc": "2024-05-15T22:00:00+00:00"
+    },
+    "type_counts": [
+      {
+        "color": "#7a1f1f",
+        "label": "insufficient data",
+        "n_sensors": 5,
+        "polarity_type": -1
+      },
+      {
+        "color": "#1d5fa7",
+        "label": "morning-dominant",
+        "n_sensors": 16,
+        "polarity_type": 0
+      },
+      {
+        "color": "#1f7a57",
+        "label": "evening-dominant",
+        "n_sensors": 40,
+        "polarity_type": 1
+      },
+      {
+        "color": "#6b7280",
+        "label": "balanced",
+        "n_sensors": 23,
+        "polarity_type": 2
+      }
+    ],
+    "zonal_series": {
+      "index_file": "data/permanent-temporal/index.json",
+      "level": "zone",
+      "n_clean_observations": 417222,
+      "n_hourly_rows": 502935,
+      "period_display": "15/05/2024 – 14/05/2026",
+      "period_end_utc": "2026-05-14T22:00:00+00:00",
+      "period_start_utc": "2024-05-15T22:00:00+00:00",
+      "value_column": "y_obs"
+    }
+  },
+  "punctual_counts": {
+    "by_year": [
+      {
+        "campaign_year": 2021,
+        "n_classifiable_units": 291,
+        "n_directional_units": 293,
+        "n_evening_zero": 173,
+        "n_morning_zero": 175,
+        "n_unmatchable_between_hourly_sheets": 2,
+        "source_file": "Observatoire_Velos_2021_CPEV_V2.xlsx",
+        "type_counts": [
+          {
+            "color": "#7a1f1f",
+            "label": "insufficient data",
+            "n_units": 2,
+            "polarity_type": -1
+          },
+          {
+            "color": "#1d5fa7",
+            "label": "morning-dominant",
+            "n_units": 19,
+            "polarity_type": 0
+          },
+          {
+            "color": "#1f7a57",
+            "label": "evening-dominant",
+            "n_units": 71,
+            "polarity_type": 1
+          },
+          {
+            "color": "#6b7280",
+            "label": "balanced",
+            "n_units": 201,
+            "polarity_type": 2
+          }
+        ]
+      },
+      {
+        "campaign_year": 2022,
+        "n_classifiable_units": 291,
+        "n_directional_units": 293,
+        "n_evening_zero": 173,
+        "n_morning_zero": 175,
+        "n_unmatchable_between_hourly_sheets": 2,
+        "source_file": "Observatoire_Velos_2022_CPEV.xlsx",
+        "type_counts": [
+          {
+            "color": "#7a1f1f",
+            "label": "insufficient data",
+            "n_units": 2,
+            "polarity_type": -1
+          },
+          {
+            "color": "#1d5fa7",
+            "label": "morning-dominant",
+            "n_units": 40,
+            "polarity_type": 0
+          },
+          {
+            "color": "#1f7a57",
+            "label": "evening-dominant",
+            "n_units": 63,
+            "polarity_type": 1
+          },
+          {
+            "color": "#6b7280",
+            "label": "balanced",
+            "n_units": 188,
+            "polarity_type": 2
+          }
+        ]
+      },
+      {
+        "campaign_year": 2023,
+        "n_classifiable_units": 298,
+        "n_directional_units": 298,
+        "n_evening_zero": 180,
+        "n_morning_zero": 183,
+        "n_unmatchable_between_hourly_sheets": 0,
+        "source_file": "Observatoire_Velos_2023.xlsx",
+        "type_counts": [
+          {
+            "color": "#7a1f1f",
+            "label": "insufficient data",
+            "n_units": 0,
+            "polarity_type": -1
+          },
+          {
+            "color": "#1d5fa7",
+            "label": "morning-dominant",
+            "n_units": 30,
+            "polarity_type": 0
+          },
+          {
+            "color": "#1f7a57",
+            "label": "evening-dominant",
+            "n_units": 62,
+            "polarity_type": 1
+          },
+          {
+            "color": "#6b7280",
+            "label": "balanced",
+            "n_units": 206,
+            "polarity_type": 2
+          }
+        ]
+      }
+    ],
+    "campaign_years": [
+      2021,
+      2022,
+      2023
+    ],
+    "date_warning": "Campaign dates are not documented in the source workbooks. These profiles are used descriptively and cannot yet support date-specific temporal validation.",
+    "n_campaigns": 3,
+    "n_classifiable_units": 880,
+    "n_directional_units": 884,
+    "retained_raw_unit": "campaign_year x Num_CPEV x Poste x Direction",
+    "summary_file": "data/punctual_polarity_summary.csv",
+    "type_totals": {
+      "-1": 4,
+      "0": 89,
+      "1": 196,
+      "2": 595
+    }
+  },
+  "study_area": {
     "coverage_candidates": {
-      "shared_boundary_rows": 11,
-      "shared_boundary_sensors": 11,
+      "inward_transfer_new_zone_ids": [
+        "180005000"
+      ],
+      "inward_transfer_rows": 6,
+      "inward_transfer_sensors": 6,
       "shared_boundary_new_zone_ids": [
         "161005000",
         "162014000",
@@ -34,217 +252,36 @@
         "173008000",
         "177007000"
       ],
-      "inward_transfer_rows": 6,
-      "inward_transfer_sensors": 6,
-      "inward_transfer_new_zone_ids": [
-        "180005000"
-      ]
-    }
+      "shared_boundary_rows": 11,
+      "shared_boundary_sensors": 11
+    },
+    "files": {
+      "inward_transfer_candidates": "data/inward_transfer_candidates.geojson",
+      "permanent_sensors": "data/permanent_sensors.geojson",
+      "permanent_zones": "data/permanent_zones.geojson",
+      "rocade_interior": "data/rocade_interior.geojson",
+      "shared_boundary_candidates": "data/shared_boundary_candidates.geojson",
+      "zones_excluded": "data/zones_excluded.geojson",
+      "zones_modeling": "data/zones_modeling.geojson"
+    },
+    "n_boundary_zones": 35,
+    "n_excluded_exterior_zones": 82,
+    "n_interior_zones": 212,
+    "n_lozo_targets": 19,
+    "n_observed_clean_zones": 19,
+    "n_permanent_classified_without_valid_geometry": 0,
+    "n_permanent_sensor_points": 84,
+    "n_raw_hourly_zones_all": 38,
+    "n_rocade_modeling_zones": 247,
+    "n_unobserved_graph_zones": 228,
+    "n_zones_added_by_punctual_counts": 88,
+    "n_zones_covered_by_any_source": 124,
+    "n_zones_modeling": 247,
+    "n_zones_with_hourly_series": 36,
+    "n_zones_with_permanent_hourly_series": 36,
+    "n_zones_with_punctual_counts": 112,
+    "permanent_classified_without_valid_geometry": []
   },
-  "permanent_counts": {
-    "n_classified_sensors": 84,
-    "type_counts": [
-      {
-        "polarity_type": -1,
-        "label": "insufficient data",
-        "color": "#7a1f1f",
-        "n_sensors": 5
-      },
-      {
-        "polarity_type": 0,
-        "label": "morning-dominant",
-        "color": "#1d5fa7",
-        "n_sensors": 16
-      },
-      {
-        "polarity_type": 1,
-        "label": "evening-dominant",
-        "color": "#1f7a57",
-        "n_sensors": 40
-      },
-      {
-        "polarity_type": 2,
-        "label": "balanced",
-        "color": "#6b7280",
-        "n_sensors": 23
-      }
-    ],
-    "summary_file": "data/permanent_polarity_summary.csv",
-    "classification_file": "data/permanent_sensor_classification.csv",
-    "time_span_utc": {
-      "start_utc": "2024-05-15T22:00:00+00:00",
-      "end_utc": "2026-05-14T22:00:00+00:00",
-      "display": "2024-05-15 22:00 UTC to 2026-05-14 22:00 UTC",
-      "n_hourly_observation_rows": 1028314,
-      "n_sensors_in_hourly_table": 84
-    },
-    "classification_rules": {
-      "timezone": "Europe/Paris",
-      "weekdays_only": true,
-      "exclude_zone_a_school_holidays": true,
-      "exclude_french_public_holidays": true,
-      "morning_window": "07:00-10:00",
-      "evening_window": "16:00-19:00",
-      "ratio_threshold": 1.2,
-      "min_valid_days_for_classification": 10
-    }
-  },
-  "punctual_counts": {
-    "campaign_years": [
-      2021,
-      2022,
-      2023
-    ],
-    "n_campaigns": 3,
-    "n_directional_units": 884,
-    "n_classifiable_units": 880,
-    "type_totals": {
-      "-1": 4,
-      "0": 89,
-      "1": 196,
-      "2": 595
-    },
-    "by_year": [
-      {
-        "campaign_year": 2021,
-        "n_directional_units": 293,
-        "n_classifiable_units": 291,
-        "n_morning_zero": 175,
-        "n_evening_zero": 173,
-        "n_unmatchable_between_hourly_sheets": 2,
-        "source_file": "Observatoire_Velos_2021_CPEV_V2.xlsx",
-        "type_counts": [
-          {
-            "polarity_type": -1,
-            "label": "insufficient data",
-            "color": "#7a1f1f",
-            "n_units": 2
-          },
-          {
-            "polarity_type": 0,
-            "label": "morning-dominant",
-            "color": "#1d5fa7",
-            "n_units": 19
-          },
-          {
-            "polarity_type": 1,
-            "label": "evening-dominant",
-            "color": "#1f7a57",
-            "n_units": 71
-          },
-          {
-            "polarity_type": 2,
-            "label": "balanced",
-            "color": "#6b7280",
-            "n_units": 201
-          }
-        ]
-      },
-      {
-        "campaign_year": 2022,
-        "n_directional_units": 293,
-        "n_classifiable_units": 291,
-        "n_morning_zero": 175,
-        "n_evening_zero": 173,
-        "n_unmatchable_between_hourly_sheets": 2,
-        "source_file": "Observatoire_Velos_2022_CPEV.xlsx",
-        "type_counts": [
-          {
-            "polarity_type": -1,
-            "label": "insufficient data",
-            "color": "#7a1f1f",
-            "n_units": 2
-          },
-          {
-            "polarity_type": 0,
-            "label": "morning-dominant",
-            "color": "#1d5fa7",
-            "n_units": 40
-          },
-          {
-            "polarity_type": 1,
-            "label": "evening-dominant",
-            "color": "#1f7a57",
-            "n_units": 63
-          },
-          {
-            "polarity_type": 2,
-            "label": "balanced",
-            "color": "#6b7280",
-            "n_units": 188
-          }
-        ]
-      },
-      {
-        "campaign_year": 2023,
-        "n_directional_units": 298,
-        "n_classifiable_units": 298,
-        "n_morning_zero": 183,
-        "n_evening_zero": 180,
-        "n_unmatchable_between_hourly_sheets": 0,
-        "source_file": "Observatoire_Velos_2023.xlsx",
-        "type_counts": [
-          {
-            "polarity_type": -1,
-            "label": "insufficient data",
-            "color": "#7a1f1f",
-            "n_units": 0
-          },
-          {
-            "polarity_type": 0,
-            "label": "morning-dominant",
-            "color": "#1d5fa7",
-            "n_units": 30
-          },
-          {
-            "polarity_type": 1,
-            "label": "evening-dominant",
-            "color": "#1f7a57",
-            "n_units": 62
-          },
-          {
-            "polarity_type": 2,
-            "label": "balanced",
-            "color": "#6b7280",
-            "n_units": 206
-          }
-        ]
-      }
-    ],
-    "summary_file": "data/punctual_polarity_summary.csv",
-    "retained_raw_unit": "campaign_year x Num_CPEV x Poste x Direction",
-    "date_warning": "Campaign dates are not documented in the source workbooks. These profiles are used descriptively and cannot yet support date-specific temporal validation."
-  },
-  "overview_metrics": [
-    {
-      "id": "rocade-zones",
-      "label": "Rocade modelling zones",
-      "value": 247,
-      "note": "Layer: zones_modeling."
-    },
-    {
-      "id": "permanent-classified",
-      "label": "Permanent sensors classified",
-      "value": 84,
-      "note": "Finalized polarity classification."
-    },
-    {
-      "id": "punctual-units",
-      "label": "Punctual directional units classified",
-      "value": 884,
-      "note": "Across 2021, 2022 and 2023."
-    },
-    {
-      "id": "punctual-campaigns",
-      "label": "Punctual campaigns analysed",
-      "value": 3,
-      "note": "Campaign years: 2021, 2022 and 2023."
-    },
-    {
-      "id": "permanent-span",
-      "label": "Permanent observation span",
-      "value": "2024-05-15 22:00 UTC to 2026-05-14 22:00 UTC",
-      "note": "UTC timestamp range in the hourly observation table."
-    }
-  ]
+  "subtitle": "Observation, reconstruction spatiale et prédiction des flux",
+  "title": "Modélisation des flux cyclistes à Bordeaux Métropole"
 }

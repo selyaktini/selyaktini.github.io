@@ -3,24 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Capteurs permanents — Comptages vélo Bordeaux Métropole</title>
-  <meta name="description" content="Capteurs permanents, profils horaires et classification matin soir.">
+  <title>Comptages permanents — Modélisation des flux cyclistes</title>
+  <meta name="description" content="Comptages cyclistes permanents nettoyés et agrégés au niveau des zones de modélisation.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <h1 class="site-title">Capteurs permanents</h1>
-      <p class="site-subtitle">Profils horaires et classification matin / soir</p>
+      <h1 class="site-title">Comptages permanents</h1>
+      <p class="site-subtitle">Observations horaires nettoyées au niveau des zones</p>
       <nav class="primary-nav" aria-label="Navigation principale">
-        <a href="index.html">Synthèse</a>
+        <a href="index.html">Accueil</a>
         <a href="study-area.html">Périmètre</a>
-        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="permanent-counts.html">Comptages permanents</a>
         <a href="punctual-counts.html">Comptages ponctuels</a>
-        <a href="methodology.html">Méthode</a>
+        <a href="methodology.html">Méthodologie</a>
       </nav>
     </div>
   </header>
@@ -28,51 +29,38 @@
   <main class="content">
     <section class="section">
       <div class="section-header compact">
-        <p class="lead">Les capteurs permanents fournissent des comptages horaires continus, classés selon le rapport entre les volumes du matin et du soir.</p>
+        <h2>Résumé</h2>
+        <p class="lead">Les comptages permanents décrivent les variations horaires observées en continu. Pour la modélisation, les séries sont nettoyées puis regroupées par zone.</p>
       </div>
-      <div class="summary-layout single">
-        <div class="summary-panel">
-          <h2>Distribution des classes</h2>
-          <p class="source-note">84 capteurs classifiés sur les jours ouvrés, hors vacances scolaires Zone A et jours fériés.</p>
-          <div class="distribution" data-distribution="permanent" aria-label="Classes des capteurs permanents">
-            <div class="stacked-bar" role="img" aria-label="Classes des capteurs permanents">
-              <span class="stack-segment class-morning" style="width:19.05%"></span>
-              <span class="stack-segment class-evening" style="width:47.62%"></span>
-              <span class="stack-segment class-balanced" style="width:27.38%"></span>
-              <span class="stack-segment class-insufficient" style="width:5.95%"></span>
-            </div>
-            <ul class="count-list">
-              <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong><span>16</span><span class="count-percent">19 %</span></strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong><span>40</span><span class="count-percent">47,6 %</span></strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong><span>23</span><span class="count-percent">27,4 %</span></strong></li>
-              <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong><span>5</span><span class="count-percent">6 %</span></strong></li>
-            </ul>
-          </div>
-          <p class="analysis-note">Une polarité matin/soir décrit le rapport entre les volumes observés sur les deux créneaux horaires ; elle ne représente pas une direction géographique.</p>
-        </div>
+      <div class="key-metrics compact" aria-label="Chiffres clés des comptages permanents">
+        <article class="key-metric">
+          <strong data-metric-path="permanent_counts.n_directional_sensors">—</strong>
+          <span>capteurs permanents</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="permanent_counts.n_zones_with_observations">—</strong>
+          <span>zones avec observations permanentes</span>
+        </article>
+        <article class="key-metric">
+          <strong class="metric-period" data-metric-path="permanent_counts.zonal_series.period_display">—</strong>
+          <span>période disponible</span>
+        </article>
       </div>
+      <p class="definition-note"><strong>Définition :</strong> <span class="mono">y_obs</span> = médiane des comptages horaires permanents disponibles dans la zone.</p>
+      <p class="source-note load-note" data-load-error aria-live="polite"></p>
     </section>
 
     <section class="section">
       <div class="section-header">
-        <h2>Localisation des capteurs</h2>
-        <div class="filters" aria-label="Filtres par classe">
-          <label class="filter-control"><input type="checkbox" data-polarity-filter="0" checked> <span class="swatch round class-morning"></span>matin</label>
-          <label class="filter-control"><input type="checkbox" data-polarity-filter="1" checked> <span class="swatch round class-evening"></span>soir</label>
-          <label class="filter-control"><input type="checkbox" data-polarity-filter="2" checked> <span class="swatch round class-balanced"></span>équilibré</label>
-          <label class="filter-control"><input type="checkbox" data-polarity-filter="-1" checked> <span class="swatch round class-insufficient"></span>insuffisant</label>
-        </div>
+        <h2>Zones observées</h2>
       </div>
       <div class="map-shell">
-        <div id="permanent-map" class="map" role="img" aria-label="Carte des capteurs permanents colorés par classe"></div>
+        <div id="permanent-map" class="map" role="img" aria-label="Carte des zones avec observations permanentes et couche secondaire des capteurs"></div>
         <div class="map-caption split-caption">
-          <span>Classification calculée sur les jours ouvrés, hors vacances scolaires Zone A et jours fériés.</span>
-          <span>82 capteurs sont représentés sur la carte ; 2 capteurs classifiés ne disposent pas encore d'une géométrie validée.</span>
-          <span class="legend" aria-label="Légende des classes">
-            <span class="legend-item"><span class="swatch round class-morning"></span>dominante matin</span>
-            <span class="legend-item"><span class="swatch round class-evening"></span>dominante soir</span>
-            <span class="legend-item"><span class="swatch round class-balanced"></span>équilibré</span>
-            <span class="legend-item"><span class="swatch round class-insufficient"></span>données insuffisantes</span>
+          <span><span data-metric-path="permanent_counts.n_zones_with_observations">—</span> zones observées ; les capteurs peuvent être activés depuis le contrôle de couches.</span>
+          <span class="legend" aria-label="Légende de la carte">
+            <span class="legend-item"><span class="swatch permanent-zone-swatch"></span>zone avec <span class="mono">y_obs</span></span>
+            <span class="legend-item"><span class="swatch round permanent-sensor-swatch"></span>capteur permanent</span>
           </span>
         </div>
       </div>
@@ -80,19 +68,40 @@
 
     <section class="section">
       <div class="section-header">
-        <h2>Explorateurs détaillés</h2>
-      </div>
-      <div class="explorer-links">
-        <div class="action-row action-list">
-          <a class="text-action" href="explorers/permanent-temporal-audit.html">Explorer les profils horaires</a>
-          <a class="text-action" href="explorers/permanent-polarity.html">Explorer la classification matin / soir</a>
+        <div>
+          <h2>Explorateur temporel zonal</h2>
+          <p class="lead">Sélectionnez une zone pour charger uniquement sa série horaire nettoyée.</p>
         </div>
       </div>
+      <div class="temporal-explorer">
+        <div class="explorer-toolbar">
+          <label for="permanent-zone-select">Zone</label>
+          <select id="permanent-zone-select" disabled>
+            <option>Chargement des zones…</option>
+          </select>
+          <span id="permanent-zone-summary" class="explorer-summary"></span>
+        </div>
+        <p id="permanent-explorer-status" class="explorer-status" aria-live="polite">Chargement de l’index zonal…</p>
+        <div id="permanent-zone-plot" class="temporal-plot" aria-label="Courbe horaire de y_obs pour la zone sélectionnée"></div>
+        <noscript><p class="explorer-status">JavaScript est nécessaire pour afficher l’explorateur temporel.</p></noscript>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Méthodologie courte</h2>
+      </div>
+      <ol class="project-path" aria-label="Chaîne de préparation des observations permanentes">
+        <li>Capteurs</li>
+        <li>Nettoyage</li>
+        <li>Agrégation par zone</li>
+        <li>Séries de flux</li>
+      </ol>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole</div>
+    <div class="footer-inner">Modélisation des flux cyclistes &mdash; Bordeaux Métropole</div>
   </footer>
 </body>
 </html>

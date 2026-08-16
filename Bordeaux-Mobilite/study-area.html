@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Périmètre et couverture — Comptages vélo Bordeaux Métropole</title>
-  <meta name="description" content="Périmètre rocade, couverture temporelle des zones et candidats spatiaux à examiner.">
+  <title>Périmètre d'étude — Modélisation des flux cyclistes</title>
+  <meta name="description" content="Présentation du périmètre scientifique retenu autour de la rocade bordelaise et de ses 247 zones de modélisation.">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
@@ -13,43 +13,69 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <h1 class="site-title">Périmètre et couverture</h1>
-      <p class="site-subtitle">Rocade, statuts temporels des zones et candidats spatiaux</p>
+      <h1 class="site-title">Périmètre d'étude</h1>
+      <p class="site-subtitle">Un territoire de modélisation défini à partir de la rocade bordelaise.</p>
       <nav class="primary-nav" aria-label="Navigation principale">
-        <a href="index.html">Synthèse</a>
-        <a href="study-area.html">Périmètre</a>
-        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="index.html">Accueil</a>
+        <a href="study-area.html">Périmètre d'étude</a>
+        <a href="permanent-counts.html">Comptages permanents</a>
         <a href="punctual-counts.html">Comptages ponctuels</a>
-        <a href="methodology.html">Méthode</a>
+        <a href="methodology.html">Méthodologie</a>
       </nav>
     </div>
   </header>
 
   <main class="content map-page">
-    <div class="context-block">
-      <p>Le périmètre de modélisation regroupe les zones intérieures à la rocade et les zones frontières retenues dans le graphe. Les zones extérieures exclues restent visibles pour documenter la sélection.</p>
-      <p>Les couches <code>shared_boundary</code> et <code>inward_transfer</code> sont des propositions géométriques à examiner manuellement&nbsp;: elles ne modifient aucune affectation capteur-zone.</p>
-      <p>La couche des identifiants de zones non observées est activable dans le sélecteur et s'affiche à partir du zoom 14.</p>
-    </div>
-    <div class="map-shell map-large">
-      <div id="study-map" class="map" role="img" aria-label="Carte du périmètre rocade, de la couverture temporelle et des candidats spatiaux"></div>
-      <div class="map-caption split-caption">
-        <span>Figure : périmètre rocade, couverture actuelle et candidats sans réaffectation.</span>
-        <span class="legend" aria-label="Légende cartographique">
-          <span class="legend-item"><span class="swatch" style="background:#263f56"></span>périmètre rocade</span>
-          <span class="legend-item"><span class="swatch" style="background:#4fa69c"></span>observed-clean</span>
-          <span class="legend-item"><span class="swatch" style="background:#e2b85f"></span>série horaire non retenue</span>
-          <span class="legend-item"><span class="swatch" style="background:#dfe8ee"></span>zone non observée</span>
-          <span class="legend-item"><span class="swatch dashed" style="background:#d5dade"></span>zone extérieure exclue</span>
-          <span class="legend-item"><span class="swatch candidate-shared"></span>shared_boundary</span>
-          <span class="legend-item"><span class="swatch candidate-inward"></span>inward_transfer</span>
-        </span>
+    <section class="section study-overview" aria-labelledby="scope-title">
+      <div class="section-header compact">
+        <h2 id="scope-title">Un périmètre cohérent pour observer et reconstruire les flux</h2>
       </div>
-    </div>
+      <div class="context-block">
+        <p>Le périmètre scientifique prend la rocade bordelaise comme limite de référence. Il conserve les zones situées à l'intérieur de cette limite ainsi que les zones frontières utiles pour assurer la continuité du territoire étudié.</p>
+        <p>Le modèle travaille ainsi sur 247 zones. Ce découpage commun permet de rapprocher les différentes sources de comptage et de reconstruire progressivement les flux dans les secteurs non observés.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="scope-metrics-title">
+      <div class="section-header">
+        <h2 id="scope-metrics-title">Repères</h2>
+      </div>
+      <div class="key-metrics compact" aria-live="polite">
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_zones_modeling">—</strong>
+          <span>zones modélisées</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_interior_zones">—</strong>
+          <span>zones intérieures</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_boundary_zones">—</strong>
+          <span>zones frontières</span>
+        </article>
+      </div>
+      <p class="panel-note" data-load-error></p>
+    </section>
+
+    <section class="section" aria-labelledby="study-map-title">
+      <div class="section-header">
+        <h2 id="study-map-title">Carte du périmètre</h2>
+      </div>
+      <div class="map-shell map-large">
+        <div id="study-area-map" class="map" role="region" aria-label="Carte de la rocade bordelaise et des 247 zones de modélisation"></div>
+        <div class="map-caption split-caption">
+          <span>La carte présente uniquement le périmètre de référence et les zones retenues pour la modélisation.</span>
+          <span class="legend" aria-label="Légende cartographique">
+            <span class="legend-item"><span class="swatch rocade-swatch"></span>rocade</span>
+            <span class="legend-item"><span class="swatch modeling-zone-swatch"></span>zones du périmètre</span>
+          </span>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole</div>
+    <div class="footer-inner">Modélisation des flux cyclistes &mdash; Bordeaux Métropole</div>
   </footer>
 </body>
 </html>

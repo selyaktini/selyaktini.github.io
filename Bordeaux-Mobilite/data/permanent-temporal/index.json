@@ -1,0 +1,350 @@
+{
+  "definition": "y_obs = médiane des comptages horaires directionnels disponibles dans la zone",
+  "level": "zone",
+  "n_clean_observations": 417222,
+  "n_hourly_rows": 502935,
+  "n_zones": 36,
+  "period_display": "15/05/2024 – 14/05/2026",
+  "period_end": "2026-05-14T22:00:00+00:00",
+  "period_start": "2024-05-15T22:00:00+00:00",
+  "provenance": {
+    "canonical_zonal_source": "data/interim/temporal/03_zones_nettoyees/zones_comptages_observed_hourly.parquet",
+    "generated_at_utc": "2026-08-16T20:54:00+00:00",
+    "producer": "scripts/web/export_permanent_data.py",
+    "sources": [
+      "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet",
+      "data/interim/temporal/03_zones_nettoyees/zones_comptages_observed_hourly.parquet",
+      "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
+      "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling",
+      "data/raw/bordeaux_metropole/comptages_velos/comptages_recents/pc_velo_p.csv"
+    ]
+  },
+  "schema_version": 1,
+  "value_column": "y_obs",
+  "zones": [
+    {
+      "commune": "BORDEAUX",
+      "id": "161008000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 16734,
+      "n_hourly_rows": 17380,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/161008000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161014000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 10336,
+      "n_hourly_rows": 17380,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/161014000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161016000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 2574,
+      "n_hourly_rows": 17379,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/161016000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162005000",
+      "max_sensors_observed": 1,
+      "n_clean_observations": 17219,
+      "n_hourly_rows": 17396,
+      "n_mapped_directional_sensors": 1,
+      "path": "permanent-temporal/162005000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162006000",
+      "max_sensors_observed": 1,
+      "n_clean_observations": 12547,
+      "n_hourly_rows": 12547,
+      "n_mapped_directional_sensors": 1,
+      "path": "permanent-temporal/162006000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162015000",
+      "max_sensors_observed": 6,
+      "n_clean_observations": 15638,
+      "n_hourly_rows": 17432,
+      "n_mapped_directional_sensors": 6,
+      "path": "permanent-temporal/162015000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162017000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 9543,
+      "n_hourly_rows": 17390,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/162017000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162018000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 10900,
+      "n_hourly_rows": 17391,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/162018000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163012000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 16821,
+      "n_hourly_rows": 17381,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/163012000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "166001000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 16735,
+      "n_hourly_rows": 17381,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/166001000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "166002000",
+      "max_sensors_observed": 6,
+      "n_clean_observations": 15619,
+      "n_hourly_rows": 15619,
+      "n_mapped_directional_sensors": 6,
+      "path": "permanent-temporal/166002000.json"
+    },
+    {
+      "commune": "CENON",
+      "id": "166007000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 12641,
+      "n_hourly_rows": 12641,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/166007000.json"
+    },
+    {
+      "commune": "BEGLES",
+      "id": "167005000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 24,
+      "n_hourly_rows": 24,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/167005000.json"
+    },
+    {
+      "commune": "BEGLES",
+      "id": "167009000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 10201,
+      "n_hourly_rows": 10201,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/167009000.json"
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168013000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 16587,
+      "n_hourly_rows": 17392,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/168013000.json"
+    },
+    {
+      "commune": "PESSAC",
+      "id": "169008000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 11289,
+      "n_hourly_rows": 11289,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/169008000.json"
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "170005000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 17303,
+      "n_hourly_rows": 17389,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/170005000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172001000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 12502,
+      "n_hourly_rows": 17386,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/172001000.json"
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172007000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 2897,
+      "n_hourly_rows": 17393,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/172007000.json"
+    },
+    {
+      "commune": "BOUSCAT (LE )",
+      "id": "173007000",
+      "max_sensors_observed": 1,
+      "n_clean_observations": 9107,
+      "n_hourly_rows": 9107,
+      "n_mapped_directional_sensors": 1,
+      "path": "permanent-temporal/173007000.json"
+    },
+    {
+      "commune": "BOUSCAT (LE )",
+      "id": "173009000",
+      "max_sensors_observed": 1,
+      "n_clean_observations": 9106,
+      "n_hourly_rows": 9106,
+      "n_mapped_directional_sensors": 1,
+      "path": "permanent-temporal/173009000.json"
+    },
+    {
+      "commune": "BRUGES",
+      "id": "173011000",
+      "max_sensors_observed": 4,
+      "n_clean_observations": 15838,
+      "n_hourly_rows": 15838,
+      "n_mapped_directional_sensors": 4,
+      "path": "permanent-temporal/173011000.json"
+    },
+    {
+      "commune": "BRUGES",
+      "id": "173013000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 5319,
+      "n_hourly_rows": 5319,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/173013000.json"
+    },
+    {
+      "commune": "CARBON-BLANC",
+      "id": "174005000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 16059,
+      "n_hourly_rows": 17392,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/174005000.json"
+    },
+    {
+      "commune": "LORMONT",
+      "id": "174012000",
+      "max_sensors_observed": 1,
+      "n_clean_observations": 15968,
+      "n_hourly_rows": 17393,
+      "n_mapped_directional_sensors": 1,
+      "path": "permanent-temporal/174012000.json"
+    },
+    {
+      "commune": "LORMONT",
+      "id": "174017000",
+      "max_sensors_observed": 1,
+      "n_clean_observations": 10843,
+      "n_hourly_rows": 17393,
+      "n_mapped_directional_sensors": 1,
+      "path": "permanent-temporal/174017000.json"
+    },
+    {
+      "commune": "CENON",
+      "id": "175004000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 16058,
+      "n_hourly_rows": 17391,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/175004000.json"
+    },
+    {
+      "commune": "BOULIAC",
+      "id": "175013000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 396,
+      "n_hourly_rows": 396,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/175013000.json"
+    },
+    {
+      "commune": "VILLENAVE-D'ORNON",
+      "id": "176007000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 15025,
+      "n_hourly_rows": 15025,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/176007000.json"
+    },
+    {
+      "commune": "GRADIGNAN",
+      "id": "177002000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 12233,
+      "n_hourly_rows": 17392,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/177002000.json"
+    },
+    {
+      "commune": "PESSAC",
+      "id": "178001000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 6297,
+      "n_hourly_rows": 6297,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/178001000.json"
+    },
+    {
+      "commune": "PESSAC",
+      "id": "178002000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 14281,
+      "n_hourly_rows": 15293,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/178002000.json"
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "179002000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 9167,
+      "n_hourly_rows": 9167,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/179002000.json"
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "179003000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 15357,
+      "n_hourly_rows": 15645,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/179003000.json"
+    },
+    {
+      "commune": "EYSINES",
+      "id": "180005000",
+      "max_sensors_observed": 2,
+      "n_clean_observations": 9034,
+      "n_hourly_rows": 17366,
+      "n_mapped_directional_sensors": 2,
+      "path": "permanent-temporal/180005000.json"
+    },
+    {
+      "commune": "EYSINES",
+      "id": "180007000",
+      "max_sensors_observed": 4,
+      "n_clean_observations": 9024,
+      "n_hourly_rows": 9024,
+      "n_mapped_directional_sensors": 4,
+      "path": "permanent-temporal/180007000.json"
+    }
+  ]
+}
