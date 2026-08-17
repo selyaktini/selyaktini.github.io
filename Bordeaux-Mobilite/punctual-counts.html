@@ -3,9 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Comptages ponctuels — Comptages vélo Bordeaux Métropole</title>
-  <meta name="description" content="Campagnes de comptage ponctuel 2021, 2022 et 2023.">
+  <title>Comptages ponctuels — Modélisation des flux cyclistes</title>
+  <meta name="description" content="Campagnes ponctuelles 2021, 2022 et 2023 agrégées au niveau des zones de modélisation.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
@@ -14,11 +17,11 @@
       <h1 class="site-title">Comptages ponctuels</h1>
       <p class="site-subtitle">Campagnes 2021, 2022 et 2023</p>
       <nav class="primary-nav" aria-label="Navigation principale">
-        <a href="index.html">Synthèse</a>
+        <a href="index.html">Accueil</a>
         <a href="study-area.html">Périmètre</a>
-        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="permanent-counts.html">Comptages permanents</a>
         <a href="punctual-counts.html">Comptages ponctuels</a>
-        <a href="methodology.html">Méthode</a>
+        <a href="methodology.html">Méthodologie</a>
       </nav>
     </div>
   </header>
@@ -26,77 +29,88 @@
   <main class="content">
     <section class="section">
       <div class="section-header compact">
-        <p class="lead">Les comptages ponctuels regroupent des unités directionnelles de campagne, classées séparément pour 2021, 2022 et 2023.</p>
+        <h2>Résumé</h2>
+        <p class="lead">Ces mesures sont réalisées lors de campagnes ponctuelles sur huit créneaux horaires. Pour la modélisation, les directions disponibles sont agrégées au niveau des zones.</p>
       </div>
-      <div class="year-tabs" data-year-tabs aria-label="Année de campagne">
-        <button type="button" data-year="2021" aria-pressed="false">2021</button>
-        <button type="button" data-year="2022" aria-pressed="false">2022</button>
-        <button type="button" data-year="2023" aria-pressed="true">2023</button>
+      <div class="key-metrics" aria-label="Chiffres clés des comptages ponctuels">
+        <article class="key-metric">
+          <strong data-metric-path="punctual_counts.n_zones">—</strong>
+          <span>zones couvertes au total</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="punctual_counts.zones_by_year.2021">—</strong>
+          <span>zones en 2021</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="punctual_counts.zones_by_year.2022">—</strong>
+          <span>zones en 2022</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="punctual_counts.zones_by_year.2023">—</strong>
+          <span>zones en 2023</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="punctual_counts.n_slots">—</strong>
+          <span>créneaux par campagne</span>
+        </article>
       </div>
-      <p class="panel-note" data-punctual-summary>2023 : 298 unités directionnelles, 298 unités classables.</p>
+      <p class="definition-note"><strong>Définition :</strong> <span class="mono">y_obs</span> = médiane des directions disponibles pour une zone, une année et un créneau horaire.</p>
+      <p class="source-note">PPM et PPS indiquent seulement les périodes matin et soir ; les créneaux ne sont pas additionnés.</p>
+      <p class="source-note load-note" data-load-error aria-live="polite"></p>
     </section>
 
     <section class="section">
-      <div class="summary-panel">
-        <h2>Distribution des classes</h2>
-        <p class="source-note">Détail de la campagne sélectionnée.</p>
-        <div class="distribution" data-distribution="punctual" aria-label="Classes des comptages ponctuels">
-          <div class="stacked-bar" role="img" aria-label="Classes des comptages ponctuels 2023">
-            <span class="stack-segment class-morning" style="width:10.07%"></span>
-            <span class="stack-segment class-evening" style="width:20.81%"></span>
-            <span class="stack-segment class-balanced" style="width:69.13%"></span>
-            <span class="stack-segment class-insufficient" style="width:0%"></span>
-          </div>
-          <ul class="count-list">
-            <li><span class="label-with-swatch"><span class="swatch class-morning"></span>dominante matin</span><strong><span>30</span><span class="count-percent">10,1 %</span></strong></li>
-            <li><span class="label-with-swatch"><span class="swatch class-evening"></span>dominante soir</span><strong><span>62</span><span class="count-percent">20,8 %</span></strong></li>
-            <li><span class="label-with-swatch"><span class="swatch class-balanced"></span>équilibré</span><strong><span>206</span><span class="count-percent">69,1 %</span></strong></li>
-            <li><span class="label-with-swatch"><span class="swatch class-insufficient"></span>données insuffisantes</span><strong><span>0</span><span class="count-percent">0 %</span></strong></li>
-          </ul>
+      <div class="section-header">
+        <h2>Zones couvertes</h2>
+      </div>
+      <div class="map-shell">
+        <div id="punctual-map" class="map" role="img" aria-label="Carte des zones couvertes par les campagnes ponctuelles et couche secondaire des points de comptage"></div>
+        <div class="map-caption split-caption">
+          <span><span data-metric-path="punctual_counts.n_zones">—</span> zones couvertes ; les points directionnels de campagne sont disponibles comme couche de provenance.</span>
+          <span class="legend" aria-label="Légende de la carte">
+            <span class="legend-item"><span class="swatch punctual-zone-swatch"></span>zone ponctuelle</span>
+            <span class="legend-item"><span class="swatch round punctual-point-swatch"></span>point de campagne</span>
+          </span>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="section-header">
-        <h2>Comparaison annuelle</h2>
+        <div>
+          <h2>Explorateur zonal</h2>
+          <p class="lead">Sélectionnez une zone pour comparer ses huit observations discrètes entre les campagnes disponibles.</p>
+        </div>
       </div>
-      <div class="year-comparison" data-year-comparison="punctual" aria-label="Comparaison des campagnes">
-        <div class="year-strip"><div class="year-strip-head"><strong>2021</strong><span class="unit-count">293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:6.48%"></span><span class="stack-segment class-evening" style="width:24.23%"></span><span class="stack-segment class-balanced" style="width:68.6%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div><div class="mini-counts"><span>matin 19</span><span>soir 71</span><span>équilibré 201</span><span>insuffisant 2</span></div></div>
-        <div class="year-strip"><div class="year-strip-head"><strong>2022</strong><span class="unit-count">293 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:13.65%"></span><span class="stack-segment class-evening" style="width:21.5%"></span><span class="stack-segment class-balanced" style="width:64.16%"></span><span class="stack-segment class-insufficient" style="width:0.68%"></span></div><div class="mini-counts"><span>matin 40</span><span>soir 63</span><span>équilibré 188</span><span>insuffisant 2</span></div></div>
-        <div class="year-strip is-selected"><div class="year-strip-head"><strong>2023</strong><span class="unit-count">298 unités</span></div><div class="stacked-bar compact"><span class="stack-segment class-morning" style="width:10.07%"></span><span class="stack-segment class-evening" style="width:20.81%"></span><span class="stack-segment class-balanced" style="width:69.13%"></span><span class="stack-segment class-insufficient" style="width:0%"></span></div><div class="mini-counts"><span>matin 30</span><span>soir 62</span><span>équilibré 206</span><span>insuffisant 0</span></div></div>
-      </div>
-      <div class="table-wrap">
-        <table>
-            <thead>
-              <tr>
-                <th>Année</th>
-                <th>Unités</th>
-                <th>Matin</th>
-                <th>Soir</th>
-                <th>Équilibré</th>
-                <th>Insuffisant</th>
-              </tr>
-            </thead>
-            <tbody id="punctual-year-table">
-              <tr><td><strong class="mono">2021</strong></td><td>293</td><td>19</td><td>71</td><td>201</td><td>2</td></tr>
-              <tr><td><strong class="mono">2022</strong></td><td>293</td><td>40</td><td>63</td><td>188</td><td>2</td></tr>
-              <tr><td><strong class="mono">2023</strong></td><td>298</td><td>30</td><td>62</td><td>206</td><td>0</td></tr>
-            </tbody>
-          </table>
+      <div class="temporal-explorer">
+        <div class="explorer-toolbar">
+          <label for="punctual-zone-select">Zone</label>
+          <select id="punctual-zone-select" disabled>
+            <option>Chargement des zones…</option>
+          </select>
+          <span id="punctual-zone-summary" class="explorer-summary"></span>
+        </div>
+        <p id="punctual-explorer-status" class="explorer-status" aria-live="polite">Chargement de l’index zonal…</p>
+        <div id="punctual-zone-plot" class="temporal-plot" aria-label="Profils ponctuels de y_obs par campagne pour la zone sélectionnée"></div>
+        <noscript><p class="explorer-status">JavaScript est nécessaire pour afficher l’explorateur zonal.</p></noscript>
       </div>
     </section>
 
     <section class="section">
-      <div class="action-row action-list explorer-links">
-        <a class="text-action" href="explorers/punctual-polarity.html">Explorer la classification ponctuelle</a>
+      <div class="section-header">
+        <h2>Méthodologie courte</h2>
       </div>
-      <p class="footnote">Les dates exactes des campagnes ne sont pas documentées dans les classeurs sources.</p>
+      <ol class="project-path" aria-label="Chaîne de préparation des observations ponctuelles">
+        <li>Campagnes</li>
+        <li>Rattachement aux zones</li>
+        <li>Médiane des directions</li>
+        <li>Profils horaires zonaux</li>
+      </ol>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole</div>
+    <div class="footer-inner">Modélisation des flux cyclistes &mdash; Bordeaux Métropole</div>
   </footer>
 </body>
 </html>

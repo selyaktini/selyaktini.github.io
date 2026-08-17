@@ -783,6 +783,15 @@ p {
   background: #263f56;
 }
 
+.punctual-zone-swatch {
+  border-color: #8a5b12;
+  background: #e2b85f;
+}
+
+.punctual-point-swatch {
+  background: #5f4a7a;
+}
+
 .fact-line {
   display: flex;
   flex-wrap: wrap;

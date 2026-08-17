@@ -1,0 +1,1384 @@
+{
+  "campaign_years": [
+    2021,
+    2022,
+    2023
+  ],
+  "definition": "y_obs = médiane des directions disponibles pour une zone, une année et un créneau horaire",
+  "level": "zone",
+  "n_slots": 8,
+  "n_zonal_observations": 2656,
+  "n_zone_campaigns": 332,
+  "n_zones": 112,
+  "period_note": "PPM et PPS sont uniquement des labels matin/soir ; les créneaux ne sont pas additionnés.",
+  "profile_type": "discrete_campaign_slots",
+  "provenance": {
+    "canonical_zonal_source": "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
+    "generated_at_utc": "2026-08-17T11:43:53+00:00",
+    "producer": "scripts/web/export_punctual_data.py",
+    "sources": [
+      "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
+      "data/interim/punctual/punctual_2021_2023_zones.csv",
+      "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling"
+    ]
+  },
+  "schema_version": 1,
+  "slot_labels": [
+    "07–08",
+    "08–09",
+    "09–10",
+    "10–11",
+    "15–16",
+    "16–17",
+    "17–18",
+    "18–19"
+  ],
+  "value_column": "y_obs",
+  "zones": [
+    {
+      "commune": "BORDEAUX",
+      "id": "161002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161003000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161003000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161009000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161009000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161010000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161010000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161014000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161014000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161015000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161015000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161016000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161016000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161017000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161017000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161018000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161018000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161019000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161019000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "161021000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/161021000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162009000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162009000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162010000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162010000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162011000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162011000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162012000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162012000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162013000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162013000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162014000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162014000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162015000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162015000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162018000",
+      "n_observations": 8,
+      "n_years_available": 1,
+      "path": "punctual-temporal/162018000.json",
+      "years_available": [
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "162019000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/162019000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163003000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163003000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163004000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163004000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163011000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163011000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163013000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163013000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163015000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163015000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "163016000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/163016000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "164002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/164002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "164003000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/164003000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "164006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/164006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165003000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165003000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165004000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165004000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165009000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165009000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165010000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165010000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165012000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165012000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "165013000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/165013000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "166001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/166001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "166002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/166002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "166005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/166005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "CENON",
+      "id": "166007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/166007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "FLOIRAC",
+      "id": "166008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/166008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "FLOIRAC",
+      "id": "166009000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/166009000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "FLOIRAC",
+      "id": "166011000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/166011000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BEGLES",
+      "id": "167004000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/167004000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BEGLES",
+      "id": "167005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/167005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BEGLES",
+      "id": "167008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/167008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BEGLES",
+      "id": "167009000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/167009000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "VILLENAVE-D'ORNON",
+      "id": "167013000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/167013000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168004000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/168004000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/168007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/168008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168009000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/168009000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168011000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/168011000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168013000",
+      "n_observations": 8,
+      "n_years_available": 1,
+      "path": "punctual-temporal/168013000.json",
+      "years_available": [
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168014000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/168014000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "TALENCE",
+      "id": "168015000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/168015000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "PESSAC",
+      "id": "169006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/169006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "PESSAC",
+      "id": "169013000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/169013000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "PESSAC",
+      "id": "169016000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/169016000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "171001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/171001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "171010000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/171010000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "171011000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/171011000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "171015000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/171015000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172012000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172012000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172015000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172015000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BORDEAUX",
+      "id": "172021000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/172021000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BOUSCAT (LE )",
+      "id": "173001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BOUSCAT (LE )",
+      "id": "173004000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173004000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BOUSCAT (LE )",
+      "id": "173005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BOUSCAT (LE )",
+      "id": "173006000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173006000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BOUSCAT (LE )",
+      "id": "173007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BRUGES",
+      "id": "173010000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173010000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BRUGES",
+      "id": "173012000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173012000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BRUGES",
+      "id": "173014000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/173014000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "CARBON-BLANC",
+      "id": "174005000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/174005000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "LORMONT",
+      "id": "174014000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/174014000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "LORMONT",
+      "id": "174018000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/174018000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "CENON",
+      "id": "175003000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/175003000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "CENON",
+      "id": "175004000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/175004000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "ARTIGUES-PRES-BORDEAUX",
+      "id": "175008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/175008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "BOULIAC",
+      "id": "175013000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/175013000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "VILLENAVE-D'ORNON",
+      "id": "176001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/176001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "VILLENAVE-D'ORNON",
+      "id": "176007000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/176007000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "GRADIGNAN",
+      "id": "177002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/177002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "GRADIGNAN",
+      "id": "177008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/177008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "PESSAC",
+      "id": "178001000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/178001000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "PESSAC",
+      "id": "178002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/178002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "MERIGNAC",
+      "id": "179003000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/179003000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "EYSINES",
+      "id": "180002000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/180002000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "commune": "EYSINES",
+      "id": "180008000",
+      "n_observations": 24,
+      "n_years_available": 3,
+      "path": "punctual-temporal/180008000.json",
+      "years_available": [
+        2021,
+        2022,
+        2023
+      ]
+    }
+  ],
+  "zones_by_year": {
+    "2021": 110,
+    "2022": 110,
+    "2023": 112
+  }
+}

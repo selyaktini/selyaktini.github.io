@@ -9,6 +9,22 @@
     "1": { label: "dominante soir", shortLabel: "soir", color: "#9b82d0", className: "class-evening" },
     "2": { label: "équilibré", shortLabel: "équilibré", color: "#4fa69c", className: "class-balanced" }
   };
+  let permanentSelectedZoneId = null;
+  let punctualSelectedZoneId = null;
+
+  function selectPermanentZone(zoneId) {
+    permanentSelectedZoneId = String(zoneId);
+    document.dispatchEvent(new CustomEvent("permanent-zone-select", {
+      detail: { zoneId: permanentSelectedZoneId }
+    }));
+  }
+
+  function selectPunctualZone(zoneId) {
+    punctualSelectedZoneId = String(zoneId);
+    document.dispatchEvent(new CustomEvent("punctual-zone-select", {
+      detail: { zoneId: punctualSelectedZoneId }
+    }));
+  }
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -145,124 +161,6 @@
         <p>La vue détaillée permet de sélectionner un capteur et de comparer les séries horaires.</p>
       `;
     });
-  }
-
-  function renderPunctualYearTable(metrics) {
-    const table = document.getElementById("punctual-year-table");
-    if (!table) {
-      return;
-    }
-    const rows = getByPath(metrics, "punctual_counts.by_year") || [];
-    table.innerHTML = rows.map((row) => {
-      const byType = {};
-      row.type_counts.forEach((item) => {
-        byType[item.polarity_type] = item.n_units;
-      });
-      return `
-        <tr>
-          <td><strong class="mono">${escapeHtml(row.campaign_year)}</strong></td>
-          <td>${formatValue(row.n_directional_units)}</td>
-          <td>${formatValue(byType[0] || 0)}</td>
-          <td>${formatValue(byType[1] || 0)}</td>
-          <td>${formatValue(byType[2] || 0)}</td>
-          <td>${formatValue(byType[-1] || 0)}</td>
-        </tr>
-      `;
-    }).join("");
-  }
-
-  function renderPunctualPreview(row) {
-    document.querySelectorAll("[data-punctual-preview]").forEach((element) => {
-      const counts = normalizeCounts(row.type_counts, "n_units");
-      const total = counts.reduce((sum, item) => sum + item.count, 0);
-      element.innerHTML = `
-        <div class="year-strip selected-year-strip">
-          <div class="year-strip-head">
-            <strong>${escapeHtml(row.campaign_year)}</strong>
-            <span>${formatValue(row.n_directional_units)} unités directionnelles</span>
-          </div>
-          <div class="stacked-bar compact" role="img" aria-label="Distribution ${escapeHtml(row.campaign_year)}">${distributionSegments(counts, total)}</div>
-        </div>
-      `;
-    });
-  }
-
-  function renderPunctualYearComparison(metrics, selectedYear) {
-    const rows = getByPath(metrics, "punctual_counts.by_year") || [];
-    document.querySelectorAll("[data-year-comparison='punctual']").forEach((element) => {
-      element.innerHTML = rows.map((row) => {
-        const counts = normalizeCounts(row.type_counts, "n_units");
-        const total = counts.reduce((sum, item) => sum + item.count, 0);
-        const className = Number(row.campaign_year) === Number(selectedYear) ? "year-strip is-selected" : "year-strip";
-        const values = counts.map((item) => `
-          <span><span class="swatch ${item.className}"></span>${escapeHtml(item.shortLabel)} ${formatValue(item.count)}</span>
-        `).join("");
-        return `
-          <div class="${className}">
-            <div class="year-strip-head">
-              <strong>${escapeHtml(row.campaign_year)}</strong>
-              <span>${formatValue(row.n_directional_units)} unités</span>
-            </div>
-            <div class="stacked-bar compact" role="img" aria-label="Distribution ${escapeHtml(row.campaign_year)}">${distributionSegments(counts, total)}</div>
-            <div class="mini-counts">${values}</div>
-          </div>
-        `;
-      }).join("");
-    });
-  }
-
-  function renderPunctualSelected(metrics, selectedYear) {
-    const rows = getByPath(metrics, "punctual_counts.by_year") || [];
-    const year = Number(selectedYear);
-    const row = rows.find((item) => Number(item.campaign_year) === year) || rows[rows.length - 1];
-    if (!row) {
-      return;
-    }
-
-    document.querySelectorAll("[data-selected-year]").forEach((element) => {
-      element.textContent = row.campaign_year;
-    });
-    document.querySelectorAll("[data-punctual-summary]").forEach((element) => {
-      element.textContent = `${row.campaign_year} : ${formatValue(row.n_directional_units)} unités directionnelles, ${formatValue(row.n_classifiable_units)} unités classables.`;
-    });
-    document.querySelectorAll("[data-distribution='punctual']").forEach((element) => {
-      renderDistributionElement(element, row.type_counts, "n_units");
-    });
-    renderPunctualPreview(row);
-    renderPunctualYearComparison(metrics, row.campaign_year);
-  }
-
-  function initPunctualTabs(metrics) {
-    const rows = getByPath(metrics, "punctual_counts.by_year") || [];
-    const tabs = document.querySelectorAll("[data-year-tabs]");
-    if (!tabs.length || !rows.length) {
-      return;
-    }
-    const latestYear = rows[rows.length - 1].campaign_year;
-
-    tabs.forEach((container) => {
-      if (!container.children.length) {
-        rows.forEach((row) => {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.textContent = row.campaign_year;
-          button.setAttribute("data-year", row.campaign_year);
-          container.appendChild(button);
-        });
-      }
-      container.querySelectorAll("button").forEach((button) => {
-        const year = Number(button.getAttribute("data-year") || button.textContent);
-        button.setAttribute("aria-pressed", String(year === Number(latestYear)));
-        button.addEventListener("click", () => {
-          document.querySelectorAll("[data-year-tabs] button").forEach((item) => {
-            const itemYear = Number(item.getAttribute("data-year") || item.textContent);
-            item.setAttribute("aria-pressed", String(itemYear === year));
-          });
-          renderPunctualSelected(metrics, year);
-        });
-      });
-    });
-    renderPunctualSelected(metrics, latestYear);
   }
 
   function setActiveNav() {
@@ -453,6 +351,51 @@
     `;
   }
 
+  function punctualZoneStyle() {
+    return {
+      color: "#8a5b12",
+      weight: 1,
+      fillColor: "#e2b85f",
+      fillOpacity: 0.55
+    };
+  }
+
+  function punctualZonePopup(properties) {
+    const years = Array.isArray(properties.years_available)
+      ? properties.years_available.join(", ")
+      : "non documentées";
+    return `
+      <strong>Zone ${escapeHtml(properties.zone_id)}</strong><br>
+      Commune : ${escapeHtml(properties.commune || "non documentée")}<br>
+      Années disponibles : ${escapeHtml(years)}
+    `;
+  }
+
+  function punctualPointMarker(feature, latlng, selected) {
+    return L.circleMarker(latlng, {
+      radius: selected ? 6 : 4,
+      color: "#ffffff",
+      weight: selected ? 1.5 : 1,
+      fillColor: "#5f4a7a",
+      fillOpacity: selected ? 1 : 0.8
+    });
+  }
+
+  function punctualPointPopup(properties) {
+    const directions = Array.isArray(properties.direction_labels)
+      ? properties.direction_labels.join(" / ")
+      : properties.direction_labels || "non documentée";
+    const address = properties.adresse
+      ? `<br>Adresse : ${escapeHtml(properties.adresse)}`
+      : "";
+    return `
+      <strong>Campagne ${escapeHtml(properties.campaign_year)} — ${escapeHtml(properties.poste)}</strong><br>
+      Point : ${escapeHtml(properties.num_cpev)}<br>
+      Direction : ${escapeHtml(directions)}${address}<br>
+      Zone : ${escapeHtml(properties.zone_id)}
+    `;
+  }
+
   function candidateMarker(feature, latlng) {
     const properties = feature.properties || {};
     const shared = properties.candidate_type === "shared_boundary";
@@ -628,26 +571,173 @@
     try {
       const zones = await loadJson("permanent_zones.geojson");
       const map = buildBaseMap(element);
+      const zoneLayers = new Map();
+      const selectedSensorsLayer = L.layerGroup().addTo(map);
+      let sensorFeatures = [];
       const zonesLayer = L.geoJSON(zones, {
         style: permanentZoneStyle,
         onEachFeature(feature, layer) {
-          layer.bindPopup(permanentZonePopup(feature.properties || {}));
+          const properties = feature.properties || {};
+          zoneLayers.set(String(properties.zone_id), layer);
+          layer.bindPopup(permanentZonePopup(properties));
+          layer.on("click", () => selectPermanentZone(properties.zone_id));
         }
       }).addTo(map);
+
+      function showSelectedZone(zoneId) {
+        const normalizedZoneId = String(zoneId);
+        const selectedZoneLayer = zoneLayers.get(normalizedZoneId);
+        if (!selectedZoneLayer) {
+          return;
+        }
+        zonesLayer.resetStyle();
+        selectedZoneLayer.setStyle({
+          color: "#153f3c",
+          weight: 4,
+          fillOpacity: 0.72
+        });
+        selectedZoneLayer.bringToFront();
+
+        selectedSensorsLayer.clearLayers();
+        sensorFeatures
+          .filter((feature) => String((feature.properties || {}).zone_id) === normalizedZoneId)
+          .forEach((feature) => {
+            const marker = permanentSensorMarker(feature, L.latLng(
+              feature.geometry.coordinates[1],
+              feature.geometry.coordinates[0]
+            ));
+            marker.bindPopup(permanentSensorPopup(feature.properties || {}));
+            marker.on("click", () => selectPermanentZone(normalizedZoneId));
+            marker.addTo(selectedSensorsLayer);
+          });
+      }
+
+      document.addEventListener("permanent-zone-select", (event) => {
+        showSelectedZone(event.detail.zoneId);
+      });
+      if (permanentSelectedZoneId !== null) {
+        showSelectedZone(permanentSelectedZoneId);
+      }
 
       const overlays = { "Zones avec observations permanentes": zonesLayer };
       try {
         const sensors = await loadJson("permanent_sensors.geojson");
+        sensorFeatures = sensors.features || [];
         overlays["Capteurs directionnels"] = L.geoJSON(sensors, {
           pointToLayer(feature, latlng) {
             return permanentSensorMarker(feature, latlng);
           },
           onEachFeature(feature, layer) {
-            layer.bindPopup(permanentSensorPopup(feature.properties || {}));
+            const properties = feature.properties || {};
+            layer.bindPopup(permanentSensorPopup(properties));
+            layer.on("click", () => {
+              if (zoneLayers.has(String(properties.zone_id))) {
+                selectPermanentZone(properties.zone_id);
+              }
+            });
           }
         });
+        if (permanentSelectedZoneId !== null) {
+          showSelectedZone(permanentSelectedZoneId);
+        }
       } catch (sensorError) {
         console.warn("Couche secondaire des capteurs indisponible.", sensorError);
+      }
+
+      L.control.layers(null, overlays, { collapsed: true }).addTo(map);
+      const bounds = zonesLayer.getBounds();
+      if (bounds.isValid()) {
+        map.fitBounds(bounds.pad(0.055));
+      }
+    } catch (error) {
+      console.error(error);
+      showMapFallback(element);
+    }
+  }
+
+  async function initPunctualMap() {
+    const element = document.getElementById("punctual-map");
+    if (!element) {
+      return;
+    }
+    if (typeof L === "undefined") {
+      showMapFallback(element);
+      return;
+    }
+    try {
+      const zones = await loadJson("punctual_zones.geojson");
+      const map = buildBaseMap(element);
+      const zoneLayers = new Map();
+      const selectedPointsLayer = L.layerGroup().addTo(map);
+      let pointFeatures = [];
+      const zonesLayer = L.geoJSON(zones, {
+        style: punctualZoneStyle,
+        onEachFeature(feature, layer) {
+          const properties = feature.properties || {};
+          zoneLayers.set(String(properties.zone_id), layer);
+          layer.bindPopup(punctualZonePopup(properties));
+          layer.on("click", () => selectPunctualZone(properties.zone_id));
+        }
+      }).addTo(map);
+
+      function showSelectedZone(zoneId) {
+        const normalizedZoneId = String(zoneId);
+        const selectedZoneLayer = zoneLayers.get(normalizedZoneId);
+        if (!selectedZoneLayer) {
+          return;
+        }
+        zonesLayer.resetStyle();
+        selectedZoneLayer.setStyle({
+          color: "#5d3909",
+          weight: 4,
+          fillOpacity: 0.72
+        });
+        selectedZoneLayer.bringToFront();
+
+        selectedPointsLayer.clearLayers();
+        pointFeatures
+          .filter((feature) => String((feature.properties || {}).zone_id) === normalizedZoneId)
+          .forEach((feature) => {
+            const marker = punctualPointMarker(feature, L.latLng(
+              feature.geometry.coordinates[1],
+              feature.geometry.coordinates[0]
+            ), true);
+            marker.bindPopup(punctualPointPopup(feature.properties || {}));
+            marker.on("click", () => selectPunctualZone(normalizedZoneId));
+            marker.addTo(selectedPointsLayer);
+          });
+      }
+
+      document.addEventListener("punctual-zone-select", (event) => {
+        showSelectedZone(event.detail.zoneId);
+      });
+      if (punctualSelectedZoneId !== null) {
+        showSelectedZone(punctualSelectedZoneId);
+      }
+
+      const overlays = { "Zones couvertes": zonesLayer };
+      try {
+        const points = await loadJson("punctual_points.geojson");
+        pointFeatures = points.features || [];
+        overlays["Points directionnels de campagne"] = L.geoJSON(points, {
+          pointToLayer(feature, latlng) {
+            return punctualPointMarker(feature, latlng, false);
+          },
+          onEachFeature(feature, layer) {
+            const properties = feature.properties || {};
+            layer.bindPopup(punctualPointPopup(properties));
+            layer.on("click", () => {
+              if (zoneLayers.has(String(properties.zone_id))) {
+                selectPunctualZone(properties.zone_id);
+              }
+            });
+          }
+        });
+        if (punctualSelectedZoneId !== null) {
+          showSelectedZone(punctualSelectedZoneId);
+        }
+      } catch (pointError) {
+        console.warn("Couche secondaire des points ponctuels indisponible.", pointError);
       }
 
       L.control.layers(null, overlays, { collapsed: true }).addTo(map);
@@ -824,8 +914,193 @@
       }
     }
 
-    select.addEventListener("change", () => renderZone(select.value));
-    await renderZone(zones[0].id);
+    document.addEventListener("permanent-zone-select", (event) => {
+      const zoneId = event.detail.zoneId;
+      if (!zones.some((zone) => zone.id === zoneId)) {
+        return;
+      }
+      select.value = zoneId;
+      renderZone(zoneId);
+    });
+    select.addEventListener("change", () => selectPermanentZone(select.value));
+    const initialZoneId = zones.some((zone) => zone.id === permanentSelectedZoneId)
+      ? permanentSelectedZoneId
+      : zones[0].id;
+    selectPermanentZone(initialZoneId);
+  }
+
+  async function initPunctualExplorer() {
+    const select = document.getElementById("punctual-zone-select");
+    const plot = document.getElementById("punctual-zone-plot");
+    const status = document.getElementById("punctual-explorer-status");
+    const summary = document.getElementById("punctual-zone-summary");
+    if (!select || !plot || !status) {
+      return;
+    }
+
+    let index;
+    try {
+      index = await loadJson("punctual-temporal/index.json");
+    } catch (error) {
+      console.error(error);
+      status.textContent = "L’index des profils zonaux n’a pas pu être chargé.";
+      return;
+    }
+
+    if (typeof Plotly === "undefined") {
+      status.textContent = "La bibliothèque de tracé n’a pas pu être chargée.";
+      return;
+    }
+
+    const zones = Array.isArray(index.zones) ? index.zones : [];
+    if (!zones.length) {
+      status.textContent = "Aucun profil zonal n’est disponible.";
+      return;
+    }
+
+    select.innerHTML = "";
+    zones.forEach((zone) => {
+      const option = document.createElement("option");
+      option.value = zone.id;
+      option.textContent = zone.commune
+        ? `${zone.id} — ${zone.commune}`
+        : zone.id;
+      select.appendChild(option);
+    });
+    select.disabled = false;
+
+    const plotConfig = {
+      responsive: true,
+      displaylogo: false,
+      modeBarButtonsToRemove: ["lasso2d", "select2d"]
+    };
+    const campaignColors = {
+      "2021": "#26736d",
+      "2022": "#a66f17",
+      "2023": "#5f4a7a"
+    };
+    let requestNumber = 0;
+
+    async function renderZone(zoneId) {
+      const zone = zones.find((item) => item.id === zoneId);
+      if (!zone) {
+        return;
+      }
+      const currentRequest = ++requestNumber;
+      select.disabled = true;
+      status.textContent = `Chargement de la zone ${zone.id}…`;
+      if (summary) {
+        summary.textContent = "";
+      }
+
+      try {
+        const payload = await loadJson(zone.path);
+        if (currentRequest !== requestNumber) {
+          return;
+        }
+        const traces = payload.campaigns.flatMap((campaign) => {
+          return ["PPM", "PPS"].map((period, periodIndex) => {
+            const observations = campaign.observations.filter((observation) => {
+              return observation.period === period;
+            });
+            return {
+              type: "scatter",
+              mode: "lines+markers",
+              name: String(campaign.campaign_year),
+              legendgroup: String(campaign.campaign_year),
+              showlegend: periodIndex === 0,
+              connectgaps: false,
+              x: observations.map((observation) => observation.slot),
+              y: observations.map((observation) => observation.y_obs),
+              customdata: observations.map((observation) => [
+                observation.n_directions_obs,
+                observation.period
+              ]),
+              line: {
+                color: campaignColors[String(campaign.campaign_year)] || "#617080",
+                width: 2
+              },
+              marker: { size: 7 },
+              hovertemplate: `année=${campaign.campaign_year}<br>créneau=%{x}<br>y_obs=%{y}<br>directions disponibles=%{customdata[0]}<br>période=%{customdata[1]}<extra></extra>`
+            };
+          });
+        });
+        const layout = {
+          template: "plotly_white",
+          title: { text: `Zone ${payload.zone_id}`, font: { size: 16 } },
+          hovermode: "closest",
+          margin: { l: 65, r: 30, t: 80, b: 65 },
+          legend: { orientation: "h", y: 1.14, groupclick: "togglegroup" },
+          xaxis: {
+            title: "Créneau horaire",
+            type: "category",
+            categoryorder: "array",
+            categoryarray: payload.slot_labels
+          },
+          yaxis: { title: "y_obs", rangemode: "tozero" },
+          shapes: [
+            {
+              type: "line",
+              xref: "x",
+              yref: "paper",
+              x0: 3.5,
+              x1: 3.5,
+              y0: 0,
+              y1: 1,
+              line: { color: "#b8c8d5", width: 1.5, dash: "dot" }
+            }
+          ],
+          annotations: [
+            {
+              x: "08–09",
+              xref: "x",
+              y: 1.04,
+              yref: "paper",
+              text: "Matin · PPM",
+              showarrow: false,
+              font: { color: "#617080", size: 12 }
+            },
+            {
+              x: "16–17",
+              xref: "x",
+              y: 1.04,
+              yref: "paper",
+              text: "Soir · PPS",
+              showarrow: false,
+              font: { color: "#617080", size: 12 }
+            }
+          ],
+          uirevision: payload.zone_id
+        };
+        await Plotly.react(plot, traces, layout, plotConfig);
+        const years = payload.campaigns.map((campaign) => campaign.campaign_year);
+        status.textContent = `${formatValue(payload.campaigns.length)} campagne(s), huit observations discrètes par campagne.`;
+        if (summary) {
+          summary.textContent = `Années disponibles : ${years.join(", ")}`;
+        }
+      } catch (error) {
+        console.error(error);
+        status.textContent = `Le profil de la zone ${zone.id} n’a pas pu être chargé.`;
+      } finally {
+        if (currentRequest === requestNumber) {
+          select.disabled = false;
+        }
+      }
+    }
+
+    document.addEventListener("punctual-zone-select", (event) => {
+      const zoneId = event.detail.zoneId;
+      if (!zones.some((zone) => zone.id === zoneId)) {
+        return;
+      }
+      select.value = zoneId;
+      renderZone(zoneId);
+    });
+    select.addEventListener("change", () => selectPunctualZone(select.value));
+    const initialZoneId = zones.some((zone) => zone.id === punctualSelectedZoneId)
+      ? punctualSelectedZoneId
+      : zones[0].id;
+    selectPunctualZone(initialZoneId);
   }
 
   async function initMetrics() {
@@ -835,8 +1110,6 @@
       renderPermanentDistribution(metrics);
       renderPermanentTable(metrics);
       renderTemporalPreview(metrics);
-      renderPunctualYearTable(metrics);
-      initPunctualTabs(metrics);
     } catch (error) {
       console.error(error);
       document.querySelectorAll("[data-load-error]").forEach((element) => {
@@ -852,7 +1125,9 @@
       initHomeMap(),
       initStudyAreaMap(),
       initPermanentMap(),
-      initPermanentExplorer()
+      initPermanentExplorer(),
+      initPunctualMap(),
+      initPunctualExplorer()
     ]);
   }
 

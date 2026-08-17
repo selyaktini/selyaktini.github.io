@@ -2,7 +2,10 @@
   "exported_files": [
     {
       "description": "Small JSON metrics and display metadata used by the static pages.",
-      "producer": "scripts/web/export_permanent_data.py",
+      "producers": [
+        "scripts/web/export_permanent_data.py",
+        "scripts/web/export_punctual_data.py"
+      ],
       "public_file": "data/site_metrics.json",
       "sources": [
         "data/processed/temporal/sensor_polarity_classification.csv",
@@ -13,7 +16,9 @@
         "data/interim/spatial/01_zones_capteurs/capteurs_velo.gpkg",
         "data/interim/temporal/02_capteurs_nettoyes/capteurs_hourly_clean.parquet",
         "data/interim/temporal/03_zones_nettoyees/zones_comptages_observed_hourly.parquet",
-        "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet"
+        "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
+        "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
+        "data/interim/punctual/punctual_2021_2023_zones.csv"
       ]
     },
     {
@@ -127,9 +132,34 @@
       "sources": [
         "data/interim/temporal/03_zones_nettoyees/zones_comptages_observed_hourly.parquet"
       ]
+    },
+    {
+      "description": "Les 112 zones couvertes par au moins une campagne ponctuelle entre 2021 et 2023.",
+      "producer": "scripts/web/export_punctual_data.py",
+      "public_file": "data/punctual_zones.geojson",
+      "sources": [
+        "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling"
+      ]
+    },
+    {
+      "description": "685 points directionnels de campagne, publiés une seule fois par année, Num_CPEV et poste.",
+      "producer": "scripts/web/export_punctual_data.py",
+      "public_file": "data/punctual_points.geojson",
+      "sources": [
+        "data/interim/punctual/punctual_2021_2023_zones.csv"
+      ]
+    },
+    {
+      "description": "Index zonal et un fichier par zone contenant les huit observations discrètes de chaque campagne disponible.",
+      "producer": "scripts/web/export_punctual_data.py",
+      "public_file": "data/punctual-temporal/*.json",
+      "sources": [
+        "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv"
+      ]
     }
   ],
-  "generated_at_utc": "2026-08-16T20:54:00+00:00",
+  "generated_at_utc": "2026-08-17T11:43:53+00:00",
   "intentionally_not_published": [
     "raw Excel workbooks",
     "raw CSV files",
@@ -137,7 +167,6 @@
     "complete hourly sensor observation tables",
     "large modelling artifacts",
     "model weights",
-    "punctual X/Y coordinates or punctual map layers",
     "private or unnecessary metadata"
   ],
   "purpose": "Lightweight public assets for the Bordeaux Bicycle Counts Explorer.",

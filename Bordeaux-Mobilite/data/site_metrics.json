@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-16T20:54:00+00:00",
+  "generated_at_utc": "2026-08-17T11:43:53+00:00",
   "overview_metrics": [
     {
       "id": "rocade-zones",
@@ -14,10 +14,10 @@
       "value": 84
     },
     {
-      "id": "punctual-units",
-      "label": "Punctual directional units classified",
-      "note": "Across 2021, 2022 and 2023.",
-      "value": 884
+      "id": "punctual-zones",
+      "label": "Punctual zones covered",
+      "note": "Across the 2021, 2022 and 2023 campaigns.",
+      "value": 112
     },
     {
       "id": "punctual-campaigns",
@@ -112,129 +112,48 @@
     }
   },
   "punctual_counts": {
-    "by_year": [
-      {
-        "campaign_year": 2021,
-        "n_classifiable_units": 291,
-        "n_directional_units": 293,
-        "n_evening_zero": 173,
-        "n_morning_zero": 175,
-        "n_unmatchable_between_hourly_sheets": 2,
-        "source_file": "Observatoire_Velos_2021_CPEV_V2.xlsx",
-        "type_counts": [
-          {
-            "color": "#7a1f1f",
-            "label": "insufficient data",
-            "n_units": 2,
-            "polarity_type": -1
-          },
-          {
-            "color": "#1d5fa7",
-            "label": "morning-dominant",
-            "n_units": 19,
-            "polarity_type": 0
-          },
-          {
-            "color": "#1f7a57",
-            "label": "evening-dominant",
-            "n_units": 71,
-            "polarity_type": 1
-          },
-          {
-            "color": "#6b7280",
-            "label": "balanced",
-            "n_units": 201,
-            "polarity_type": 2
-          }
-        ]
-      },
-      {
-        "campaign_year": 2022,
-        "n_classifiable_units": 291,
-        "n_directional_units": 293,
-        "n_evening_zero": 173,
-        "n_morning_zero": 175,
-        "n_unmatchable_between_hourly_sheets": 2,
-        "source_file": "Observatoire_Velos_2022_CPEV.xlsx",
-        "type_counts": [
-          {
-            "color": "#7a1f1f",
-            "label": "insufficient data",
-            "n_units": 2,
-            "polarity_type": -1
-          },
-          {
-            "color": "#1d5fa7",
-            "label": "morning-dominant",
-            "n_units": 40,
-            "polarity_type": 0
-          },
-          {
-            "color": "#1f7a57",
-            "label": "evening-dominant",
-            "n_units": 63,
-            "polarity_type": 1
-          },
-          {
-            "color": "#6b7280",
-            "label": "balanced",
-            "n_units": 188,
-            "polarity_type": 2
-          }
-        ]
-      },
-      {
-        "campaign_year": 2023,
-        "n_classifiable_units": 298,
-        "n_directional_units": 298,
-        "n_evening_zero": 180,
-        "n_morning_zero": 183,
-        "n_unmatchable_between_hourly_sheets": 0,
-        "source_file": "Observatoire_Velos_2023.xlsx",
-        "type_counts": [
-          {
-            "color": "#7a1f1f",
-            "label": "insufficient data",
-            "n_units": 0,
-            "polarity_type": -1
-          },
-          {
-            "color": "#1d5fa7",
-            "label": "morning-dominant",
-            "n_units": 30,
-            "polarity_type": 0
-          },
-          {
-            "color": "#1f7a57",
-            "label": "evening-dominant",
-            "n_units": 62,
-            "polarity_type": 1
-          },
-          {
-            "color": "#6b7280",
-            "label": "balanced",
-            "n_units": 206,
-            "polarity_type": 2
-          }
-        ]
-      }
-    ],
     "campaign_years": [
       2021,
       2022,
       2023
     ],
-    "date_warning": "Campaign dates are not documented in the source workbooks. These profiles are used descriptively and cannot yet support date-specific temporal validation.",
+    "definition": "y_obs = médiane des directions disponibles pour une zone, une année et un créneau horaire",
+    "files": {
+      "points": "data/punctual_points.geojson",
+      "temporal_index": "data/punctual-temporal/index.json",
+      "zones": "data/punctual_zones.geojson"
+    },
     "n_campaigns": 3,
-    "n_classifiable_units": 880,
-    "n_directional_units": 884,
-    "retained_raw_unit": "campaign_year x Num_CPEV x Poste x Direction",
-    "summary_file": "data/punctual_polarity_summary.csv",
-    "type_totals": {
-      "-1": 4,
-      "0": 89,
-      "1": 196,
-      "2": 595
+    "n_directional_campaign_points": 685,
+    "n_slots": 8,
+    "n_zonal_observations": 2656,
+    "n_zone_campaigns": 332,
+    "n_zones": 112,
+    "period_note": "PPM et PPS sont uniquement des labels matin/soir ; les créneaux ne sont pas additionnés.",
+    "provenance": {
+      "canonical_zonal_source": "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
+      "generated_at_utc": "2026-08-17T11:43:53+00:00",
+      "producer": "scripts/web/export_punctual_data.py",
+      "sources": [
+        "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
+        "data/interim/punctual/punctual_2021_2023_zones.csv",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling"
+      ]
+    },
+    "slot_labels": [
+      "07–08",
+      "08–09",
+      "09–10",
+      "10–11",
+      "15–16",
+      "16–17",
+      "17–18",
+      "18–19"
+    ],
+    "zones_by_year": {
+      "2021": 110,
+      "2022": 110,
+      "2023": 112
     }
   },
   "study_area": {
@@ -259,6 +178,8 @@
       "inward_transfer_candidates": "data/inward_transfer_candidates.geojson",
       "permanent_sensors": "data/permanent_sensors.geojson",
       "permanent_zones": "data/permanent_zones.geojson",
+      "punctual_points": "data/punctual_points.geojson",
+      "punctual_zones": "data/punctual_zones.geojson",
       "rocade_interior": "data/rocade_interior.geojson",
       "shared_boundary_candidates": "data/shared_boundary_candidates.geojson",
       "zones_excluded": "data/zones_excluded.geojson",
