@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Couverture des observations — Modélisation des flux cyclistes</title>
+  <meta name="description" content="Complémentarité spatiale des comptages permanents et ponctuels sur les 247 zones de modélisation.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">Couverture des observations</h1>
+      <p class="site-subtitle">Complémentarité des comptages permanents et ponctuels</p>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="study-area.html">Périmètre</a>
+        <a href="permanent-counts.html">Comptages permanents</a>
+        <a href="punctual-counts.html">Comptages ponctuels</a>
+        <a href="observation-coverage.html">Couverture</a>
+        <a href="methodology.html">Méthodologie</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="section">
+      <div class="section-header compact">
+        <h2>Résumé</h2>
+        <p class="lead">Les deux sources apportent des informations complémentaires sur le périmètre d’étude. Leur croisement permet d’identifier les zones directement observées et celles pour lesquelles une reconstruction spatiale reste nécessaire.</p>
+      </div>
+      <div class="key-metrics" aria-label="Chiffres clés de la couverture des observations">
+        <article class="key-metric">
+          <strong data-metric-path="observation_coverage.permanent">—</strong>
+          <span>zones avec comptages permanents</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="observation_coverage.punctual">—</strong>
+          <span>zones avec comptages ponctuels</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="observation_coverage.any_source">—</strong>
+          <span>zones couvertes par au moins une source</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-prefix="+" data-metric-path="observation_coverage.added_by_punctual">—</strong>
+          <span>zones supplémentaires grâce aux ponctuels</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="observation_coverage.none">—</strong>
+          <span>zones sans observation directe</span>
+        </article>
+      </div>
+      <p class="source-note load-note" data-load-error aria-live="polite"></p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Répartition des 247 zones</h2>
+          <p class="lead">Chaque zone appartient à une seule catégorie de couverture.</p>
+        </div>
+      </div>
+      <div class="coverage-summary">
+        <div class="stacked-bar coverage-stacked-bar" role="img" aria-label="Répartition des zones par couverture">
+          <span class="stack-segment coverage-both" data-coverage-class="both"></span>
+          <span class="stack-segment coverage-punctual-only" data-coverage-class="punctual_only"></span>
+          <span class="stack-segment coverage-permanent-only" data-coverage-class="permanent_only"></span>
+          <span class="stack-segment coverage-none" data-coverage-class="none"></span>
+        </div>
+        <ul class="count-list">
+          <li><span class="label-with-swatch"><span class="swatch coverage-both"></span>Permanent + ponctuel</span><strong data-metric-path="observation_coverage.both">—</strong></li>
+          <li><span class="label-with-swatch"><span class="swatch coverage-punctual-only"></span>Ponctuel uniquement</span><strong data-metric-path="observation_coverage.punctual_only">—</strong></li>
+          <li><span class="label-with-swatch"><span class="swatch coverage-permanent-only"></span>Permanent uniquement</span><strong data-metric-path="observation_coverage.permanent_only">—</strong></li>
+          <li><span class="label-with-swatch"><span class="swatch coverage-none"></span>Aucune source</span><strong data-metric-path="observation_coverage.none">—</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Couverture spatiale</h2>
+      </div>
+      <div class="map-shell map-large">
+        <div id="observation-coverage-map" class="map" role="img" aria-label="Carte des 247 zones selon leur couverture par les comptages permanents et ponctuels"></div>
+        <div class="map-caption">
+          <span class="legend" aria-label="Légende de la carte">
+            <span class="legend-item"><span class="swatch coverage-both"></span>Permanent + ponctuel : <strong data-metric-path="observation_coverage.both">—</strong></span>
+            <span class="legend-item"><span class="swatch coverage-punctual-only"></span>Ponctuel uniquement : <strong data-metric-path="observation_coverage.punctual_only">—</strong></span>
+            <span class="legend-item"><span class="swatch coverage-permanent-only"></span>Permanent uniquement : <strong data-metric-path="observation_coverage.permanent_only">—</strong></span>
+            <span class="legend-item"><span class="swatch coverage-none"></span>Aucune source : <strong data-metric-path="observation_coverage.none">—</strong></span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Ce que montre la couverture</h2>
+      </div>
+      <p class="lead">Les comptages ponctuels étendent fortement la couverture spatiale : <strong>88 zones supplémentaires</strong> disposent d’une information directe.</p>
+      <p class="definition-note"><strong>123 zones</strong> restent toutefois sans aucune observation directe. Cette absence d’observation motive la reconstruction spatiale.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">Modélisation des flux cyclistes &mdash; Bordeaux Métropole</div>
+  </footer>
+</body>
+</html>

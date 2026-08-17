@@ -1,5 +1,23 @@
 {
-  "generated_at_utc": "2026-08-17T11:43:53+00:00",
+  "generated_at_utc": "2026-08-17T11:50:24+00:00",
+  "observation_coverage": {
+    "added_by_punctual": 88,
+    "any_source": 124,
+    "both": 24,
+    "file": "data/observation_coverage.geojson",
+    "n_zones": 247,
+    "none": 123,
+    "permanent": 36,
+    "permanent_only": 12,
+    "provenance": {
+      "canonical_coverage_source": "reports/quality_checks/punctual_spatial_coverage/zone_source_coverage.csv",
+      "generated_at_utc": "2026-08-17T11:50:24+00:00",
+      "geometry_source": "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling",
+      "producer": "scripts/web/export_observation_coverage.py"
+    },
+    "punctual": 112,
+    "punctual_only": 88
+  },
   "overview_metrics": [
     {
       "id": "rocade-zones",
@@ -176,6 +194,7 @@
     },
     "files": {
       "inward_transfer_candidates": "data/inward_transfer_candidates.geojson",
+      "observation_coverage": "data/observation_coverage.geojson",
       "permanent_sensors": "data/permanent_sensors.geojson",
       "permanent_zones": "data/permanent_zones.geojson",
       "punctual_points": "data/punctual_points.geojson",

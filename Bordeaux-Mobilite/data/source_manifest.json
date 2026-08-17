@@ -4,7 +4,8 @@
       "description": "Small JSON metrics and display metadata used by the static pages.",
       "producers": [
         "scripts/web/export_permanent_data.py",
-        "scripts/web/export_punctual_data.py"
+        "scripts/web/export_punctual_data.py",
+        "scripts/web/export_observation_coverage.py"
       ],
       "public_file": "data/site_metrics.json",
       "sources": [
@@ -18,7 +19,8 @@
         "data/interim/temporal/03_zones_nettoyees/zones_comptages_observed_hourly.parquet",
         "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
         "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
-        "data/interim/punctual/punctual_2021_2023_zones.csv"
+        "data/interim/punctual/punctual_2021_2023_zones.csv",
+        "reports/quality_checks/punctual_spatial_coverage/zone_source_coverage.csv"
       ]
     },
     {
@@ -157,9 +159,18 @@
       "sources": [
         "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv"
       ]
+    },
+    {
+      "description": "Couverture canonique des 247 zones modeling par les comptages permanents et ponctuels.",
+      "producer": "scripts/web/export_observation_coverage.py",
+      "public_file": "data/observation_coverage.geojson",
+      "sources": [
+        "reports/quality_checks/punctual_spatial_coverage/zone_source_coverage.csv",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling"
+      ]
     }
   ],
-  "generated_at_utc": "2026-08-17T11:43:53+00:00",
+  "generated_at_utc": "2026-08-17T11:50:24+00:00",
   "intentionally_not_published": [
     "raw Excel workbooks",
     "raw CSV files",

@@ -792,6 +792,35 @@ p {
   background: #5f4a7a;
 }
 
+.coverage-both {
+  background: #238b45;
+}
+
+.coverage-punctual-only {
+  background: #2171b5;
+}
+
+.coverage-permanent-only {
+  background: #d95f0e;
+}
+
+.coverage-none {
+  background: #d9d9d9;
+}
+
+.coverage-summary {
+  max-width: 820px;
+}
+
+.coverage-stacked-bar {
+  height: 24px;
+  margin-bottom: 12px;
+}
+
+.coverage-stacked-bar .stack-segment + .stack-segment {
+  border-left: 1px solid rgba(255, 255, 255, 0.8);
+}
+
 .fact-line {
   display: flex;
   flex-wrap: wrap;

@@ -9,6 +9,12 @@
     "1": { label: "dominante soir", shortLabel: "soir", color: "#9b82d0", className: "class-evening" },
     "2": { label: "équilibré", shortLabel: "équilibré", color: "#4fa69c", className: "class-balanced" }
   };
+  const COVERAGE_META = {
+    both: { label: "Permanent + ponctuel", color: "#238b45" },
+    punctual_only: { label: "Ponctuel uniquement", color: "#2171b5" },
+    permanent_only: { label: "Permanent uniquement", color: "#d95f0e" },
+    none: { label: "Aucune source", color: "#d9d9d9" }
+  };
   let permanentSelectedZoneId = null;
   let punctualSelectedZoneId = null;
 
@@ -59,6 +65,20 @@
       }
       const prefix = element.getAttribute("data-metric-prefix") || "";
       element.textContent = `${prefix}${formatValue(value)}`;
+    });
+  }
+
+  function renderCoverageDistribution(metrics) {
+    const coverage = metrics.observation_coverage || {};
+    document.querySelectorAll("[data-coverage-class]").forEach((element) => {
+      const className = element.getAttribute("data-coverage-class");
+      const count = Number(coverage[className] || 0);
+      const meta = COVERAGE_META[className];
+      element.style.flexGrow = count;
+      if (meta) {
+        element.setAttribute("title", `${meta.label} : ${formatValue(count)} zones`);
+        element.setAttribute("aria-label", `${meta.label} : ${formatValue(count)} zones`);
+      }
     });
   }
 
@@ -393,6 +413,29 @@
       Point : ${escapeHtml(properties.num_cpev)}<br>
       Direction : ${escapeHtml(directions)}${address}<br>
       Zone : ${escapeHtml(properties.zone_id)}
+    `;
+  }
+
+  function observationCoverageStyle(feature) {
+    const properties = feature.properties || {};
+    const meta = COVERAGE_META[properties.coverage_class] || COVERAGE_META.none;
+    return {
+      color: properties.coverage_class === "none" ? "#8395a4" : "#ffffff",
+      weight: properties.coverage_class === "none" ? 0.7 : 0.9,
+      fillColor: meta.color,
+      fillOpacity: properties.coverage_class === "none" ? 0.52 : 0.78
+    };
+  }
+
+  function observationCoveragePopup(properties) {
+    const meta = COVERAGE_META[properties.coverage_class] || COVERAGE_META.none;
+    return `
+      <strong>Zone ${escapeHtml(properties.zone_id)}</strong><br>
+      Commune : ${escapeHtml(properties.commune || "non documentée")}<br>
+      Permanent : ${yesNo(properties.has_permanent)}<br>
+      Ponctuel : ${yesNo(properties.has_punctual)}<br>
+      Années ponctuelles : ${escapeHtml(properties.punctual_years || "aucune")}<br>
+      Couverture : ${escapeHtml(meta.label)}
     `;
   }
 
@@ -744,6 +787,39 @@
       const bounds = zonesLayer.getBounds();
       if (bounds.isValid()) {
         map.fitBounds(bounds.pad(0.055));
+      }
+    } catch (error) {
+      console.error(error);
+      showMapFallback(element);
+    }
+  }
+
+  async function initObservationCoverageMap() {
+    const element = document.getElementById("observation-coverage-map");
+    if (!element) {
+      return;
+    }
+    if (typeof L === "undefined") {
+      showMapFallback(element);
+      return;
+    }
+    try {
+      const coverage = await loadJson("observation_coverage.geojson");
+      const map = buildBaseMap(element);
+      const coverageLayer = L.geoJSON(coverage, {
+        style: observationCoverageStyle,
+        onEachFeature(feature, layer) {
+          layer.bindPopup(observationCoveragePopup(feature.properties || {}));
+          layer.on("mouseover", () => {
+            layer.setStyle({ color: "#17202b", weight: 2, fillOpacity: 0.9 });
+            layer.bringToFront();
+          });
+          layer.on("mouseout", () => coverageLayer.resetStyle(layer));
+        }
+      }).addTo(map);
+      const bounds = coverageLayer.getBounds();
+      if (bounds.isValid()) {
+        map.fitBounds(bounds.pad(0.035));
       }
     } catch (error) {
       console.error(error);
@@ -1107,6 +1183,7 @@
     try {
       const metrics = await loadJson("site_metrics.json");
       renderProjectMetrics(metrics);
+      renderCoverageDistribution(metrics);
       renderPermanentDistribution(metrics);
       renderPermanentTable(metrics);
       renderTemporalPreview(metrics);
@@ -1127,7 +1204,8 @@
       initPermanentMap(),
       initPermanentExplorer(),
       initPunctualMap(),
-      initPunctualExplorer()
+      initPunctualExplorer(),
+      initObservationCoverageMap()
     ]);
   }
 
