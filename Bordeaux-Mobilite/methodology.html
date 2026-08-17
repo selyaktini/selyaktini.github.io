@@ -3,101 +3,182 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Méthode — Comptages vélo Bordeaux Métropole</title>
-  <meta name="description" content="Règles de classification matin soir des comptages vélo.">
+  <title>Préparation des données — Modélisation des flux cyclistes</title>
+  <meta name="description" content="Des observations cyclistes brutes aux données préparées au niveau des zones de modélisation.">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <h1 class="site-title">Méthode</h1>
-      <p class="site-subtitle">Règles de classification matin / soir</p>
+      <h1 class="site-title">Préparation des données</h1>
+      <p class="site-subtitle">Des observations brutes aux données de modélisation</p>
       <nav class="primary-nav" aria-label="Navigation principale">
         <a href="index.html">Synthèse</a>
         <a href="study-area.html">Périmètre</a>
         <a href="permanent-counts.html">Capteurs permanents</a>
         <a href="punctual-counts.html">Comptages ponctuels</a>
         <a href="observation-coverage.html">Couverture</a>
-        <a href="methodology.html">Méthode</a>
+        <a href="methodology.html">Préparation</a>
       </nav>
     </div>
   </header>
 
-  <main class="content content-narrow">
+  <main class="content">
     <section class="section">
-      <p class="lead">Les termes matin et soir renvoient aux créneaux horaires et non à une orientation géographique.</p>
+      <div class="section-header compact">
+        <h2>Une unité commune : la zone</h2>
+        <p class="lead">Les comptages permanents et ponctuels suivent des préparations différentes, adaptées à leur mode d’observation. Ils sont ensuite décrits dans la même unité spatiale pour rendre les données comparables avec le périmètre de modélisation.</p>
+      </div>
+      <div class="key-metrics compact" aria-label="Chiffres clés de la préparation des données">
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_zones_modeling">—</strong>
+          <span>zones dans la base spatiale commune</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="observation_coverage.any_source">—</strong>
+          <span>zones avec au moins une observation directe</span>
+        </article>
+        <article class="key-metric">
+          <strong data-metric-path="study_area.n_observed_clean_zones">—</strong>
+          <span>zones de référence dans les expériences actuelles</span>
+        </article>
+      </div>
+      <p class="source-note load-note" data-load-error aria-live="polite"></p>
     </section>
 
     <section class="section">
-      <div class="method-band" aria-label="Créneaux horaires">
-        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span>
-        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell morning"></span>
-        <span class="hour-cell morning"></span><span class="hour-cell morning"></span><span class="hour-cell"></span><span class="hour-cell"></span>
-        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span>
-        <span class="hour-cell evening"></span><span class="hour-cell evening"></span><span class="hour-cell evening"></span><span class="hour-cell"></span>
-        <span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span><span class="hour-cell"></span>
+      <div class="section-header">
+        <div>
+          <h2>Deux branches de préparation</h2>
+          <p class="lead">Chaque branche conserve la nature de ses observations avant leur rattachement à la base spatiale commune.</p>
+        </div>
       </div>
-      <div class="band-labels" aria-hidden="true">
-        <span>00 h</span>
-        <span>07 h &ndash; 10 h</span>
-        <span>16 h &ndash; 19 h</span>
-      </div>
-    </section>
 
-    <section class="section method-list" aria-label="Règles de classification">
-      <div class="method-item">
-        <strong>Créneau matin : 07 h &ndash; 10 h</strong>
-        <span>Somme des observations horaires du matin.</span>
+      <div class="preparation-pipelines">
+        <article class="preparation-branch permanent-branch">
+          <div class="preparation-branch-header">
+            <p class="eyebrow">Comptages permanents</p>
+            <h3>Observations horaires suivies dans le temps</h3>
+          </div>
+          <ol class="preparation-flow">
+            <li>
+              <strong data-metric-path="permanent_counts.n_directional_sensors">—</strong>
+              <span>capteurs directionnels permanents</span>
+            </li>
+            <li>
+              <strong>Contrôle qualité et nettoyage temporel</strong>
+              <span>Les longues séquences constantes non nulles d’au moins 24 h et les séquences nulles d’au moins 168 h sont neutralisées.</span>
+            </li>
+            <li>
+              <strong>Rattachement aux zones</strong>
+              <span>Chaque provenance directionnelle est associée à une zone.</span>
+            </li>
+            <li>
+              <strong>Agrégation zonale</strong>
+              <span><span class="mono">y_obs</span> est la médiane des comptages directionnels disponibles dans la zone.</span>
+            </li>
+            <li>
+              <strong data-metric-path="permanent_counts.n_zones_with_observations">—</strong>
+              <span>zones disposent d’une série permanente après nettoyage et agrégation</span>
+            </li>
+            <li>
+              <strong>Sélection qualité plus stricte</strong>
+              <span>La couverture temporelle, la continuité, la présence d’observations dans chaque période d’évaluation et l’appartenance au graphe spatial sont contrôlées.</span>
+            </li>
+            <li class="preparation-result">
+              <strong data-metric-path="study_area.n_observed_clean_zones">—</strong>
+              <span>zones de référence pour les expériences actuelles</span>
+            </li>
+          </ol>
+        </article>
+
+        <article class="preparation-branch punctual-branch">
+          <div class="preparation-branch-header">
+            <p class="eyebrow">Comptages ponctuels</p>
+            <h3>Profils discrets de campagne</h3>
+          </div>
+          <ol class="preparation-flow">
+            <li>
+              <strong>Campagnes 2021–2023</strong>
+              <span><span data-metric-path="punctual_counts.zones_by_year.2021">—</span> zones en 2021, <span data-metric-path="punctual_counts.zones_by_year.2022">—</span> en 2022 et <span data-metric-path="punctual_counts.zones_by_year.2023">—</span> en 2023.</span>
+            </li>
+            <li>
+              <strong>Rattachement spatial</strong>
+              <span>Les points de campagne sont associés aux mêmes zones de modélisation.</span>
+            </li>
+            <li>
+              <strong><span data-metric-path="punctual_counts.n_slots">—</span> créneaux conservés</strong>
+              <span class="slot-list"><span>07–08</span><span>08–09</span><span>09–10</span><span>10–11</span><span>15–16</span><span>16–17</span><span>17–18</span><span>18–19</span></span>
+            </li>
+            <li>
+              <strong>Médiane des directions</strong>
+              <span><span class="mono">y_obs</span> est calculé pour une zone, une année et un créneau observé.</span>
+            </li>
+            <li>
+              <strong>Profils zonaux ponctuels</strong>
+              <span>PPM et PPS restent de simples labels matin/soir : aucun total ni continuité horaire ne sont créés.</span>
+            </li>
+            <li class="preparation-result">
+              <strong data-metric-path="punctual_counts.n_zones">—</strong>
+              <span>zones couvertes par au moins une campagne ponctuelle</span>
+            </li>
+          </ol>
+        </article>
       </div>
-      <div class="method-item">
-        <strong>Créneau soir : 16 h &ndash; 19 h</strong>
-        <span>Somme des observations horaires du soir.</span>
-      </div>
-      <div class="method-item">
-        <strong>Seuil de classification : ratio 1,2</strong>
-        <span>La dominance est retenue lorsque le rapport entre les deux créneaux dépasse 1,2.</span>
+
+      <div class="preparation-convergence">
+        <span>Les deux branches utilisent la même unité spatiale</span>
+        <strong><span data-metric-path="study_area.n_zones_modeling">—</span> zones de modélisation</strong>
       </div>
     </section>
 
     <section class="section">
       <div class="section-header">
-        <h2>Définition des quatre classes</h2>
+        <h2>Disponibilité et référence ne désignent pas la même chose</h2>
       </div>
-      <div class="class-legend">
-        <div class="class-chip type-morning">
-          <strong>Dominante matin</strong>
-          Le volume du matin domine le volume du soir.
-        </div>
-        <div class="class-chip type-evening">
-          <strong>Dominante soir</strong>
-          Le volume du soir domine le volume du matin.
-        </div>
-        <div class="class-chip type-balanced">
-          <strong>Équilibré</strong>
-          Aucun créneau ne dépasse le seuil.
-        </div>
-        <div class="class-chip type-insufficient">
-          <strong>Données insuffisantes</strong>
-          Le volume exploitable ne permet pas la classe.
-        </div>
+      <div class="preparation-distinction">
+        <article>
+          <strong data-metric-path="permanent_counts.n_zones_with_observations">—</strong>
+          <h3>Zones avec observations permanentes</h3>
+          <p>Ce nombre décrit la disponibilité des séries après rattachement et agrégation. Toutes ces observations restent informatives.</p>
+        </article>
+        <article>
+          <strong data-metric-path="study_area.n_observed_clean_zones">—</strong>
+          <h3>Zones de référence actuelles</h3>
+          <p>Une sélection plus stricte détermine les zones suffisamment documentées et présentes dans le graphe pour servir de références et de cibles fiables dans les expériences actuelles.</p>
+        </article>
       </div>
+      <p class="definition-note"><strong>À retenir :</strong> une zone observée n’est pas automatiquement une zone de référence pour l’évaluation. Les autres zones observées ne sont pas inutiles ; elles répondent simplement à un niveau de disponibilité différent.</p>
     </section>
 
-    <section class="section method-list" aria-label="Traitements par source">
-      <div class="method-item">
-        <strong>Filtrage appliqué aux capteurs permanents</strong>
-        <span>Jours ouvrés uniquement, hors vacances scolaires Zone A et jours fériés.</span>
+    <section class="section">
+      <div class="section-header">
+        <h2>Vers la modélisation</h2>
       </div>
-      <div class="method-item">
-        <strong>Traitement séparé des campagnes ponctuelles par année</strong>
-        <span>Les campagnes sont classées séparément par année, sans attribution de date de campagne non documentée.</span>
+      <div class="method-list">
+        <div class="method-item">
+          <strong>Base spatiale commune</strong>
+          <span>Toutes les observations sont rattachées aux 247 zones du périmètre.</span>
+        </div>
+        <div class="method-item">
+          <strong>Référence temporelle actuelle</strong>
+          <span>Les observations permanentes fournissent la base horaire utilisée dans les expériences actuelles.</span>
+        </div>
+        <div class="method-item">
+          <strong>Extension spatiale</strong>
+          <span>Les comptages ponctuels enrichissent la connaissance du territoire sous forme d’observations discrètes ; ils ne sont pas présentés comme déjà intégrés à la base de reconstruction actuelle.</span>
+        </div>
+        <div class="method-item">
+          <strong>Zones non observées</strong>
+          <span>Leur présence motive la reconstruction spatiale des flux.</span>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">Comptages vélo &mdash; Bordeaux Métropole</div>
+    <div class="footer-inner">Modélisation des flux cyclistes &mdash; Bordeaux Métropole</div>
   </footer>
 </body>
 </html>
