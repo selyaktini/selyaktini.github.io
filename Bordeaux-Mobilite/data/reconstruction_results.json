@@ -71,7 +71,7 @@
       "rmse": 15.308338570619638
     }
   },
-  "generated_at_utc": "2026-08-17T14:29:23+00:00",
+  "generated_at_utc": "2026-08-17T15:23:33+00:00",
   "method_selection": {
     "metric": "mae",
     "source_mode": "xgboost",
@@ -98,6 +98,7 @@
     "validation_labels": 45698
   },
   "provenance": {
+    "canonical_temporal_source": "git:diffusion-xgboost-observed-clean-v1.0:docs/explorers/data/diffusion-xgboost-temporal-audit",
     "producer": "scripts/web/export_reconstruction_results.py",
     "reference_directory": "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1",
     "sources": [
@@ -106,7 +107,10 @@
       "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
       "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_accessibility_level.csv",
       "data/processed/xgboost_zone_imputation_observed_clean/metadata.json",
-      "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json"
+      "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json",
+      "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg",
+      "git:diffusion-xgboost-observed-clean-v1.0:reports/quality_checks/diffusion_xgboost_observed_clean_v1/manifest.json",
+      "git:diffusion-xgboost-observed-clean-v1.0:docs/explorers/data/diffusion-xgboost-temporal-audit"
     ],
     "xgboost_directory": "data/processed/xgboost_zone_imputation_observed_clean"
   },
@@ -143,6 +147,23 @@
         "mean_sources_available": 18.0
       }
     }
+  },
+  "spatial_performance": {
+    "maximum": 20.562361684184957,
+    "metric": "test_mae",
+    "minimum": 1.4175896911266144,
+    "n_targets": 19,
+    "targets_file": "data/reconstruction_targets.geojson"
+  },
+  "temporal_explorer": {
+    "default_selection": {
+      "median_test_mae": 5.610271200108019,
+      "rule": "test_mae_closest_to_median",
+      "selected_test_mae": 5.610271200108019
+    },
+    "default_zone_id": "173011000",
+    "index_file": "data/reconstruction-temporal/index.json",
+    "method": "diffusion4"
   },
   "xgboost_role": {
     "calendar_only": true,

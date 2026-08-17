@@ -27,7 +27,9 @@
         "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
         "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_accessibility_level.csv",
         "data/processed/xgboost_zone_imputation_observed_clean/metadata.json",
-        "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json"
+        "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json",
+        "git:diffusion-xgboost-observed-clean-v1.0:reports/quality_checks/diffusion_xgboost_observed_clean_v1/manifest.json",
+        "git:diffusion-xgboost-observed-clean-v1.0:docs/explorers/data/diffusion-xgboost-temporal-audit"
       ]
     },
     {
@@ -186,11 +188,49 @@
         "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
         "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_accessibility_level.csv",
         "data/processed/xgboost_zone_imputation_observed_clean/metadata.json",
-        "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json"
+        "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg",
+        "git:diffusion-xgboost-observed-clean-v1.0:reports/quality_checks/diffusion_xgboost_observed_clean_v1/manifest.json",
+        "git:diffusion-xgboost-observed-clean-v1.0:docs/explorers/data/diffusion-xgboost-temporal-audit"
+      ]
+    },
+    {
+      "description": "Géométries et métriques canoniques diffusion4/XGBoost des 19 cibles LOZO.",
+      "producer": "scripts/web/export_reconstruction_results.py",
+      "public_file": "data/reconstruction_targets.geojson",
+      "sources": [
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling"
+      ]
+    },
+    {
+      "description": "Index des 19 séries temporelles diffusion4/XGBoost évaluées en LOZO strict.",
+      "producer": "scripts/web/export_reconstruction_results.py",
+      "public_file": "data/reconstruction-temporal/index.json",
+      "sources": [
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metadata.json",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_aggregate.csv",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_accessibility_level.csv",
+        "data/processed/xgboost_zone_imputation_observed_clean/metadata.json",
+        "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json",
+        "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg",
+        "git:diffusion-xgboost-observed-clean-v1.0:reports/quality_checks/diffusion_xgboost_observed_clean_v1/manifest.json",
+        "git:diffusion-xgboost-observed-clean-v1.0:docs/explorers/data/diffusion-xgboost-temporal-audit"
+      ]
+    },
+    {
+      "description": "Une série publique par cible LOZO: observations réelles et reconstruction diffusion4 avec sources XGBoost.",
+      "producer": "scripts/web/export_reconstruction_results.py",
+      "public_file": "data/reconstruction-temporal/<zone_id>.json",
+      "sources": [
+        "git:diffusion-xgboost-observed-clean-v1.0:reports/quality_checks/diffusion_xgboost_observed_clean_v1/manifest.json",
+        "git:diffusion-xgboost-observed-clean-v1.0:docs/explorers/data/diffusion-xgboost-temporal-audit",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv"
       ]
     }
   ],
-  "generated_at_utc": "2026-08-17T14:29:23+00:00",
+  "generated_at_utc": "2026-08-17T15:23:33+00:00",
   "intentionally_not_published": [
     "raw Excel workbooks",
     "raw CSV files",

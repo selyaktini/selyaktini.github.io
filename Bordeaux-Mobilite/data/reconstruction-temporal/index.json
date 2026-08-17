@@ -1,0 +1,456 @@
+{
+  "default_selection": {
+    "median_test_mae": 5.610271200108019,
+    "rule": "test_mae_closest_to_median",
+    "selected_test_mae": 5.610271200108019
+  },
+  "default_zone_id": "173011000",
+  "method": "diffusion4",
+  "n_rows": 332443,
+  "n_timestamps_per_zone": 17497,
+  "n_zones": 19,
+  "provenance": {
+    "canonical_temporal_source": "git:diffusion-xgboost-observed-clean-v1.0:docs/explorers/data/diffusion-xgboost-temporal-audit",
+    "freeze_manifest": "git:diffusion-xgboost-observed-clean-v1.0:reports/quality_checks/diffusion_xgboost_observed_clean_v1/manifest.json",
+    "producer": "scripts/web/export_reconstruction_results.py"
+  },
+  "schema_version": 1,
+  "source_mode": "xgboost",
+  "splits": {
+    "test": {
+      "end": "2026-05-14T22:00:00+00:00",
+      "n_timestamps": 2624,
+      "start": "2026-01-25T15:00:00+00:00"
+    },
+    "train": {
+      "end": "2025-10-08T04:00:00+00:00",
+      "n_timestamps": 12247,
+      "start": "2024-05-15T22:00:00+00:00"
+    },
+    "validation": {
+      "end": "2026-01-25T14:00:00+00:00",
+      "n_timestamps": 2626,
+      "start": "2025-10-08T05:00:00+00:00"
+    }
+  },
+  "zones": [
+    {
+      "accessibility_level": 2,
+      "commune": "BORDEAUX",
+      "id": "161008000",
+      "metrics": {
+        "test": {
+          "bias": 4.718532802392632,
+          "mae": 8.72115344458339,
+          "n": 2616,
+          "r2": 0.918443074478047,
+          "rmse": 13.245145874080166
+        },
+        "validation": {
+          "bias": 4.982261632082751,
+          "mae": 9.334267085143209,
+          "n": 2618,
+          "r2": 0.8830266617512043,
+          "rmse": 15.565272456979692
+        }
+      },
+      "path": "reconstruction-temporal/161008000.json"
+    },
+    {
+      "accessibility_level": 3,
+      "commune": "BORDEAUX",
+      "id": "162005000",
+      "metrics": {
+        "test": {
+          "bias": -20.226023814858817,
+          "mae": 20.562361684184957,
+          "n": 2616,
+          "r2": 0.2786449203585857,
+          "rmse": 38.972590495662764
+        },
+        "validation": {
+          "bias": -20.91221646105968,
+          "mae": 21.11085243802909,
+          "n": 2617,
+          "r2": 0.2251362671126479,
+          "rmse": 39.45479935480698
+        }
+      },
+      "path": "reconstruction-temporal/162005000.json"
+    },
+    {
+      "accessibility_level": 3,
+      "commune": "BORDEAUX",
+      "id": "162015000",
+      "metrics": {
+        "test": {
+          "bias": 14.590965425903365,
+          "mae": 18.17028965882979,
+          "n": 2554,
+          "r2": 0.2368641446461407,
+          "rmse": 28.270225749954747
+        },
+        "validation": {
+          "bias": 16.297680109607622,
+          "mae": 19.623313329999156,
+          "n": 1525,
+          "r2": -0.3215490636511977,
+          "rmse": 31.05239503298592
+        }
+      },
+      "path": "reconstruction-temporal/162015000.json"
+    },
+    {
+      "accessibility_level": 2,
+      "commune": "BORDEAUX",
+      "id": "163012000",
+      "metrics": {
+        "test": {
+          "bias": -8.576843136758956,
+          "mae": 10.837327282714954,
+          "n": 2616,
+          "r2": 0.8979933527664732,
+          "rmse": 16.17724177937256
+        },
+        "validation": {
+          "bias": -9.212317570495832,
+          "mae": 11.759356657465434,
+          "n": 2617,
+          "r2": 0.8723788190214394,
+          "rmse": 19.318332817481885
+        }
+      },
+      "path": "reconstruction-temporal/163012000.json"
+    },
+    {
+      "accessibility_level": 1,
+      "commune": "BORDEAUX",
+      "id": "166001000",
+      "metrics": {
+        "test": {
+          "bias": 2.7352169125433843,
+          "mae": 10.211998391662632,
+          "n": 2616,
+          "r2": 0.7647966769154804,
+          "rmse": 17.305840954419594
+        },
+        "validation": {
+          "bias": 1.2538062124913447,
+          "mae": 7.832497519928096,
+          "n": 2617,
+          "r2": 0.8035468188109302,
+          "rmse": 13.977323861295604
+        }
+      },
+      "path": "reconstruction-temporal/166001000.json"
+    },
+    {
+      "accessibility_level": 1,
+      "commune": "BORDEAUX",
+      "id": "166002000",
+      "metrics": {
+        "test": {
+          "bias": -10.18974118614452,
+          "mae": 12.962262737587729,
+          "n": 2505,
+          "r2": 0.705891420378663,
+          "rmse": 20.75263111140727
+        },
+        "validation": {
+          "bias": -7.8348188921950515,
+          "mae": 9.53264722624908,
+          "n": 2408,
+          "r2": 0.7636896236454661,
+          "rmse": 15.45723965736566
+        }
+      },
+      "path": "reconstruction-temporal/166002000.json"
+    },
+    {
+      "accessibility_level": 3,
+      "commune": "TALENCE",
+      "id": "168013000",
+      "metrics": {
+        "test": {
+          "bias": -12.142972918831108,
+          "mae": 12.27221945552611,
+          "n": 2616,
+          "r2": -0.0470526924003005,
+          "rmse": 18.06830542198536
+        },
+        "validation": {
+          "bias": -10.459330686888691,
+          "mae": 10.583375726021146,
+          "n": 2617,
+          "r2": 0.0423713033553068,
+          "rmse": 16.05318109441645
+        }
+      },
+      "path": "reconstruction-temporal/168013000.json"
+    },
+    {
+      "accessibility_level": 3,
+      "commune": "MERIGNAC",
+      "id": "170005000",
+      "metrics": {
+        "test": {
+          "bias": -6.91414586352811,
+          "mae": 7.238273666107839,
+          "n": 2616,
+          "r2": 0.4891737666679963,
+          "rmse": 12.281222413856478
+        },
+        "validation": {
+          "bias": -5.997471979831694,
+          "mae": 6.22556671717645,
+          "n": 2617,
+          "r2": 0.4955464027180427,
+          "rmse": 10.690681818103686
+        }
+      },
+      "path": "reconstruction-temporal/170005000.json"
+    },
+    {
+      "accessibility_level": 1,
+      "commune": "BOUSCAT (LE )",
+      "id": "173007000",
+      "metrics": {
+        "test": {
+          "bias": -2.527806755384678,
+          "mae": 5.0151954070349305,
+          "n": 2493,
+          "r2": 0.6425349096170216,
+          "rmse": 9.885825094065106
+        },
+        "validation": {
+          "bias": -2.6308224232748554,
+          "mae": 4.58165115251184,
+          "n": 2384,
+          "r2": 0.6636606381262515,
+          "rmse": 8.783794012609336
+        }
+      },
+      "path": "reconstruction-temporal/173007000.json"
+    },
+    {
+      "accessibility_level": 1,
+      "commune": "BOUSCAT (LE )",
+      "id": "173009000",
+      "metrics": {
+        "test": {
+          "bias": -0.6607362735371121,
+          "mae": 4.134795011103275,
+          "n": 2493,
+          "r2": 0.7213082647580792,
+          "rmse": 6.534901155194065
+        },
+        "validation": {
+          "bias": -0.2070955428531257,
+          "mae": 3.885763149504112,
+          "n": 2408,
+          "r2": 0.6937736366696017,
+          "rmse": 6.14217384546962
+        }
+      },
+      "path": "reconstruction-temporal/173009000.json"
+    },
+    {
+      "accessibility_level": 2,
+      "commune": "BRUGES",
+      "id": "173011000",
+      "metrics": {
+        "test": {
+          "bias": 5.381335233859185,
+          "mae": 5.610271200108019,
+          "n": 2503,
+          "r2": -6.523384992422736,
+          "rmse": 10.027874239064182
+        },
+        "validation": {
+          "bias": 4.815723863885153,
+          "mae": 4.865173998032001,
+          "n": 2408,
+          "r2": -6.361632381924241,
+          "rmse": 8.398025568700946
+        }
+      },
+      "path": "reconstruction-temporal/173011000.json"
+    },
+    {
+      "accessibility_level": 2,
+      "commune": "CARBON-BLANC",
+      "id": "174005000",
+      "metrics": {
+        "test": {
+          "bias": 1.1824298183051356,
+          "mae": 1.7959227796742945,
+          "n": 2616,
+          "r2": 0.1909838831491551,
+          "rmse": 2.8489194383289984
+        },
+        "validation": {
+          "bias": 1.4645947884368955,
+          "mae": 1.9061801779931955,
+          "n": 2617,
+          "r2": -0.1630414217570532,
+          "rmse": 2.9861020281854334
+        }
+      },
+      "path": "reconstruction-temporal/174005000.json"
+    },
+    {
+      "accessibility_level": 2,
+      "commune": "LORMONT",
+      "id": "174012000",
+      "metrics": {
+        "test": {
+          "bias": 0.7739371148014496,
+          "mae": 1.6894954422773178,
+          "n": 2616,
+          "r2": 0.2468992404371939,
+          "rmse": 2.635602377936133
+        },
+        "validation": {
+          "bias": 0.160297379439707,
+          "mae": 1.4846710306785924,
+          "n": 2617,
+          "r2": 0.342060889901482,
+          "rmse": 2.2712896357459336
+        }
+      },
+      "path": "reconstruction-temporal/174012000.json"
+    },
+    {
+      "accessibility_level": 3,
+      "commune": "CENON",
+      "id": "175004000",
+      "metrics": {
+        "test": {
+          "bias": 0.8846399550825829,
+          "mae": 1.4175896911266144,
+          "n": 2616,
+          "r2": 0.0658900208016466,
+          "rmse": 2.167430453323027
+        },
+        "validation": {
+          "bias": 0.7113973854278152,
+          "mae": 1.2576263225841111,
+          "n": 2617,
+          "r2": 0.0311678203445751,
+          "rmse": 1.936654079032636
+        }
+      },
+      "path": "reconstruction-temporal/175004000.json"
+    },
+    {
+      "accessibility_level": 3,
+      "commune": "VILLENAVE-D'ORNON",
+      "id": "176007000",
+      "metrics": {
+        "test": {
+          "bias": 14.641700586648618,
+          "mae": 14.75604597938106,
+          "n": 2503,
+          "r2": -17.400229904459806,
+          "rmse": 21.42060572418243
+        },
+        "validation": {
+          "bias": 12.596323259758066,
+          "mae": 12.68699349060418,
+          "n": 1699,
+          "r2": -18.29987928825335,
+          "rmse": 19.50238684955405
+        }
+      },
+      "path": "reconstruction-temporal/176007000.json"
+    },
+    {
+      "accessibility_level": 3,
+      "commune": "PESSAC",
+      "id": "178002000",
+      "metrics": {
+        "test": {
+          "bias": -0.5632698142371858,
+          "mae": 4.402476295592241,
+          "n": 1429,
+          "r2": 0.1558141060096326,
+          "rmse": 9.250748492767046
+        },
+        "validation": {
+          "bias": -1.135953524350136,
+          "mae": 3.60121117502801,
+          "n": 2389,
+          "r2": 0.3145096673025848,
+          "rmse": 7.747549694636422
+        }
+      },
+      "path": "reconstruction-temporal/178002000.json"
+    },
+    {
+      "accessibility_level": 1,
+      "commune": "MERIGNAC",
+      "id": "179002000",
+      "metrics": {
+        "test": {
+          "bias": -2.3199679723486484,
+          "mae": 4.750760100057101,
+          "n": 2409,
+          "r2": 0.4151065209336527,
+          "rmse": 9.493321993298329
+        },
+        "validation": {
+          "bias": -2.1312441923707133,
+          "mae": 3.2957190816277477,
+          "n": 2396,
+          "r2": 0.5666328654635044,
+          "rmse": 6.5835502221931
+        }
+      },
+      "path": "reconstruction-temporal/179002000.json"
+    },
+    {
+      "accessibility_level": 1,
+      "commune": "MERIGNAC",
+      "id": "179003000",
+      "metrics": {
+        "test": {
+          "bias": 2.1818534068752187,
+          "mae": 4.656818007899659,
+          "n": 2461,
+          "r2": -0.05489865624408,
+          "rmse": 9.15460918410472
+        },
+        "validation": {
+          "bias": 2.0520291034849305,
+          "mae": 3.318688580455916,
+          "n": 2119,
+          "r2": 0.2072915986632045,
+          "rmse": 6.532021400816197
+        }
+      },
+      "path": "reconstruction-temporal/179003000.json"
+    },
+    {
+      "accessibility_level": 2,
+      "commune": "EYSINES",
+      "id": "180007000",
+      "metrics": {
+        "test": {
+          "bias": -1.5841889033448835,
+          "mae": 2.5816973161851973,
+          "n": 2205,
+          "r2": 0.5272012154506042,
+          "rmse": 4.465490235180468
+        },
+        "validation": {
+          "bias": -0.6934129540637722,
+          "mae": 1.599464474306765,
+          "n": 2408,
+          "r2": 0.673394490643376,
+          "rmse": 2.7795908561534985
+        }
+      },
+      "path": "reconstruction-temporal/180007000.json"
+    }
+  ]
+}

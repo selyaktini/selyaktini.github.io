@@ -1485,6 +1485,107 @@ tbody tr:last-child td {
   background: #263f56;
 }
 
+.results-map-shell {
+  border-right: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.results-map {
+  height: min(66vh, 620px);
+  min-height: 480px;
+}
+
+.results-map-shell .map-caption {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+.results-map-caption-legend {
+  align-items: center;
+  gap: 7px;
+}
+
+.results-gradient-swatch,
+.reconstruction-map-legend-gradient {
+  display: inline-block;
+  width: 112px;
+  height: 10px;
+  border: 1px solid rgba(38, 63, 86, 0.25);
+  background: linear-gradient(90deg, #edf8fb, #66c2a4, #fdae61, #d73027);
+}
+
+.reconstruction-map-legend {
+  min-width: 142px;
+  padding: 8px 9px;
+  border: 1px solid var(--line) !important;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--muted-strong);
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.reconstruction-map-legend strong,
+.reconstruction-map-legend span {
+  display: block;
+}
+
+.reconstruction-map-legend-gradient {
+  width: 126px;
+  margin: 5px 0 2px;
+}
+
+.reconstruction-map-legend-scale {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.reconstruction-map-legend .reconstruction-map-legend-scale {
+  display: flex;
+}
+
+.reconstruction-zone-metrics {
+  display: grid;
+  grid-template-columns: 0.75fr 0.75fr 1.25fr 1.25fr;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.reconstruction-zone-metrics > div {
+  display: grid;
+  gap: 3px;
+  padding: 11px 13px;
+  border-right: 1px solid var(--line);
+}
+
+.reconstruction-zone-metrics > div:last-child {
+  border-right: 0;
+}
+
+.reconstruction-zone-metrics span:first-child {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.reconstruction-zone-metrics strong {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.reconstruction-explorer .definition-note {
+  margin: 12px 0 0;
+}
+
+.reconstruction-plot {
+  height: min(68vh, 660px);
+  min-height: 500px;
+}
+
 .method-band {
   display: grid;
   grid-template-columns: repeat(24, minmax(0, 1fr));
@@ -1679,6 +1780,18 @@ tbody tr:last-child td {
   .key-metrics.compact.results-role-metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .reconstruction-zone-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reconstruction-zone-metrics > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .reconstruction-zone-metrics > div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
 }
 
 @media (max-width: 680px) {
@@ -1747,6 +1860,16 @@ tbody tr:last-child td {
     min-height: 420px;
   }
 
+  .results-map {
+    height: 480px;
+    min-height: 400px;
+  }
+
+  .reconstruction-plot {
+    height: 560px;
+    min-height: 460px;
+  }
+
   .provenance-list > div {
     grid-template-columns: 1fr;
     gap: 3px;
@@ -1786,6 +1909,19 @@ tbody tr:last-child td {
 
   .results-metric-grid > div:nth-child(-n + 2) {
     border-bottom: 1px solid var(--line);
+  }
+
+  .reconstruction-zone-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .reconstruction-zone-metrics > div {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reconstruction-zone-metrics > div:last-child {
+    border-bottom: 0;
   }
 
   .year-strip-head {

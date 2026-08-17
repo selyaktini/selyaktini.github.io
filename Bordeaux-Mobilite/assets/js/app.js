@@ -17,6 +17,7 @@
   };
   let permanentSelectedZoneId = null;
   let punctualSelectedZoneId = null;
+  let reconstructionSelectedZoneId = null;
 
   function selectPermanentZone(zoneId) {
     permanentSelectedZoneId = String(zoneId);
@@ -29,6 +30,13 @@
     punctualSelectedZoneId = String(zoneId);
     document.dispatchEvent(new CustomEvent("punctual-zone-select", {
       detail: { zoneId: punctualSelectedZoneId }
+    }));
+  }
+
+  function selectReconstructionZone(zoneId) {
+    reconstructionSelectedZoneId = String(zoneId);
+    document.dispatchEvent(new CustomEvent("reconstruction-zone-select", {
+      detail: { zoneId: reconstructionSelectedZoneId }
     }));
   }
 
@@ -1282,6 +1290,347 @@
     }).join("");
   }
 
+  function reconstructionColor(value, minimum, maximum) {
+    const colors = ["#edf8fb", "#b2e2e2", "#66c2a4", "#fdae61", "#d73027"];
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric) || !Number.isFinite(minimum) || !Number.isFinite(maximum)) {
+      return colors[0];
+    }
+    const ratio = maximum === minimum ? 0 : (numeric - minimum) / (maximum - minimum);
+    const index = Math.min(colors.length - 1, Math.max(0, Math.floor(ratio * colors.length)));
+    return colors[index];
+  }
+
+  function reconstructionTargetPopup(properties) {
+    return `
+      <strong>Zone ${escapeHtml(properties.zone_id)}</strong><br>
+      Commune : ${escapeHtml(properties.commune || "non documentée")}<br>
+      Niveau d’accessibilité : ${formatValue(properties.accessibility_level)}<br><br>
+      <strong>Validation</strong><br>
+      MAE : ${formatResultNumber(properties.validation_mae, 3, false)}<br>
+      R² : ${formatResultNumber(properties.validation_r2, 3, false)}<br><br>
+      <strong>Test</strong><br>
+      MAE : ${formatResultNumber(properties.test_mae, 3, false)}<br>
+      R² : ${formatResultNumber(properties.test_r2, 3, false)}
+    `;
+  }
+
+  async function initReconstructionMap(results) {
+    const element = document.getElementById("reconstruction-map");
+    if (!element) {
+      return;
+    }
+    if (typeof L === "undefined") {
+      showMapFallback(element);
+      return;
+    }
+    try {
+      const [targets, modelingZones] = await Promise.all([
+        loadJson("reconstruction_targets.geojson"),
+        loadJson("zones_modeling.geojson")
+      ]);
+      const map = buildBaseMap(element);
+      const scale = results.spatial_performance || {};
+      const minimum = Number(scale.minimum);
+      const maximum = Number(scale.maximum);
+      const zoneLayers = new Map();
+      const targetRenderer = L.svg({ padding: 0.25 });
+
+      const backgroundLayer = L.geoJSON(modelingZones, {
+        interactive: false,
+        style: {
+          color: "#9eacb8",
+          weight: 0.45,
+          fillColor: "#e8eef2",
+          fillOpacity: 0.24
+        }
+      }).addTo(map);
+
+      function targetStyle(feature) {
+        const properties = feature.properties || {};
+        return {
+          color: "#ffffff",
+          weight: 1.2,
+          fillColor: reconstructionColor(properties.test_mae, minimum, maximum),
+          fillOpacity: 0.86,
+          renderer: targetRenderer
+        };
+      }
+
+      const targetsLayer = L.geoJSON(targets, {
+        style: targetStyle,
+        onEachFeature(feature, layer) {
+          const properties = feature.properties || {};
+          const zoneId = String(properties.zone_id);
+          zoneLayers.set(zoneId, layer);
+          layer.bindPopup(reconstructionTargetPopup(properties));
+          layer.on("click", () => selectReconstructionZone(zoneId));
+        }
+      }).addTo(map);
+
+      function showSelectedZone(zoneId) {
+        const selected = zoneLayers.get(String(zoneId));
+        if (!selected) {
+          return;
+        }
+        targetsLayer.resetStyle();
+        selected.setStyle({
+          color: "#17202b",
+          weight: 4,
+          fillOpacity: 0.96
+        });
+        selected.bringToFront();
+      }
+
+      document.addEventListener("reconstruction-zone-select", (event) => {
+        showSelectedZone(event.detail.zoneId);
+      });
+      if (reconstructionSelectedZoneId !== null) {
+        showSelectedZone(reconstructionSelectedZoneId);
+      }
+
+      const legend = L.control({ position: "bottomright" });
+      legend.onAdd = () => {
+        const container = L.DomUtil.create("div", "reconstruction-map-legend");
+        container.innerHTML = `
+          <strong>MAE test</strong>
+          <span class="reconstruction-map-legend-gradient" aria-hidden="true"></span>
+          <span class="reconstruction-map-legend-scale">
+            <span>${formatResultNumber(minimum, 2, false)}</span>
+            <span>${formatResultNumber(maximum, 2, false)}</span>
+          </span>
+          <span>faible → élevée</span>
+        `;
+        return container;
+      };
+      legend.addTo(map);
+
+      const bounds = targetsLayer.getBounds().isValid()
+        ? targetsLayer.getBounds()
+        : backgroundLayer.getBounds();
+      if (bounds.isValid()) {
+        map.fitBounds(bounds.pad(0.035));
+      }
+    } catch (error) {
+      console.error(error);
+      showMapFallback(element);
+    }
+  }
+
+  function updateReconstructionZoneMetrics(zone) {
+    const values = {
+      "reconstruction-zone-id": zone.id,
+      "reconstruction-zone-accessibility": `Niveau ${formatValue(zone.accessibility_level)}`,
+      "reconstruction-validation-mae": formatResultNumber(zone.metrics.validation.mae, 3, false),
+      "reconstruction-validation-r2": formatResultNumber(zone.metrics.validation.r2, 3, false),
+      "reconstruction-test-mae": formatResultNumber(zone.metrics.test.mae, 3, false),
+      "reconstruction-test-r2": formatResultNumber(zone.metrics.test.r2, 3, false)
+    };
+    Object.entries(values).forEach(([id, value]) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.textContent = value;
+      }
+    });
+  }
+
+  function reconstructionSplitDecorations(index) {
+    const splitMeta = [
+      ["train", "Train", "rgba(38, 115, 109, 0.055)"],
+      ["validation", "Validation", "rgba(199, 154, 69, 0.075)"],
+      ["test", "Test", "rgba(155, 130, 208, 0.075)"]
+    ];
+    const shapes = [];
+    const annotations = [];
+    splitMeta.forEach(([key, label, color]) => {
+      const split = index.splits && index.splits[key];
+      if (!split) {
+        return;
+      }
+      shapes.push({
+        type: "rect",
+        xref: "x",
+        yref: "paper",
+        x0: split.start,
+        x1: split.end,
+        y0: 0,
+        y1: 1,
+        fillcolor: color,
+        line: { width: 0 },
+        layer: "below"
+      });
+      annotations.push({
+        x: split.start,
+        y: 0.985,
+        xref: "x",
+        yref: "paper",
+        xanchor: "left",
+        yanchor: "top",
+        text: label,
+        showarrow: false,
+        font: { size: 10, color: "#617080" }
+      });
+    });
+    return { shapes, annotations };
+  }
+
+  async function initReconstructionExplorer() {
+    const select = document.getElementById("reconstruction-zone-select");
+    const plot = document.getElementById("reconstruction-zone-plot");
+    const status = document.getElementById("reconstruction-explorer-status");
+    if (!select || !plot || !status) {
+      return;
+    }
+    let index;
+    try {
+      index = await loadJson("reconstruction-temporal/index.json");
+    } catch (error) {
+      console.error(error);
+      status.textContent = "L’index des reconstructions n’a pas pu être chargé.";
+      return;
+    }
+    if (typeof Plotly === "undefined") {
+      status.textContent = "La bibliothèque de tracé n’a pas pu être chargée.";
+      return;
+    }
+    const zones = Array.isArray(index.zones) ? index.zones : [];
+    if (zones.length !== 19 || index.method !== "diffusion4") {
+      status.textContent = "L’index public des reconstructions est incohérent.";
+      return;
+    }
+
+    select.innerHTML = "";
+    zones.forEach((zone) => {
+      const option = document.createElement("option");
+      option.value = zone.id;
+      option.textContent = zone.commune
+        ? `${zone.id} — ${zone.commune}`
+        : zone.id;
+      select.appendChild(option);
+    });
+    select.disabled = false;
+
+    const temporalCache = new Map();
+    const plotConfig = {
+      responsive: true,
+      displaylogo: false,
+      scrollZoom: true,
+      modeBarButtonsToRemove: ["lasso2d", "select2d"]
+    };
+    const decorations = reconstructionSplitDecorations(index);
+    let requestNumber = 0;
+
+    async function loadZone(zone) {
+      if (!temporalCache.has(zone.id)) {
+        temporalCache.set(zone.id, loadJson(zone.path));
+      }
+      return temporalCache.get(zone.id);
+    }
+
+    async function renderZone(zoneId) {
+      const zone = zones.find((item) => item.id === String(zoneId));
+      if (!zone) {
+        return;
+      }
+      const currentRequest = ++requestNumber;
+      select.disabled = true;
+      status.textContent = `Chargement de la zone ${zone.id}…`;
+      updateReconstructionZoneMetrics(zone);
+      try {
+        const payload = await loadZone(zone);
+        if (currentRequest !== requestNumber) {
+          return;
+        }
+        if (payload.method !== "diffusion4" || payload.lozo.source_used_in_fold !== false) {
+          throw new Error(`Payload LOZO incohérent pour ${zone.id}.`);
+        }
+        const observedX = [];
+        const observedY = [];
+        payload.target_observed.forEach((observed, position) => {
+          if (observed) {
+            observedX.push(payload.timestamp[position]);
+            observedY.push(payload.y_true[position]);
+          }
+        });
+        const traces = [
+          {
+            type: "scattergl",
+            mode: "markers",
+            name: "Observations réelles",
+            x: observedX,
+            y: observedY,
+            connectgaps: false,
+            marker: { color: "#17202b", size: 3, opacity: 0.46 },
+            hovertemplate: "date=%{x}<br>observation=%{y:.2f}<extra></extra>"
+          },
+          {
+            type: "scattergl",
+            mode: "lines",
+            name: "Reconstruction diffusion4",
+            x: payload.timestamp,
+            y: payload.y_reconstructed,
+            line: { color: "#26736d", width: 1.65 },
+            hovertemplate: "date=%{x}<br>reconstruction=%{y:.2f}<extra></extra>"
+          }
+        ];
+        const layout = {
+          template: "plotly_white",
+          hovermode: "x unified",
+          dragmode: "pan",
+          margin: { l: 62, r: 25, t: 82, b: 66 },
+          legend: { orientation: "h", x: 0, y: 1.16 },
+          meta: { zoneId: payload.zone_id },
+          shapes: decorations.shapes,
+          annotations: decorations.annotations,
+          xaxis: {
+            title: "Date",
+            rangeselector: {
+              buttons: [
+                { count: 7, label: "7 j", step: "day", stepmode: "backward" },
+                { count: 1, label: "1 mois", step: "month", stepmode: "backward" },
+                { count: 3, label: "3 mois", step: "month", stepmode: "backward" },
+                { label: "Tout", step: "all" }
+              ]
+            },
+            rangeslider: {
+              visible: true,
+              thickness: 0.12,
+              bgcolor: "#f4f7fa",
+              bordercolor: "#d8e2ea",
+              borderwidth: 1
+            }
+          },
+          yaxis: { title: "Comptage horaire", rangemode: "tozero" },
+          uirevision: payload.zone_id
+        };
+        await Plotly.react(plot, traces, layout, plotConfig);
+        status.textContent = `${formatValue(payload.timestamp.length)} timestamps · ${formatValue(observedX.length)} observations réelles`;
+      } catch (error) {
+        console.error(error);
+        temporalCache.delete(zone.id);
+        status.textContent = `La reconstruction de la zone ${zone.id} n’a pas pu être chargée.`;
+      } finally {
+        if (currentRequest === requestNumber) {
+          select.disabled = false;
+        }
+      }
+    }
+
+    document.addEventListener("reconstruction-zone-select", (event) => {
+      const zoneId = String(event.detail.zoneId);
+      if (!zones.some((zone) => zone.id === zoneId)) {
+        return;
+      }
+      select.value = zoneId;
+      renderZone(zoneId);
+    });
+    select.addEventListener("change", () => selectReconstructionZone(select.value));
+    const defaultZoneId = zones.some((zone) => zone.id === index.default_zone_id)
+      ? index.default_zone_id
+      : zones[0].id;
+    selectReconstructionZone(defaultZoneId);
+  }
+
   async function initReconstructionResults() {
     if (!document.querySelector("[data-reconstruction-results]")) {
       return;
@@ -1292,6 +1641,10 @@
       renderXgboostFeatures(results);
       renderMethodSelection(results);
       renderAccessibility(results);
+      await Promise.allSettled([
+        initReconstructionMap(results),
+        initReconstructionExplorer()
+      ]);
     } catch (error) {
       console.error(error);
       document.querySelectorAll("[data-results-error]").forEach((element) => {

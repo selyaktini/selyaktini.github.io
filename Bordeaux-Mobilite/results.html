@@ -5,8 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Résultats — Modélisation des flux cyclistes</title>
   <meta name="description" content="Résultats du baseline de reconstruction spatiale des flux cyclistes, évalué en leave-one-zone-out.">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/app.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260817-results-final">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
+  <script src="assets/js/app.js?v=20260817-results-final" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -135,6 +138,53 @@
     <section class="section">
       <div class="section-header">
         <div>
+          <h2>Performance spatiale</h2>
+          <p class="lead">MAE de test de diffusion4 pour chacune des 19 zones successivement masquées en LOZO. Une couleur plus soutenue indique une erreur plus élevée.</p>
+        </div>
+      </div>
+      <div class="map-shell results-map-shell">
+        <div id="reconstruction-map" class="map results-map" role="img" aria-label="Carte de la MAE de test des 19 zones cibles LOZO"></div>
+        <div class="map-caption split-caption">
+          <span>Cliquez sur une cible pour afficher sa reconstruction temporelle.</span>
+          <span class="legend results-map-caption-legend" aria-label="Échelle de couleur de la carte">
+            <span>MAE test</span>
+            <span class="results-gradient-swatch" aria-hidden="true"></span>
+            <span>faible → élevée</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Observation et reconstruction LOZO</h2>
+          <p class="lead">Les points représentent uniquement les observations réelles de la cible. La courbe montre la reconstruction synchrone diffusion4 avec les 18 autres zones comme sources.</p>
+        </div>
+      </div>
+      <div class="temporal-explorer reconstruction-explorer">
+        <div class="explorer-toolbar">
+          <label for="reconstruction-zone-select">Zone cible</label>
+          <select id="reconstruction-zone-select" disabled>
+            <option>Chargement…</option>
+          </select>
+          <span id="reconstruction-explorer-status" class="explorer-status" aria-live="polite"></span>
+        </div>
+        <div class="reconstruction-zone-metrics" aria-label="Métriques de la zone sélectionnée">
+          <div><span>Zone</span><strong id="reconstruction-zone-id">—</strong></div>
+          <div><span>Accessibilité</span><strong id="reconstruction-zone-accessibility">—</strong></div>
+          <div><span>Validation</span><strong><span id="reconstruction-validation-mae">—</span> MAE · <span id="reconstruction-validation-r2">—</span> R²</strong></div>
+          <div><span>Test</span><strong><span id="reconstruction-test-mae">—</span> MAE · <span id="reconstruction-test-r2">—</span> R²</strong></div>
+        </div>
+        <p class="definition-note"><strong>Fold LOZO :</strong> cette zone est entièrement masquée comme source, y compris sa propre série XGBoost. Les observations manquantes ne sont ni remplies ni reliées artificiellement.</p>
+        <div id="reconstruction-zone-plot" class="temporal-plot reconstruction-plot" role="img" aria-label="Observations réelles et reconstruction diffusion4 de la zone sélectionnée"></div>
+        <p class="source-note">Les fonds légers distinguent les périodes train, validation et test. La méthode est sélectionnée sur la validation ; le test reste réservé à l’évaluation finale.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
           <h2>Effet de la complétion des sources</h2>
           <p class="lead">Comparaison de diffusion4 avec les seules observations disponibles, puis avec les mêmes sources complétées temporellement.</p>
         </div>
@@ -172,7 +222,7 @@
         </div>
       </div>
       <div id="results-accessibility" class="accessibility-chart" aria-label="MAE de validation et de test par niveau d’accessibilité"></div>
-      <p class="definition-note">Les performances se dégradent lorsque la cible est moins directement accessible depuis les zones sources dans le graphe. Le niveau 3 apparaît nettement plus difficile, sans que cette comparaison suffise à établir une causalité.</p>
+      <p class="definition-note">Le niveau 3 apparaît nettement plus difficile que les niveaux 1 et 2, sans que cette comparaison suffise à établir une causalité.</p>
     </section>
   </main>
 

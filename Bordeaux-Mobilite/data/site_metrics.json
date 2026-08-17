@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-17T14:29:23+00:00",
+  "generated_at_utc": "2026-08-17T15:23:33+00:00",
   "observation_coverage": {
     "added_by_punctual": 88,
     "any_source": 124,
@@ -180,11 +180,13 @@
     "n_sources_per_fold": 18,
     "n_timestamps": 17497,
     "provenance": {
-      "generated_at_utc": "2026-08-17T14:29:23+00:00",
+      "generated_at_utc": "2026-08-17T15:23:33+00:00",
       "producer": "scripts/web/export_reconstruction_results.py",
       "reference_directory": "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1"
     },
     "selected_method": "diffusion4",
+    "targets_file": "data/reconstruction_targets.geojson",
+    "temporal_index_file": "data/reconstruction-temporal/index.json",
     "test": {
       "bias": -1.0377992144143728,
       "mae": 8.13372741701296,
