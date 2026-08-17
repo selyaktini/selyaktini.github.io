@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Résultats — Modélisation des flux cyclistes</title>
+  <meta name="description" content="Résultats du baseline de reconstruction spatiale des flux cyclistes, évalué en leave-one-zone-out.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">Résultats</h1>
+      <p class="site-subtitle">Reconstruction spatiale en validation leave-one-zone-out</p>
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <a href="index.html">Synthèse</a>
+        <a href="study-area.html">Périmètre</a>
+        <a href="permanent-counts.html">Capteurs permanents</a>
+        <a href="punctual-counts.html">Comptages ponctuels</a>
+        <a href="observation-coverage.html">Couverture</a>
+        <a href="methodology.html">Préparation</a>
+        <a href="results.html">Résultats</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content" data-reconstruction-results>
+    <section class="section">
+      <div class="section-header compact">
+        <h2>Reconstruction spatiale synchrone</h2>
+        <p class="lead">Le baseline actuel reconstruit, à un instant donné, le flux d’une zone dont toute la série est cachée à partir des autres zones visibles. Il ne s’agit pas d’une prédiction future à horizon <span class="mono">t+h</span>.</p>
+      </div>
+      <p class="source-note load-note" data-results-error aria-live="polite"></p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Protocole</h2>
+          <p class="lead">Chaque zone de référence devient successivement la cible d’un fold leave-one-zone-out.</p>
+        </div>
+      </div>
+      <ol class="results-protocol-flow" aria-label="Étapes du protocole leave-one-zone-out">
+        <li><strong data-result-path="protocol.n_reference_zones">—</strong><span>zones de référence</span></li>
+        <li><strong>1</strong><span>zone cible masquée</span></li>
+        <li><strong data-result-path="protocol.n_sources_per_fold">—</strong><span>zones sources restantes</span></li>
+        <li><strong>Diffusion</strong><span>sur le graphe spatial</span></li>
+        <li><strong>Évaluation</strong><span>sur la vraie observation</span></li>
+      </ol>
+      <p class="definition-note"><strong>Masquage strict :</strong> la cible reste présente comme nœud du graphe, mais ses observations et sa propre série XGBoost sont entièrement retirées. L’évaluation porte uniquement sur les timestamps où une vraie observation de la cible existe.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Complétion temporelle des sources</h2>
+          <p class="lead">Un modèle XGBoost indépendant complète les valeurs manquantes de chaque zone source avant la diffusion.</p>
+        </div>
+      </div>
+      <div class="key-metrics compact results-role-metrics" aria-label="Rôle de XGBoost dans le pipeline">
+        <article class="key-metric">
+          <strong data-result-path="xgboost_role.n_models">—</strong>
+          <span>modèles indépendants</span>
+        </article>
+        <article class="key-metric">
+          <strong data-result-path="xgboost_role.n_features">—</strong>
+          <span>variables calendaires</span>
+        </article>
+        <article class="key-metric">
+          <strong data-result-path="protocol.n_timestamps">—</strong>
+          <span>timestamps par zone</span>
+        </article>
+        <article class="key-metric">
+          <strong>0</strong>
+          <span>information issue d’une autre zone</span>
+        </article>
+      </div>
+      <div class="feature-panel">
+        <h3>Variables utilisées</h3>
+        <ul class="feature-chips" data-xgboost-features aria-label="Variables calendaires XGBoost"></ul>
+      </div>
+      <p class="definition-note"><strong>Rôle limité :</strong> XGBoost n’est pas le modèle de reconstruction spatiale. Il complète seulement les zones sources ; le modèle XGBoost de la cible est retiré du fold.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Sélection de la diffusion</h2>
+          <p class="lead">MAE poolée en validation avec les sources complétées par XGBoost. Plus la barre est courte, plus l’erreur est faible.</p>
+        </div>
+      </div>
+      <div id="results-method-selection" class="results-bar-chart" aria-label="MAE de validation des quatre méthodes de diffusion"></div>
+      <p class="definition-note"><strong>diffusion4</strong> est sélectionnée exclusivement sur la MAE de validation. Le jeu de test n’intervient pas dans ce choix.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Résultat principal</h2>
+          <p class="lead">Performance du baseline diffusion4 avec complétion temporelle des sources.</p>
+        </div>
+      </div>
+      <div class="results-split-grid">
+        <article class="results-split-card validation-card">
+          <div class="results-split-header">
+            <p class="eyebrow">Validation</p>
+            <h3>Sélection et mise au point</h3>
+            <span><span data-result-path="diffusion4.validation.n">—</span> observations réelles</span>
+          </div>
+          <div class="results-metric-grid">
+            <div><strong data-result-path="diffusion4.validation.mae" data-result-digits="3">—</strong><span>MAE</span></div>
+            <div><strong data-result-path="diffusion4.validation.rmse" data-result-digits="3">—</strong><span>RMSE</span></div>
+            <div><strong data-result-path="diffusion4.validation.r2" data-result-digits="3">—</strong><span>R²</span></div>
+            <div><strong data-result-path="diffusion4.validation.bias" data-result-digits="3">—</strong><span>Biais</span></div>
+          </div>
+        </article>
+        <article class="results-split-card test-card">
+          <div class="results-split-header">
+            <p class="eyebrow">Test</p>
+            <h3>Évaluation finale indépendante</h3>
+            <span><span data-result-path="diffusion4.test.n">—</span> observations réelles</span>
+          </div>
+          <div class="results-metric-grid">
+            <div><strong data-result-path="diffusion4.test.mae" data-result-digits="3">—</strong><span>MAE</span></div>
+            <div><strong data-result-path="diffusion4.test.rmse" data-result-digits="3">—</strong><span>RMSE</span></div>
+            <div><strong data-result-path="diffusion4.test.r2" data-result-digits="3">—</strong><span>R²</span></div>
+            <div><strong data-result-path="diffusion4.test.bias" data-result-digits="3">—</strong><span>Biais</span></div>
+          </div>
+        </article>
+      </div>
+      <p class="source-note">Ces valeurs décrivent le baseline de reconstruction spatiale actuellement validé. Elles ne mesurent pas une prévision future.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Effet de la complétion des sources</h2>
+          <p class="lead">Comparaison de diffusion4 avec les seules observations disponibles, puis avec les mêmes sources complétées temporellement.</p>
+        </div>
+      </div>
+      <div class="source-effect-grid">
+        <article class="source-effect-card">
+          <p class="eyebrow">Validation</p>
+          <h3>Sources observées → sources complétées</h3>
+          <dl class="source-effect-list">
+            <div><dt>MAE</dt><dd><span data-result-path="source_completion_effect.validation.observed_sources.mae" data-result-digits="3">—</span><span aria-hidden="true">→</span><strong data-result-path="source_completion_effect.validation.xgboost_sources.mae" data-result-digits="3">—</strong></dd></div>
+            <div><dt>Sources disponibles</dt><dd><span data-result-path="source_completion_effect.validation.observed_sources.mean_sources_available" data-result-digits="2">—</span><span aria-hidden="true">→</span><strong data-result-path="source_completion_effect.validation.xgboost_sources.mean_sources_available" data-result-digits="2">—</strong></dd></div>
+            <div><dt>Fallback</dt><dd><span data-result-path="source_completion_effect.validation.observed_sources.fallback_rate" data-result-digits="2" data-result-percent>—</span><span aria-hidden="true">→</span><strong data-result-path="source_completion_effect.validation.xgboost_sources.fallback_rate" data-result-digits="0" data-result-percent>—</strong></dd></div>
+          </dl>
+          <p><strong data-result-path="source_completion_effect.validation.improved_zones">—</strong> zones améliorées / <strong data-result-path="source_completion_effect.validation.degraded_zones">—</strong> dégradées</p>
+        </article>
+        <article class="source-effect-card">
+          <p class="eyebrow">Test</p>
+          <h3>Sources observées → sources complétées</h3>
+          <dl class="source-effect-list">
+            <div><dt>MAE</dt><dd><span data-result-path="source_completion_effect.test.observed_sources.mae" data-result-digits="3">—</span><span aria-hidden="true">→</span><strong data-result-path="source_completion_effect.test.xgboost_sources.mae" data-result-digits="3">—</strong></dd></div>
+            <div><dt>Sources disponibles</dt><dd><span data-result-path="source_completion_effect.test.observed_sources.mean_sources_available" data-result-digits="2">—</span><span aria-hidden="true">→</span><strong data-result-path="source_completion_effect.test.xgboost_sources.mean_sources_available" data-result-digits="2">—</strong></dd></div>
+            <div><dt>Fallback</dt><dd><span data-result-path="source_completion_effect.test.observed_sources.fallback_rate" data-result-digits="2" data-result-percent>—</span><span aria-hidden="true">→</span><strong data-result-path="source_completion_effect.test.xgboost_sources.fallback_rate" data-result-digits="0" data-result-percent>—</strong></dd></div>
+          </dl>
+          <p><strong data-result-path="source_completion_effect.test.improved_zones">—</strong> zones améliorées / <strong data-result-path="source_completion_effect.test.degraded_zones">—</strong> dégradées</p>
+        </article>
+      </div>
+      <p class="definition-note">La complétion temporelle améliore légèrement les métriques globales et garantit la disponibilité des 18 sources à chaque timestamp. Elle n’explique pas à elle seule la performance de la diffusion.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Accessibilité spatiale</h2>
+          <p class="lead">MAE de diffusion4 selon le niveau d’accessibilité topologique de la cible. Une barre plus longue indique une erreur plus élevée.</p>
+        </div>
+      </div>
+      <div id="results-accessibility" class="accessibility-chart" aria-label="MAE de validation et de test par niveau d’accessibilité"></div>
+      <p class="definition-note">Les performances se dégradent lorsque la cible est moins directement accessible depuis les zones sources dans le graphe. Le niveau 3 apparaît nettement plus difficile, sans que cette comparaison suffise à établir une causalité.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">Modélisation des flux cyclistes &mdash; Bordeaux Métropole</div>
+  </footer>
+</body>
+</html>

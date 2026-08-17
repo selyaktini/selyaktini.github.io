@@ -5,7 +5,8 @@
       "producers": [
         "scripts/web/export_permanent_data.py",
         "scripts/web/export_punctual_data.py",
-        "scripts/web/export_observation_coverage.py"
+        "scripts/web/export_observation_coverage.py",
+        "scripts/web/export_reconstruction_results.py"
       ],
       "public_file": "data/site_metrics.json",
       "sources": [
@@ -20,7 +21,13 @@
         "data/interim/temporal/01_comptages_velos/capteurs_temporal_zone_mapping.parquet",
         "data/processed/punctual/punctual_2021_2023_zonal_hourly.csv",
         "data/interim/punctual/punctual_2021_2023_zones.csv",
-        "reports/quality_checks/punctual_spatial_coverage/zone_source_coverage.csv"
+        "reports/quality_checks/punctual_spatial_coverage/zone_source_coverage.csv",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metadata.json",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_aggregate.csv",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_accessibility_level.csv",
+        "data/processed/xgboost_zone_imputation_observed_clean/metadata.json",
+        "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json"
       ]
     },
     {
@@ -168,9 +175,22 @@
         "reports/quality_checks/punctual_spatial_coverage/zone_source_coverage.csv",
         "data/interim/spatial/06_rocade_study_area/rocade_study_area.gpkg#zones_modeling"
       ]
+    },
+    {
+      "description": "Résultats publics du baseline canonique diffusion4 avec complétion temporelle XGBoost, évalué en LOZO strict.",
+      "producer": "scripts/web/export_reconstruction_results.py",
+      "public_file": "data/reconstruction_results.json",
+      "sources": [
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metadata.json",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_aggregate.csv",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
+        "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_accessibility_level.csv",
+        "data/processed/xgboost_zone_imputation_observed_clean/metadata.json",
+        "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json"
+      ]
     }
   ],
-  "generated_at_utc": "2026-08-17T11:50:24+00:00",
+  "generated_at_utc": "2026-08-17T14:29:23+00:00",
   "intentionally_not_published": [
     "raw Excel workbooks",
     "raw CSV files",

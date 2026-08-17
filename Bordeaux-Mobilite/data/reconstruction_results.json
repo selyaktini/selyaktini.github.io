@@ -1,0 +1,163 @@
+{
+  "accessibility_levels": [
+    {
+      "level": 1,
+      "n_zones": 6,
+      "test": {
+        "bias": -1.771935208002172,
+        "mae": 7.0041391641279205,
+        "n": 14977,
+        "r2": 0.7685973556006082,
+        "rmse": 13.266022431915914
+      },
+      "validation": {
+        "bias": -1.612741499667114,
+        "mae": 5.488464873264018,
+        "n": 14332,
+        "r2": 0.8048256521960239,
+        "rmse": 10.418439328640092
+      }
+    },
+    {
+      "level": 2,
+      "n_zones": 6,
+      "test": {
+        "bias": 0.3296112325849326,
+        "mae": 5.274056884214119,
+        "n": 15172,
+        "r2": 0.9314299198250888,
+        "rmse": 9.872042503834008
+      },
+      "validation": {
+        "bias": 0.2037156261032386,
+        "mae": 5.211125590839239,
+        "n": 15285,
+        "r2": 0.9164167705074996,
+        "rmse": 10.960454766685189
+      }
+    },
+    {
+      "level": 3,
+      "n_zones": 7,
+      "test": {
+        "bias": -1.6130910448514812,
+        "mae": 11.691530637489844,
+        "n": 16950,
+        "r2": 0.3258570830446282,
+        "rmse": 22.454375635389983
+      },
+      "validation": {
+        "bias": -3.25798605086299,
+        "mae": 10.112017881742428,
+        "n": 16081,
+        "r2": 0.2620282293063433,
+        "rmse": 21.331299555857274
+      }
+    }
+  ],
+  "diffusion4": {
+    "test": {
+      "bias": -1.0377992144143728,
+      "mae": 8.13372741701296,
+      "n": 47099,
+      "r2": 0.7236248175318147,
+      "rmse": 16.395344709004082
+    },
+    "validation": {
+      "bias": -1.5841325990671102,
+      "mae": 7.022716372180351,
+      "n": 45698,
+      "r2": 0.7335736656547103,
+      "rmse": 15.308338570619638
+    }
+  },
+  "generated_at_utc": "2026-08-17T14:29:23+00:00",
+  "method_selection": {
+    "metric": "mae",
+    "source_mode": "xgboost",
+    "split": "validation",
+    "validation_mae": {
+      "diffusion1": 11.90369680096742,
+      "diffusion2": 7.099946411400645,
+      "diffusion4": 7.022716372180351,
+      "diffusion6": 7.149938976330145
+    }
+  },
+  "problem": "synchronous spatial reconstruction",
+  "protocol": {
+    "evaluation_on_observed_target_labels_only": true,
+    "n_reference_zones": 19,
+    "n_sources_per_fold": 18,
+    "n_timestamps": 17497,
+    "selection_metric": "pooled validation MAE",
+    "target_observed_removed": true,
+    "target_stays_in_graph": true,
+    "target_xgboost_removed": true,
+    "test_labels": 47099,
+    "test_used_for_selection": false,
+    "validation_labels": 45698
+  },
+  "provenance": {
+    "producer": "scripts/web/export_reconstruction_results.py",
+    "reference_directory": "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1",
+    "sources": [
+      "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metadata.json",
+      "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_aggregate.csv",
+      "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_zone.csv",
+      "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1/metrics_by_accessibility_level.csv",
+      "data/processed/xgboost_zone_imputation_observed_clean/metadata.json",
+      "data/processed/xgboost_zone_imputation_observed_clean/feature_schema.json"
+    ],
+    "xgboost_directory": "data/processed/xgboost_zone_imputation_observed_clean"
+  },
+  "schema_version": 1,
+  "selected_method": "diffusion4",
+  "source_completion_effect": {
+    "test": {
+      "degraded_zones": 5,
+      "improved_zones": 14,
+      "observed_sources": {
+        "fallback_rate": 0.0063382541720154,
+        "mae": 8.215266744830613,
+        "mean_sources_available": 17.00461328626444
+      },
+      "unchanged_zones": 0,
+      "xgboost_sources": {
+        "fallback_rate": 0.0,
+        "mae": 8.13372741701296,
+        "mean_sources_available": 18.0
+      }
+    },
+    "validation": {
+      "degraded_zones": 9,
+      "improved_zones": 10,
+      "observed_sources": {
+        "fallback_rate": 0.0142301679560668,
+        "mae": 7.066579074635059,
+        "mean_sources_available": 16.48623080931575
+      },
+      "unchanged_zones": 0,
+      "xgboost_sources": {
+        "fallback_rate": 0.0,
+        "mae": 7.022716372180351,
+        "mean_sources_available": 18.0
+      }
+    }
+  },
+  "xgboost_role": {
+    "calendar_only": true,
+    "features": [
+      "hour_sin",
+      "hour_cos",
+      "dow_sin",
+      "dow_cos",
+      "doy_sin",
+      "doy_cos",
+      "is_weekend"
+    ],
+    "n_features": 7,
+    "n_models": 19,
+    "role": "temporal completion of source zones",
+    "uses_other_zone_information": false
+  }
+}

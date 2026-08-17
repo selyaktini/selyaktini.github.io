@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-17T11:50:24+00:00",
+  "generated_at_utc": "2026-08-17T14:29:23+00:00",
   "observation_coverage": {
     "added_by_punctual": 88,
     "any_source": 124,
@@ -172,6 +172,32 @@
       "2021": 110,
       "2022": 110,
       "2023": 112
+    }
+  },
+  "reconstruction_results": {
+    "file": "data/reconstruction_results.json",
+    "n_reference_zones": 19,
+    "n_sources_per_fold": 18,
+    "n_timestamps": 17497,
+    "provenance": {
+      "generated_at_utc": "2026-08-17T14:29:23+00:00",
+      "producer": "scripts/web/export_reconstruction_results.py",
+      "reference_directory": "artifacts/reconstruction/reference/diffusion4_xgboost_lozo_v1"
+    },
+    "selected_method": "diffusion4",
+    "test": {
+      "bias": -1.0377992144143728,
+      "mae": 8.13372741701296,
+      "n": 47099,
+      "r2": 0.7236248175318147,
+      "rmse": 16.395344709004082
+    },
+    "validation": {
+      "bias": -1.5841325990671102,
+      "mae": 7.022716372180351,
+      "n": 45698,
+      "r2": 0.7335736656547103,
+      "rmse": 15.308338570619638
     }
   },
   "study_area": {

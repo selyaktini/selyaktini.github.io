@@ -1179,6 +1179,127 @@
     selectPunctualZone(initialZoneId);
   }
 
+  function formatResultNumber(value, digits, asPercent) {
+    let numeric = Number(value);
+    if (!Number.isFinite(numeric)) {
+      return formatValue(value);
+    }
+    if (asPercent) {
+      numeric *= 100;
+    }
+    const formatted = numeric.toLocaleString("fr-FR", {
+      minimumFractionDigits: digits,
+      maximumFractionDigits: digits
+    });
+    return asPercent ? `${formatted} %` : formatted;
+  }
+
+  function renderResultBindings(results) {
+    document.querySelectorAll("[data-result-path]").forEach((element) => {
+      const value = getByPath(results, element.getAttribute("data-result-path") || "");
+      if (value == null) {
+        return;
+      }
+      const digitsAttribute = element.getAttribute("data-result-digits");
+      const digits = digitsAttribute == null ? 0 : Number(digitsAttribute);
+      element.textContent = formatResultNumber(
+        value,
+        Number.isFinite(digits) ? digits : 0,
+        element.hasAttribute("data-result-percent")
+      );
+    });
+  }
+
+  function renderXgboostFeatures(results) {
+    const features = getByPath(results, "xgboost_role.features") || [];
+    document.querySelectorAll("[data-xgboost-features]").forEach((element) => {
+      element.innerHTML = features.map((feature) => {
+        return `<li>${escapeHtml(feature)}</li>`;
+      }).join("");
+    });
+  }
+
+  function renderMethodSelection(results) {
+    const element = document.getElementById("results-method-selection");
+    if (!element) {
+      return;
+    }
+    const values = getByPath(results, "method_selection.validation_mae") || {};
+    const methods = ["diffusion1", "diffusion2", "diffusion4", "diffusion6"]
+      .filter((method) => Number.isFinite(Number(values[method])));
+    if (!methods.length) {
+      return;
+    }
+    const maximum = Math.max(...methods.map((method) => Number(values[method])));
+    const selectedMethod = results.selected_method;
+    element.innerHTML = methods.map((method) => {
+      const value = Number(values[method]);
+      const selected = method === selectedMethod;
+      const selectedLabel = selected ? '<span class="result-badge">retenue</span>' : "";
+      return `
+        <div class="result-bar-row${selected ? " is-selected" : ""}">
+          <span class="result-bar-label">${escapeHtml(method)}${selectedLabel}</span>
+          <span class="result-bar-track" aria-hidden="true"><span class="result-bar-fill" style="width:${value / maximum * 100}%"></span></span>
+          <strong>${formatResultNumber(value, 3, false)}</strong>
+        </div>
+      `;
+    }).join("");
+  }
+
+  function renderAccessibility(results) {
+    const element = document.getElementById("results-accessibility");
+    if (!element) {
+      return;
+    }
+    const levels = Array.isArray(results.accessibility_levels)
+      ? results.accessibility_levels
+      : [];
+    const values = levels.flatMap((level) => {
+      return [Number(level.validation.mae), Number(level.test.mae)];
+    }).filter(Number.isFinite);
+    if (!values.length) {
+      return;
+    }
+    const maximum = Math.max(...values);
+    element.innerHTML = levels.map((level) => {
+      const validation = Number(level.validation.mae);
+      const test = Number(level.test.mae);
+      return `
+        <article class="accessibility-level">
+          <header><h3>Niveau ${formatValue(level.level)}</h3><span>${formatValue(level.n_zones)} zones</span></header>
+          <div class="accessibility-bar-row">
+            <span>Validation</span>
+            <span class="result-bar-track" aria-hidden="true"><span class="result-bar-fill validation-fill" style="width:${validation / maximum * 100}%"></span></span>
+            <strong>${formatResultNumber(validation, 3, false)}</strong>
+          </div>
+          <div class="accessibility-bar-row">
+            <span>Test</span>
+            <span class="result-bar-track" aria-hidden="true"><span class="result-bar-fill test-fill" style="width:${test / maximum * 100}%"></span></span>
+            <strong>${formatResultNumber(test, 3, false)}</strong>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  async function initReconstructionResults() {
+    if (!document.querySelector("[data-reconstruction-results]")) {
+      return;
+    }
+    try {
+      const results = await loadJson("reconstruction_results.json");
+      renderResultBindings(results);
+      renderXgboostFeatures(results);
+      renderMethodSelection(results);
+      renderAccessibility(results);
+    } catch (error) {
+      console.error(error);
+      document.querySelectorAll("[data-results-error]").forEach((element) => {
+        element.textContent = "Les résultats publics n'ont pas pu être chargés.";
+      });
+    }
+  }
+
   async function initMetrics() {
     try {
       const metrics = await loadJson("site_metrics.json");
@@ -1205,7 +1326,8 @@
       initPermanentExplorer(),
       initPunctualMap(),
       initPunctualExplorer(),
-      initObservationCoverageMap()
+      initObservationCoverageMap(),
+      initReconstructionResults()
     ]);
   }
 
