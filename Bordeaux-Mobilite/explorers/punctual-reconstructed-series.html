@@ -78,6 +78,17 @@
       return Number(value).toLocaleString("fr-FR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
     }
 
+    const bordeauxTimeFormatter = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23"
+    });
+
+    function bordeauxLocalTimestamp(timestamp) {
+      const parts = {};
+      bordeauxTimeFormatter.formatToParts(new Date(timestamp)).forEach(({ type, value }) => { parts[type] = value; });
+      return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}`;
+    }
+
     function renderSummary(payload) {
       const s = payload.summary;
       document.getElementById("zone-card").textContent = s.zone_id;
@@ -91,10 +102,11 @@
     function brokenSeries(timestamps, values) {
       const x = [], y = [];
       timestamps.forEach((timestamp, i) => {
+        const localTimestamp = bordeauxLocalTimestamp(timestamp);
         if (i > 0 && Date.parse(timestamp) - Date.parse(timestamps[i - 1]) > 3600000) {
-          x.push(timestamp); y.push(null);
+          x.push(localTimestamp); y.push(null);
         }
-        x.push(timestamp); y.push(values[i]);
+        x.push(localTimestamp); y.push(values[i]);
       });
       return { x, y };
     }
@@ -104,12 +116,12 @@
       Plotly.react("series", [{
         type: "scattergl", mode: "lines", name: "y_pred", x: data.x, y: data.y,
         connectgaps: false, line: { color: "#2171b5", width: 1.1 },
-        hovertemplate: "%{x}<br>y_pred=%{y:.2f}<extra>" + payload.zone_id + "</extra>"
+        hovertemplate: "%{x|%d/%m/%Y %H:%M} (Europe/Paris)<br>y_pred=%{y:.2f}<extra>" + payload.zone_id + "</extra>"
       }], {
         template: "plotly_white", margin: { l: 62, r: 25, t: 25, b: 55 },
         hovermode: "x unified", dragmode: "pan", uirevision: payload.zone_id,
         xaxis: {
-          title: "Timestamp UTC", type: "date", rangeslider: { visible: true, thickness: .09 },
+          title: "Heure locale Europe/Paris", type: "date", rangeslider: { visible: true, thickness: .09 },
           rangeselector: { buttons: [
             { count: 1, label: "1 journée", step: "day", stepmode: "backward" },
             { count: 7, label: "1 semaine", step: "day", stepmode: "backward" },
