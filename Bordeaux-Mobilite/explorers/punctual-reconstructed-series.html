@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Séries ponctuelles reconstruites</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: sans-serif; background: #f7f7f4; color: #1f2933; }
+    header { padding: 22px 28px 16px; border-bottom: 1px solid #d8d6cf; }
+    h1 { margin: 0 0 7px; font-size: 25px; }
+    header p { margin: 0; color: #52606d; line-height: 1.45; }
+    .toolbar { margin: 20px 28px 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    select, button { padding: 8px 11px; border: 1px solid #b8b5ad; border-radius: 6px; background: white; }
+    select { min-width: 280px; }
+    button { cursor: pointer; }
+    #status { color: #52606d; font-size: 14px; }
+    #error { margin: 0 28px 14px; color: #9b1c1c; }
+    .cards { margin: 0 28px 16px; display: grid; grid-template-columns: repeat(6, minmax(130px, 1fr)); gap: 9px; }
+    .card, .panel { background: white; border: 1px solid #d8d6cf; border-radius: 7px; }
+    .card { padding: 11px 13px; }
+    .label { color: #52606d; font-size: 11px; text-transform: uppercase; letter-spacing: .035em; }
+    .value { margin-top: 5px; font-size: 17px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .value.small { font-size: 12px; line-height: 1.35; }
+    .panel { margin: 0 28px 18px; padding: 12px 13px 6px; }
+    .panel h2 { margin: 3px 8px 0; font-size: 17px; }
+    .note { margin: 5px 8px 3px; color: #52606d; font-size: 13px; }
+    #series { width: 100%; height: 610px; }
+    #profile { width: 100%; height: 390px; }
+    @media (max-width: 1000px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 620px) { .cards { grid-template-columns: repeat(2, 1fr); } .panel, .toolbar, .cards, #error { margin-left: 10px; margin-right: 10px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Séries horaires des zones ponctuelles reconstruites</h1>
+    <p>Prédictions XGBoost V2 sur les timestamps admissibles. Les lignes sont interrompues dès qu'un écart temporel dépasse une heure afin de ne pas relier artificiellement weekends, vacances ou jours fériés.</p>
+  </header>
+  <main>
+    <div class="toolbar">
+      <label for="zone">Zone :</label>
+      <select id="zone" disabled></select>
+      <button id="reset" disabled>Toute la période</button>
+      <span id="status">Chargement…</span>
+    </div>
+    <div id="error"></div>
+    <section class="cards">
+      <div class="card"><div class="label">Zone</div><div class="value" id="zone-card">—</div></div>
+      <div class="card"><div class="label">p_median</div><div class="value" id="p-median">—</div></div>
+      <div class="card"><div class="label">Minimum</div><div class="value" id="minimum">—</div></div>
+      <div class="card"><div class="label">Moyenne / médiane</div><div class="value" id="mean-median">—</div></div>
+      <div class="card"><div class="label">Maximum</div><div class="value" id="maximum">—</div></div>
+      <div class="card"><div class="label">Période disponible</div><div class="value small" id="period">—</div></div>
+    </section>
+    <section class="panel">
+      <h2>Vraie série temporelle reconstruite</h2>
+      <p class="note">Zoom molette, pan par glisser-déposer, range slider et raccourcis 1 mois / 1 semaine / 1 journée.</p>
+      <div id="series"></div>
+    </section>
+    <section class="panel">
+      <h2>Profil journalier typique</h2>
+      <p class="note">Médiane des prédictions par heure locale Europe/Paris et huit valeurs ponctuelles originales P_z.</p>
+      <div id="profile"></div>
+    </section>
+  </main>
+  <script>
+    const indexUrl = "../data/punctual-reconstructed-series/index.json";
+    const zoneSelect = document.getElementById("zone");
+    const resetButton = document.getElementById("reset");
+    const status = document.getElementById("status");
+    const errorBox = document.getElementById("error");
+    let indexPayload = null;
+    let currentRequest = 0;
+    const plotConfig = { responsive: true, displaylogo: false, scrollZoom: true, modeBarButtonsToRemove: ["lasso2d", "select2d"] };
+
+    function number(value, digits = 2) {
+      return Number(value).toLocaleString("fr-FR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+    }
+
+    function renderSummary(payload) {
+      const s = payload.summary;
+      document.getElementById("zone-card").textContent = s.zone_id;
+      document.getElementById("p-median").textContent = number(s.p_median);
+      document.getElementById("minimum").textContent = number(s.minimum);
+      document.getElementById("mean-median").textContent = number(s.mean) + " / " + number(s.median);
+      document.getElementById("maximum").textContent = number(s.maximum);
+      document.getElementById("period").textContent = s.first_timestamp + " → " + s.last_timestamp;
+    }
+
+    function brokenSeries(timestamps, values) {
+      const x = [], y = [];
+      timestamps.forEach((timestamp, i) => {
+        if (i > 0 && Date.parse(timestamp) - Date.parse(timestamps[i - 1]) > 3600000) {
+          x.push(timestamp); y.push(null);
+        }
+        x.push(timestamp); y.push(values[i]);
+      });
+      return { x, y };
+    }
+
+    function renderSeries(payload) {
+      const data = brokenSeries(indexPayload.timestamps, payload.y_pred);
+      Plotly.react("series", [{
+        type: "scattergl", mode: "lines", name: "y_pred", x: data.x, y: data.y,
+        connectgaps: false, line: { color: "#2171b5", width: 1.1 },
+        hovertemplate: "%{x}<br>y_pred=%{y:.2f}<extra>" + payload.zone_id + "</extra>"
+      }], {
+        template: "plotly_white", margin: { l: 62, r: 25, t: 25, b: 55 },
+        hovermode: "x unified", dragmode: "pan", uirevision: payload.zone_id,
+        xaxis: {
+          title: "Timestamp UTC", type: "date", rangeslider: { visible: true, thickness: .09 },
+          rangeselector: { buttons: [
+            { count: 1, label: "1 journée", step: "day", stepmode: "backward" },
+            { count: 7, label: "1 semaine", step: "day", stepmode: "backward" },
+            { count: 1, label: "1 mois", step: "month", stepmode: "backward" },
+            { step: "all", label: "Toute la période" }
+          ] }
+        },
+        yaxis: { title: "y_pred", rangemode: "tozero" }
+      }, plotConfig);
+    }
+
+    function renderProfile(payload) {
+      Plotly.react("profile", [
+        {
+          type: "scatter", mode: "lines+markers", name: "Profil prédit médian",
+          x: Array.from({ length: 24 }, (_, i) => i), y: payload.typical_profile,
+          line: { color: "#2171b5", width: 2.2 }, marker: { size: 5 }
+        },
+        {
+          type: "scatter", mode: "markers", name: "8 vrais points P_z",
+          x: payload.p_hours, y: payload.p_values,
+          marker: { color: "#d7301f", size: 10, line: { color: "white", width: 1 } }
+        }
+      ], {
+        template: "plotly_white", margin: { l: 62, r: 25, t: 25, b: 50 },
+        xaxis: { title: "Heure locale", tickmode: "linear", dtick: 2, range: [-.5, 23.5] },
+        yaxis: { title: "Flux vélo horaire", rangemode: "tozero" },
+        legend: { orientation: "h", y: 1.14 }
+      }, plotConfig);
+    }
+
+    async function loadZone(zoneId) {
+      const request = ++currentRequest;
+      status.textContent = "Chargement de " + zoneId + "…";
+      errorBox.textContent = "";
+      try {
+        const zone = indexPayload.zones.find((item) => item.zone_id === zoneId);
+        const response = await fetch(new URL(zone.path, new URL(indexUrl, window.location.href)));
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const payload = await response.json();
+        if (request !== currentRequest) return;
+        if (payload.y_pred.length !== indexPayload.n_timestamps) throw new Error("longueur zonale invalide");
+        renderSummary(payload); renderSeries(payload); renderProfile(payload);
+        status.textContent = number(payload.summary.n_timestamps, 0) + " points chargés";
+        resetButton.disabled = false;
+      } catch (error) {
+        errorBox.textContent = "Impossible de charger la zone : " + error.message + ". Servez ce dossier avec un petit serveur HTTP local.";
+        status.textContent = "Erreur";
+      }
+    }
+
+    async function initialize() {
+      try {
+        const response = await fetch(indexUrl);
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        indexPayload = await response.json();
+        indexPayload.zones.forEach((zone) => {
+          const option = document.createElement("option");
+          option.value = zone.zone_id;
+          option.textContent = zone.zone_id + " — p_median " + number(zone.p_median);
+          zoneSelect.appendChild(option);
+        });
+        zoneSelect.disabled = false;
+        zoneSelect.addEventListener("change", () => loadZone(zoneSelect.value));
+        resetButton.addEventListener("click", () => Plotly.relayout("series", { "xaxis.autorange": true }));
+        await loadZone(indexPayload.zones[0].zone_id);
+      } catch (error) {
+        errorBox.textContent = "Impossible de charger l'index : " + error.message + ". Lancez le serveur HTTP indiqué dans la documentation de génération.";
+        status.textContent = "Erreur";
+      }
+    }
+    initialize();
+  </script>
+</body>
+</html>
